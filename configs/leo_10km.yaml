@@ -1,0 +1,10 @@
+mass: 1000.0
+altitude_m: 10000.0
+controller:
+  q_plus_scale: 1.0e9
+  q_minus_scale: 0.0
+  delta_phase_deg: 0.0
+  nu_window_deg: 10.0
+integrator:
+  t_final: 2592000.0
+  dt_output: 3600.0
