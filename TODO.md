@@ -1,2 +1,0 @@
-- Validate simulation against higher fidelity models.
-- Implement full tension constraints.
