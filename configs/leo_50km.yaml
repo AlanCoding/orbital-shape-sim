@@ -1,8 +1,9 @@
 mass: 1000.0
 altitude_m: 50000.0
+length0: 1000.0
 controller:
-  q_plus_scale: 1.0e9
-  q_minus_scale: 0.0
+  extend_accel: 0.001      # m/s^2
+  retract_accel: 0.001     # m/s^2
   delta_phase_deg: 0.0
   nu_window_deg: 10.0
 integrator:

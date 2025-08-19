@@ -25,22 +25,40 @@ def Q_of_barbell(mass: float, length: float, u: np.ndarray) -> np.ndarray:
 
 
 class DualBarbell:
-    """Simplified dual counter-rotating barbell model."""
+    """Physical dual barbell model with variable tether length.
 
-    def __init__(self, mass: float) -> None:
+    The class currently stores only bulk properties required by the
+    dynamics and exposes a simple length-limits check used by tests or
+    higher level code.  Mass is the total mass of both endpoint masses
+    combined.
+    """
+
+    def __init__(
+        self,
+        mass: float,
+        min_length: float = 1.0,
+        max_length: float | None = None,
+        max_accel: float = 1e-3,
+    ) -> None:
         self.mass = mass
-        self.q_scale = 0.0
+        # ``min_length`` defaults to 1 m to avoid singular inertia when the
+        # tether collapses.  Simulations may override this if desired.
+        self.min_length = float(min_length)
+        self.max_length = None if max_length is None else float(max_length)
+        self.max_accel = float(max_accel)
 
-    def update(self, q_scale: float | None) -> None:
-        """Update quadrupole magnitude if a new command is provided."""
-        if q_scale is not None:
-            self.q_scale = q_scale
+    def tension_ok(self, length: float) -> bool:
+        """Return ``True`` if ``length`` lies within allowed limits."""
 
-    def Q(self, r_hat: np.ndarray) -> np.ndarray:
-        """Current quadrupole tensor aligned with ``r_hat``."""
-        r_hat = r_hat / np.linalg.norm(r_hat)
-        return self.q_scale * (3.0 * np.outer(r_hat, r_hat) - np.eye(3))
+        if length < self.min_length:
+            return False
+        if self.max_length is not None and length > self.max_length:
+            return False
+        return True
 
-    def tension_ok(self) -> bool:
-        """Placeholder tension constraint: require non-negative ``q_scale``."""
-        return self.q_scale >= 0.0
+    # --- internal helpers -------------------------------------------------
+
+    def clip_accel(self, accel: float) -> float:
+        """Clip tether-length acceleration to the allowed range."""
+
+        return float(np.clip(accel, -self.max_accel, self.max_accel))

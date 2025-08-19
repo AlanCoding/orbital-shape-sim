@@ -110,15 +110,15 @@ Diagnostics integrate $\int \dot E_{\text{tide}}\,dt$ and separate Moon vs. Eart
 
 **State:** osculating elements $(a,e,\omega,\Omega,i)$, true anomaly $\nu$, and lunar phase angle $\phi_M$ (angle between $\hat r$ and Moon direction).
 
-**Quadrupole schedule:** choose two eigen‑values $q_-, q_+$ (with $|q_\pm|\le C\,m\ell^2$) and switch at **perigee** and **apogee** while maintaining **radial eigen‑alignment** (torque‑free condition). Optionally add a small **phase lag** locked to $\phi_M$ to maximize $\langle\dot E\rangle$ from the lunar tide.
+**Tether‑length schedule:** choose two tether accelerations (extension and retraction) and switch at **perigee** and **apogee** while maintaining **radial alignment** (torque‑free condition). Optionally add a small **phase lag** locked to $\phi_M$ to maximize $\langle\dot E\rangle$ from the lunar tide.
 
 Pseudo‑spec for controller:
 
 ```
 Given state (a,e,nu,phi_moon),
-if near perigee window:   set q := q_plus
-elif near apogee window:  set q := q_minus
-else:                     hold previous q
+if near perigee window:   set L_ddot := -retract_accel
+elif near apogee window:  set L_ddot := extend_accel
+else:                     set L_ddot := 0
 Align principal axis with r-hat (attitude loop),
 command barbell spins equal/opposite (omega1 = +Ω, omega2 = -Ω) to hold net spin ≈ 0.
 ```
@@ -166,10 +166,10 @@ Run `pytest -k energy_growth_baseline` and ensure pass criteria in README top se
 ```markdown
 # Control Law: Peri/Apo Bang‑Bang with Lunar Phase Lock
 
-We schedule the scalar radial quadrupole eigenvalue \(q(t)\) between \(q_-\) and \(q_+\) with switches near true anomalies \(\nu\in\{0,\pi\}\). We maintain \(Q\,\hat r = q\,\hat r\) (torque‑free) and use a small phase offset \(\delta\) relative to the Moon direction to obtain positive average power from \(\mathbf v\cdot\mathbf F_Q\).
+We schedule the tether length acceleration \(L\ddot{}\) between extension and retraction values with switches near true anomalies \(\nu\in\{0,\pi\}\). The barbell is kept radially aligned (torque‑free) and a small phase offset \(\delta\) relative to the Moon direction can be used to obtain positive average power from the tidal force.
 
 Controller parameters:
-- `q_span = q_plus - q_minus` with \(|q_\pm| \le C m \ell^2\)
+- `extend_accel`, `retract_accel` (m/s²)
 - windows `Δν_peri`, `Δν_apo` in radians
 - lunar phase offset `δ`
 - attitude loop gain `k_att`
@@ -214,8 +214,8 @@ barbells:
   pretension_N: 500.0
   spin_rad_s: 0.0         # net spin ≈ 0 via counter‑rotation
 controller:
-  q_plus_scale: 1.0       # q_plus = +C m ℓ^2 * scale
-  q_minus_scale: -1.0
+  extend_accel: 0.001    # m/s^2
+  retract_accel: 0.001   # m/s^2
   delta_phase_deg: 10.0
   nu_window_deg: 8.0
 integrator:
@@ -296,18 +296,20 @@ import numpy as np
 
 class BangBangController:
     def __init__(self, cfg):
-        self.q_plus_scale = cfg['q_plus_scale']
-        self.q_minus_scale = cfg['q_minus_scale']
-        self.delta_phase = np.deg2rad(cfg['delta_phase_deg'])
-        self.nu_window = np.deg2rad(cfg['nu_window_deg'])
+        self.extend_accel = cfg["extend_accel"]
+        self.retract_accel = cfg["retract_accel"]
+        self.delta_phase = np.deg2rad(cfg["delta_phase_deg"])
+        self.nu_window = np.deg2rad(cfg["nu_window_deg"])
 
-    def select_q(self, nu):
-        # switch near perigee/apogee
-        if abs((nu + np.pi) % (2*np.pi) - np.pi) < self.nu_window:
-            return self.q_plus_scale
-        if abs(nu) < self.nu_window or abs(abs(nu)-2*np.pi) < self.nu_window:
-            return self.q_minus_scale
-        return None  # hold
+    def action(self, t, state):
+        r = state[0:3]
+        nu = np.arctan2(r[1], r[0])
+        nu = np.arctan2(np.sin(nu + self.delta_phase), np.cos(nu + self.delta_phase))
+        if abs(nu - np.pi) < self.nu_window:
+            return self.extend_accel
+        if abs(nu) < self.nu_window:
+            return -self.retract_accel
+        return 0.0
 ```
 
 ### src/tskb/dynamics.py (interfaces)

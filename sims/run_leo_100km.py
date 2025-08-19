@@ -22,8 +22,8 @@ def main(cfg_path: str) -> dict:
     out_csv = os.path.join("outputs", "leo_100km.csv")
     with open(out_csv, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
-        writer.writerow(["t", "x", "y", "z", "vx", "vy", "vz", "power_tide"])
-        for t, r, v, p in zip(log["t"], log["r"], log["v"], log["power_tide"]):
+        writer.writerow(["t", "x", "y", "z", "vx", "vy", "vz", "power_control"])
+        for t, r, v, p in zip(log["t"], log["r"], log["v"], log["power_control"]):
             writer.writerow([t, *r, *v, p])
     plotting.quicklook(log, os.path.join("outputs", "leo_100km.png"))
     return log

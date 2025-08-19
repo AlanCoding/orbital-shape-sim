@@ -6,47 +6,64 @@ import numpy as np
 from scipy.integrate import solve_ivp
 
 from .dynamics import f_state
-from .utils import contract_Q_J3
 
 
 def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
     """Run a simulation and return a log dictionary."""
+
     t_final = cfg["integrator"]["t_final"]
     dt = cfg["integrator"]["dt_output"]
-    mass = cfg["mass"]
     alt = cfg["altitude_m"]
+
     r0_mag = 6378e3 + alt
     v0_mag = np.sqrt(env.mu_earth / r0_mag)
-    y0 = np.hstack([
-        np.array([r0_mag, 0.0, 0.0]),
-        np.array([0.0, v0_mag, 0.0]),
-    ])
+    n0 = np.sqrt(env.mu_earth / r0_mag**3)
+
+    # Initial orientation/length state
+    theta0 = cfg.get("theta0", 0.0)
+    omega0 = cfg.get("omega0", n0)
+    L0 = cfg.get("length0", 1000.0)
+    Ldot0 = cfg.get("length_rate0", 0.0)
+
+    y0 = np.hstack(
+        [
+            np.array([r0_mag, 0.0, 0.0]),
+            np.array([0.0, v0_mag, 0.0]),
+            np.array([theta0, omega0, L0, Ldot0]),
+        ]
+    )
 
     t_eval = np.arange(0.0, t_final + dt, dt)
+
     sol = solve_ivp(
         lambda t, y: f_state(t, y, env, craft, ctrl),
         (0.0, t_final),
         y0,
         method="DOP853",
-        rtol=1e-9,
-        atol=1e-9,
+        rtol=1e-6,
+        atol=1e-6,
         t_eval=t_eval,
     )
 
+    if not sol.success:
+        raise RuntimeError(sol.message)
+
     r = sol.y[0:3, :].T
     v = sol.y[3:6, :].T
-    power_tide = np.zeros_like(sol.t)
-    q_scale = 0.0
-    for i, (t, ri, vi) in enumerate(zip(sol.t, r, v)):
-        nu = np.arctan2(ri[1], ri[0])
-        q_cmd = ctrl.select_q(nu)
-        if q_cmd is not None:
-            q_scale = q_cmd
-        r_hat = ri / np.linalg.norm(ri)
-        Q = q_scale * (3 * np.outer(r_hat, r_hat) - np.eye(3))
-        Rm = env.moon_position(t)
-        J_moon = env._third_deriv_point_mass(ri - Rm, env.mu_moon)
-        a_Q_moon = contract_Q_J3(Q, J_moon)
-        power_tide[i] = np.dot(vi, a_Q_moon)
+    length = sol.y[8, :]
+    length_rate = sol.y[9, :]
 
-    return {"t": sol.t, "r": r, "v": v, "power_tide": power_tide}
+    power_control = np.zeros_like(sol.t)
+    for i, (t, L, Ldot) in enumerate(zip(sol.t, length, length_rate)):
+        state = sol.y[:, i]
+        L_ddot = craft.clip_accel(ctrl.action(t, state))
+        power_control[i] = craft.mass * L_ddot * Ldot / 4.0
+
+    return {
+        "t": sol.t,
+        "r": r,
+        "v": v,
+        "length": length,
+        "length_rate": length_rate,
+        "power_control": power_control,
+    }
