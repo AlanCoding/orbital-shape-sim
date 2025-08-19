@@ -33,8 +33,9 @@ def f_state(t: float, y: np.ndarray, env, craft, ctrl) -> np.ndarray:
     a1 = env.a_earth(r1) + env.a_moon_tide(r1, t)
     a2 = env.a_earth(r2) + env.a_moon_tide(r2, t)
 
-    # Control input: tether length acceleration
-    L_ddot = ctrl.action(t, y)
+    # Control input: tether length acceleration (clipped by craft limits)
+    L_ddot_cmd = ctrl.action(t, y)
+    L_ddot = craft.clip_accel(L_ddot_cmd)
 
     # Internal accelerations to realize commanded length change
     a1 += 0.5 * L_ddot * u_vec

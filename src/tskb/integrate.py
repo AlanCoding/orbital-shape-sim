@@ -17,10 +17,11 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
 
     r0_mag = 6378e3 + alt
     v0_mag = np.sqrt(env.mu_earth / r0_mag)
+    n0 = np.sqrt(env.mu_earth / r0_mag**3)
 
     # Initial orientation/length state
     theta0 = cfg.get("theta0", 0.0)
-    omega0 = cfg.get("omega0", 0.0)
+    omega0 = cfg.get("omega0", n0)
     L0 = cfg.get("length0", 1000.0)
     Ldot0 = cfg.get("length_rate0", 0.0)
 
@@ -55,7 +56,7 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
     power_control = np.zeros_like(sol.t)
     for i, (t, L, Ldot) in enumerate(zip(sol.t, length, length_rate)):
         state = sol.y[:, i]
-        L_ddot = ctrl.action(t, state)
+        L_ddot = craft.clip_accel(ctrl.action(t, state))
         power_control[i] = craft.mass * L_ddot * Ldot / 4.0
 
     return {
