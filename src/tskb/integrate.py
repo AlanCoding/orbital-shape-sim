@@ -40,8 +40,8 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
         (0.0, t_final),
         y0,
         method="DOP853",
-        rtol=1e-9,
-        atol=1e-9,
+        rtol=1e-6,
+        atol=1e-6,
         t_eval=t_eval,
     )
 
