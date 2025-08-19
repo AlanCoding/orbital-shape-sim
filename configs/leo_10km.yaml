@@ -1,5 +1,6 @@
 mass: 1000.0
 altitude_m: 10000.0
+length0: 1000.0
 controller:
   extend_accel: 0.001      # m/s^2
   retract_accel: 0.001     # m/s^2

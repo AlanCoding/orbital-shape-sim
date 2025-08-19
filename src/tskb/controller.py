@@ -30,14 +30,16 @@ class BangBangController(Controller):
 
     def action(self, t: float, state: np.ndarray) -> float:
         """Return commanded tether acceleration ``L_ddot``."""
+        def angdiff(a: float, b: float) -> float:
+            d = a - b
+            return (d + np.pi) % (2 * np.pi) - np.pi
 
         r = state[0:3]
         nu = np.arctan2(r[1], r[0])
-        nu = np.arctan2(
-            np.sin(nu + self.delta_phase), np.cos(nu + self.delta_phase)
-        )
-        if abs(nu - np.pi) < self.nu_window:
+        nu = np.arctan2(np.sin(nu + self.delta_phase), np.cos(nu + self.delta_phase))
+
+        if abs(angdiff(nu, np.pi)) < self.nu_window:
             return self.extend_accel
-        if abs(nu) < self.nu_window:
+        if abs(angdiff(nu, 0.0)) < self.nu_window:
             return -self.retract_accel
         return 0.0

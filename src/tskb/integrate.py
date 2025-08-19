@@ -21,7 +21,7 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
     # Initial orientation/length state
     theta0 = cfg.get("theta0", 0.0)
     omega0 = cfg.get("omega0", 0.0)
-    L0 = cfg.get("length0", 1.0)
+    L0 = cfg.get("length0", 1000.0)
     Ldot0 = cfg.get("length_rate0", 0.0)
 
     y0 = np.hstack(
@@ -43,6 +43,9 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
         atol=1e-9,
         t_eval=t_eval,
     )
+
+    if not sol.success:
+        raise RuntimeError(sol.message)
 
     r = sol.y[0:3, :].T
     v = sol.y[3:6, :].T
