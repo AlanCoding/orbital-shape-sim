@@ -60,37 +60,42 @@ A simulation + control prototype for **tidal station‑keeping / orbital raising
 * Verify scaling $\propto (\ell/a)^2$ of effect size by sweeping boom extent $\ell$ (10–150 km).
 * Demonstrate that a **single barbell** suffers secular spin bleed (spin‑orbit coupling) while **dual counter‑rotating barbells** preserve net spin and improve control authority.
 
+# Repository: `tidal-station-keeping-barbell`
+
+A simulation + control prototype for **tidal station-keeping / orbital raising** using **internal mass shifting** on a **counter-rotating double-barbell** spacecraft. The system exploits **third-body (lunar/solar) tidal gradients** with an **optimal quadrupole schedule** to produce secular **orbital energy gain** without propellant.
+
+---
+
 ## Academic Literature
 
-This project builds on and extends a line of research into **extended‑body effects** and **tether/orbital mechanics**. Key references include:
+### Early tether and dumbbell work (primary lineage)
 
-* **Harte & Gaffney (2021), *Extended‑body effects and rocket‑free orbital maneuvering*.**
+* **Landis & Hrach (1991, JGCD) and Landis (1992, Acta Astronautica):** First to show that a **tethered dumbbell spacecraft** can raise or lower its orbit by **reeling tether length in and out** at specific orbital phases (e.g., shorten at perigee, lengthen at apogee). This maneuver exploits the **gravity gradient (tidal field)** of Earth. No propellant is required, though energy must be supplied to actuate the tether.
+* **Martínez-Sánchez & Gavit (1987, JGCD):** Slightly earlier work exploring **forced tether-length variations** for orbital modification. They derived analytic conditions for net changes in orbital energy, also recognizing the role of Earth’s tidal gradient.
 
-  * Showed how cyclic shape changes (quadrupole cycling) can alter **eccentricity** and **apsidal orientation** in a central (spherically symmetric) gravitational field.
-  * Crucially: they proved that in a pure central field, **orbital energy and semimajor axis cannot change** — you only re‑shape the ellipse.
-  * Difference: our present work adds a **third‑body tidal gradient** (Moon/Sun), breaking spherical symmetry and enabling **net energy transfer**.
+These papers are the closest antecedents to the present project. Our **peri/apo bang-bang controller** (length-only modulation of barbell extent) is mathematically equivalent to Landis’s tether-length scheme. The novelty here is to:
 
-* **Wisdom (2003), “Swimming in Spacetime”** and **Gueron et al. (2005), “Swimming vs. swinging in spacetime.”**
+1. Explicitly apply the same idea to **third-body lunar/solar tides**, not only Earth’s gravity gradient.
+2. Use a **dual counter-rotating barbell** design to avoid secular spin bleed and reduce attitude control demands.
 
-  * Conceptual/theoretical treatments showing that cyclic deformations in a curved field can alter trajectories. Distinguish relativistic “swimming” vs Newtonian “swinging.”
-  * They gave the foundation for why internal motion *can* matter when the background potential has curvature/gradients.
-  * Difference: our present work uses this insight *practically* for orbit raising in the Earth–Moon system, not just as a theoretical curiosity.
+### Rotovator and momentum-exchange tether background
 
-* **Murakami (1981), “On orbit control using gravity gradient effects.”**
+* From the 1980s onward, there was extensive literature on **rotovators, skyhooks, and momentum-exchange tethers**. These schemes envisioned capturing payloads with a rotating tether tip and flinging them to different orbits.
+* To preserve the tether’s orbit, designers typically assumed either:
 
-  * Studied how **gravity‑gradient torques** on extended bodies couple attitude and orbital motion.
-  * Showed that re‑shaping satellites can change how they interact with the field.
-  * Difference: his work focused on **attitude control**, whereas our scheme deliberately harvests energy via the **tidal gradient** to change semimajor axis.
+  * **Balanced traffic** (equal up-mass and down-mass) so that net momentum is conserved, or
+  * **Electrodynamic reboost** (current-driven tethers in Earth’s magnetic field) to push the tether back up.
+* A few studies noted tether reeling against the gravity gradient (Landis-style), but **explicit use of lunar/solar tides** for reboost was not a standard assumption in the rotovator literature.
+* Thus, while rotovators and our scheme both rely on extended-body mechanics in non-uniform fields, the prevailing reboost strategies in that community did not exploit the tidal channel developed here.
 
-* **Tether studies (Carroll, NASA *Tethers in Space Handbook*, 1986).**
+### Modern and conceptual context (brief)
 
-  * Explored **tether reeling** and gravity‑gradient effects to alter eccentricity or semimajor axis, sometimes invoking third‑body perturbations.
-  * Difference: those schemes typically require **deployment/retrieval with respect to Earth’s central gradient** or use atmosphere drag (“electrodynamic” or “aerodynamic” tethers). Our work uses **lunar tidal forces**, avoiding drag/propellant.
+* **Wisdom (2003)** and **Gueron, Mosna & Maia (2006):** Distinguished relativistic “swimming” from Newtonian “swinging”; cited Landis as the Newtonian analogue.
+* **Harte & Gaffney (2021):** Modern extended-body formalism in a central field; proved that energy cannot change without an external tide.
+* **Other dumbbell control papers (e.g. Pilipchuk, 2022):** Studied moving-mass actuators for eccentricity control; do not show semimajor-axis growth.
 
-* **Barbell/Dumbbell control literature (e.g. Pilipchuk, Shaw, Chalhoub, 2022).**
+**Summary:** The credible engineering foundation for propellant-free orbital energy change comes from **Landis, Hrach, and Martínez-Sánchez** in the late 1980s/early 1990s. The present work is a direct extension: same mechanism (phase-locked tether length modulation), but applied to **third-body tides** and made practical with **counter-rotating barbells**.
 
-  * Studied using moving masses in a dumbbell satellite to alter eccentricity or orbital orientation.
-  * Difference: again, these assumed only Earth’s central field, so **no energy gain**. Our dual‑barbell scheme extends this by leveraging the **third‑body tide**.
 
 ### Summary
 
