@@ -1,27 +1,43 @@
-"""Simple periapsis/apapsis bang-bang controller."""
+"""Controller interfaces and simple implementations."""
 
 from __future__ import annotations
 
 import numpy as np
 
 
-class BangBangController:
-    """Selects quadrupole magnitude based on true anomaly."""
+class Controller:
+    """Abstract controller interface."""
+
+    def action(self, t: float, state: np.ndarray) -> float:
+        """Return tether length acceleration ``L_ddot``.
+
+        Subclasses should override this method.  The returned value
+        represents the commanded second derivative of the barbell length.
+        """
+
+        raise NotImplementedError
+
+
+class BangBangController(Controller):
+    """Periapsis/apapsis bang-bang tether controller."""
 
     def __init__(self, cfg: dict) -> None:
         # Values may come in as strings from YAML; cast explicitly.
-        self.q_plus_scale = float(cfg["q_plus_scale"])
-        self.q_minus_scale = float(cfg["q_minus_scale"])
+        self.extend_accel = float(cfg["extend_accel"])
+        self.retract_accel = float(cfg["retract_accel"])
         self.delta_phase = np.deg2rad(cfg.get("delta_phase_deg", 0.0))
         self.nu_window = np.deg2rad(cfg.get("nu_window_deg", 10.0))
 
-    def select_q(self, nu: float) -> float | None:
-        """Return commanded q scale or ``None`` to hold."""
+    def action(self, t: float, state: np.ndarray) -> float:
+        """Return commanded tether acceleration ``L_ddot``."""
+
+        r = state[0:3]
+        nu = np.arctan2(r[1], r[0])
         nu = np.arctan2(
             np.sin(nu + self.delta_phase), np.cos(nu + self.delta_phase)
         )
         if abs(nu - np.pi) < self.nu_window:
-            return self.q_plus_scale
+            return self.extend_accel
         if abs(nu) < self.nu_window:
-            return self.q_minus_scale
-        return None
+            return -self.retract_accel
+        return 0.0

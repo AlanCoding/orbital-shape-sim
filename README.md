@@ -1,6 +1,8 @@
 # tidal-station-keeping-barbell
 
-Prototype for tidal station-keeping using a counter-rotating double barbell spacecraft.
+Prototype for tidal station-keeping using a counter-rotating double barbell spacecraft.  The simulation
+propagates the barbell orientation and angular momentum explicitly while controllers command tether
+length accelerations rather than idealized quadrupole magnitudes.
 
 ## Example orbit evolution
 

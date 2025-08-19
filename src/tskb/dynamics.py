@@ -1,22 +1,59 @@
-"""State derivative for the barbell spacecraft."""
+"""State derivative for a barbell with variable tether length."""
 
 from __future__ import annotations
 
 import numpy as np
 
-from .utils import contract_Q_J3
-
 
 def f_state(t: float, y: np.ndarray, env, craft, ctrl) -> np.ndarray:
-    """Return time derivative of the state vector."""
+    """Return time derivative of the state vector.
+
+    State vector ``y`` comprises
+
+    ``[r(3), v(3), theta, omega, L, Ldot]`` where ``theta`` is the barbell
+    orientation angle in the orbital plane (about ``+z``), ``omega`` is its
+    angular rate, ``L`` the end-to-end length and ``Ldot`` its time
+    derivative.
+    """
+
     r = y[0:3]
     v = y[3:6]
-    nu = np.arctan2(r[1], r[0])
-    q_cmd = ctrl.select_q(nu)
-    craft.update(q_cmd)
-    r_hat = r / np.linalg.norm(r)
-    a = env.a_earth(r) + env.a_moon_tide(r, t)
-    Q = craft.Q(r_hat)
-    J3 = env.tidal_jet_third_deriv(r, t)
-    a_Q = contract_Q_J3(Q, J3)
-    return np.hstack([v, a + a_Q])
+    theta = y[6]
+    omega = y[7]
+    L = y[8]
+    Ldot = y[9]
+
+    u_vec = np.array([np.cos(theta), np.sin(theta), 0.0])
+
+    # Positions of the endpoint masses
+    r1 = r + 0.5 * L * u_vec
+    r2 = r - 0.5 * L * u_vec
+
+    # Gravitational accelerations at each mass
+    a1 = env.a_earth(r1) + env.a_moon_tide(r1, t)
+    a2 = env.a_earth(r2) + env.a_moon_tide(r2, t)
+
+    # Control input: tether length acceleration
+    L_ddot = ctrl.action(t, y)
+
+    # Internal accelerations to realize commanded length change
+    a1 += 0.5 * L_ddot * u_vec
+    a2 -= 0.5 * L_ddot * u_vec
+
+    # Center-of-mass acceleration
+    a_com = 0.5 * (a1 + a2)
+
+    # Gravitational torque about COM (z-component)
+    F1 = 0.5 * craft.mass * a1
+    F2 = 0.5 * craft.mass * a2
+    tau_vec = 0.5 * L * np.cross(u_vec, F1 - F2)
+    tau = tau_vec[2]
+
+    I = craft.mass * L**2 / 4.0
+    I_dot = craft.mass * L * Ldot / 2.0
+    omega_dot = (tau - I_dot * omega) / I
+
+    theta_dot = omega
+    Ldot_dot = L_ddot
+
+    return np.hstack([v, a_com, theta_dot, omega_dot, Ldot, Ldot_dot])
