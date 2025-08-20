@@ -6,6 +6,7 @@ controller:
   retract_accel: 0.001     # m/s^2
   delta_phase_deg: 0.0
   nu_window_deg: 10.0
+theta0: 3.141592653589793
 integrator:
   t_final: 60.0  # 1 minute
   dt_output: 5.0
