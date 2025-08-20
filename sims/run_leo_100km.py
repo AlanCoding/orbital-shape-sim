@@ -27,13 +27,13 @@ def main(cfg_path: str, animate: bool = False) -> dict:
             writer.writerow([t, *r, *v, p])
     plotting.quicklook(log, os.path.join("outputs", "leo_100km.png"))
     if animate:
-        plotting.animate_barbell(log, os.path.join("outputs", "leo_100km.gif"))
+        plotting.animate_barbell(log, os.path.join("outputs", "leo_100km.mp4"))
     return log
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", required=True)
-    parser.add_argument("--animate", action="store_true", help="save animation GIF")
+    parser.add_argument("--animate", action="store_true", help="save animation MP4")
     args = parser.parse_args()
     main(args.config, animate=args.animate)

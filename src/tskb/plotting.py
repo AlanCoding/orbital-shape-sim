@@ -29,7 +29,7 @@ def animate_barbell(log: dict, path: str, interval: int = 200) -> None:
     log : dict
         Output dictionary from :func:`run_simulation`.
     path : str
-        Output filename for the GIF animation.
+        Output filename for the MP4 animation. Requires ``ffmpeg`` to be installed.
     interval : int
         Delay between frames in milliseconds.
     """
@@ -81,6 +81,6 @@ def animate_barbell(log: dict, path: str, interval: int = 200) -> None:
         return mass1, mass2, connector
 
     ani = animation.FuncAnimation(fig, update, frames=len(log["t"]), interval=interval, blit=False)
-    writer = animation.PillowWriter(fps=max(1, int(1000 / interval)))
+    writer = animation.FFMpegWriter(fps=max(1, int(1000 / interval)))
     ani.save(path, writer=writer)
     plt.close(fig)
