@@ -11,7 +11,7 @@ import yaml
 from tskb import BangBangController, DualBarbell, Environment, plotting, run_simulation
 
 
-def main(cfg_path: str) -> dict:
+def main(cfg_path: str, animate: bool = False) -> dict:
     with open(cfg_path, "r", encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
     env = Environment()
@@ -26,11 +26,14 @@ def main(cfg_path: str) -> dict:
         for t, r, v, p in zip(log["t"], log["r"], log["v"], log["power_control"]):
             writer.writerow([t, *r, *v, p])
     plotting.quicklook(log, os.path.join("outputs", "leo_100km.png"))
+    if animate:
+        plotting.animate_barbell(log, os.path.join("outputs", "leo_100km.gif"))
     return log
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", required=True)
+    parser.add_argument("--animate", action="store_true", help="save animation GIF")
     args = parser.parse_args()
-    main(args.config)
+    main(args.config, animate=args.animate)

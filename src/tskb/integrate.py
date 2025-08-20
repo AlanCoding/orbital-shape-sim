@@ -50,8 +50,14 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
 
     r = sol.y[0:3, :].T
     v = sol.y[3:6, :].T
+    theta = sol.y[6, :]
     length = sol.y[8, :]
     length_rate = sol.y[9, :]
+
+    # Positions of the endpoint masses for convenience
+    u = np.vstack([np.cos(theta), np.sin(theta), np.zeros_like(theta)]).T
+    r1 = r + 0.5 * length[:, None] * u
+    r2 = r - 0.5 * length[:, None] * u
 
     power_control = np.zeros_like(sol.t)
     for i, (t, L, Ldot) in enumerate(zip(sol.t, length, length_rate)):
@@ -63,7 +69,10 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
         "t": sol.t,
         "r": r,
         "v": v,
+        "theta": theta,
         "length": length,
         "length_rate": length_rate,
+        "r1": r1,
+        "r2": r2,
         "power_control": power_control,
     }
