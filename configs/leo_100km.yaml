@@ -1,11 +1,12 @@
 mass: 1000.0
-altitude_m: 100000.0
-length0: 1000.0
+altitude_m: 200000.0
+length0: 100000.0
 controller:
-  extend_accel: 0.001      # m/s^2
-  retract_accel: 0.001     # m/s^2
+  extend_accel: 0.01      # m/s^2
+  retract_accel: 0.01     # m/s^2
   delta_phase_deg: 0.0
   nu_window_deg: 10.0
 integrator:
-  t_final: 60.0  # 1 minute
+  # t_final: 108000.0  # 1 month
+  t_final: 3600.0  # 1 hour
   dt_output: 5.0
