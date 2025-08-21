@@ -50,6 +50,7 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
 
     r = sol.y[0:3, :].T
     v = sol.y[3:6, :].T
+    theta = sol.y[6, :]
     length = sol.y[8, :]
     length_rate = sol.y[9, :]
 
@@ -63,6 +64,7 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
         "t": sol.t,
         "r": r,
         "v": v,
+        "theta": theta,
         "length": length,
         "length_rate": length_rate,
         "power_control": power_control,
