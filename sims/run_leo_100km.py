@@ -8,7 +8,7 @@ import os
 
 import yaml
 
-from tskb import BangBangController, DualBarbell, Environment, plotting, run_simulation
+from tskb import DualBarbell, Environment, make_controller, plotting, run_simulation
 
 
 def main(cfg_path: str, animate: bool = False) -> dict:
@@ -16,7 +16,7 @@ def main(cfg_path: str, animate: bool = False) -> dict:
         cfg = yaml.safe_load(f)
     env = Environment()
     craft = DualBarbell(cfg["mass"])
-    ctrl = BangBangController(cfg["controller"])
+    ctrl = make_controller(cfg["controller"])
     log = run_simulation(env, craft, ctrl, cfg)
     os.makedirs("outputs", exist_ok=True)
     out_csv = os.path.join("outputs", "leo_100km.csv")

@@ -59,9 +59,9 @@ def f_state(t: float, y: np.ndarray, env, craft, ctrl) -> np.ndarray:
     tau_vec = 0.5 * L_eff * np.cross(u_vec, F1 - F2)
     tau = tau_vec[2]
 
-    I = craft.mass * L_eff**2 / 4.0
-    I_dot = craft.mass * L_eff * Ldot / 2.0
-    omega_dot = (tau - I_dot * omega) / I
+    inertia = craft.mass * L_eff**2 / 4.0
+    inertia_dot = craft.mass * L_eff * Ldot / 2.0
+    omega_dot = (tau - inertia_dot * omega) / inertia
 
     theta_dot = omega
     return np.hstack([v, a_com, theta_dot, omega_dot, Ldot, L_ddot])
