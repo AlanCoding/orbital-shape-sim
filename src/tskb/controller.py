@@ -43,3 +43,28 @@ class BangBangController(Controller):
         if abs(angdiff(nu, 0.0)) < self.nu_window:
             return -self.retract_accel
         return 0.0
+
+
+class PassiveController(Controller):
+    """Controller that commands no tether acceleration."""
+
+    def action(self, t: float, state: np.ndarray) -> float:
+        return 0.0
+
+
+def make_controller(cfg: dict) -> Controller:
+    """Instantiate a controller from ``cfg``.
+
+    Parameters
+    ----------
+    cfg : dict
+        Controller configuration with a ``type`` key specifying
+        ``"bang_bang"`` or ``"passive"``.
+    """
+
+    ctrl_type = cfg.get("type", "bang_bang").lower()
+    if ctrl_type == "bang_bang":
+        return BangBangController(cfg)
+    if ctrl_type == "passive":
+        return PassiveController()
+    raise ValueError(f"unknown controller type: {ctrl_type}")

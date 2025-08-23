@@ -2,7 +2,7 @@
 
 from .env import Environment
 from .barbell import DualBarbell, Q_of_barbell
-from .controller import BangBangController
+from .controller import BangBangController, PassiveController, make_controller
 from .integrate import run_simulation
 from . import diagnostics
 
@@ -11,6 +11,8 @@ __all__ = [
     "DualBarbell",
     "Q_of_barbell",
     "BangBangController",
+    "PassiveController",
+    "make_controller",
     "run_simulation",
     "diagnostics",
 ]

@@ -1,4 +1,6 @@
-import subprocess, sys, os
+import os
+import subprocess
+import sys
 from pathlib import Path
 
 def test_leo_100km_cli_completes_under_timeout():

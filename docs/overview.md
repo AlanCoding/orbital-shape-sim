@@ -214,6 +214,7 @@ barbells:
   pretension_N: 500.0
   spin_rad_s: 0.0         # net spin ≈ 0 via counter‑rotation
 controller:
+  type: bang_bang
   extend_accel: 0.001    # m/s^2
   retract_accel: 0.001   # m/s^2
   delta_phase_deg: 10.0

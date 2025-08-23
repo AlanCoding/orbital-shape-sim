@@ -21,7 +21,19 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
 
     # Initial orientation/length state
     theta0 = cfg.get("theta0", 0.0)
-    omega0 = cfg.get("omega0", n0)
+    omega_cfg = cfg.get("omega0", "tidally_locked")
+    if isinstance(omega_cfg, str):
+        modes = {
+            "tidally_locked": n0,
+            "no_rotation": 0.0,
+            "prograde": 2.0 * n0,
+            "retrograde": -1.0 * n0,
+        }
+        if omega_cfg not in modes:
+            raise ValueError(f"unknown omega0 mode: {omega_cfg}")
+        omega0 = modes[omega_cfg]
+    else:
+        omega0 = float(omega_cfg)
     L0 = cfg.get("length0", 1000.0)
     Ldot0 = cfg.get("length_rate0", 0.0)
 
@@ -51,6 +63,7 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
     r = sol.y[0:3, :].T
     v = sol.y[3:6, :].T
     theta = sol.y[6, :]
+    omega = sol.y[7, :]
     length = sol.y[8, :]
     length_rate = sol.y[9, :]
 
@@ -65,6 +78,7 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
         "r": r,
         "v": v,
         "theta": theta,
+        "omega": omega,
         "length": length,
         "length_rate": length_rate,
         "power_control": power_control,
