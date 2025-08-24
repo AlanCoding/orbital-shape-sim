@@ -6,16 +6,29 @@ import matplotlib.animation as animation
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .diagnostics import semimajor_axis
+from .diagnostics import _semimajor_axis_from_rv
 
 
 def quicklook(log: dict, path: str) -> None:
-    """Plot semimajor axis history."""
-    a = [semimajor_axis(log, i) for i in range(len(log["t"]))]
+    """Plot semimajor axis history.
+
+    Time is rendered in **hours** and the semimajor axis in **kilometres**
+    to avoid Matplotlib's offset/scientific-notation formatting when the
+    simulation spans long durations and large orbital radii.  Only finite
+    samples are plotted to guard against numerical blow-ups during long
+    integrations.
+    """
+
+    t = np.asarray(log["t"], dtype=float) / 3600.0  # seconds → hours
+    r = np.asarray(log["r"], dtype=float)
+    v = np.asarray(log["v"], dtype=float)
+    a = _semimajor_axis_from_rv(r, v) / 1000.0       # metres → kilometres
+
+    mask = np.isfinite(a)
     plt.figure()
-    plt.plot(log["t"], a)
-    plt.xlabel("Time [s]")
-    plt.ylabel("Semimajor axis [m]")
+    plt.plot(t[mask], a[mask])
+    plt.xlabel("Time [h]")
+    plt.ylabel("Semimajor axis [km]")
     plt.tight_layout()
     plt.savefig(path)
     plt.close()
