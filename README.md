@@ -39,6 +39,10 @@ expected to be cornerstones of sustained economic activity beyond Earth.
    ```
    produces a sweep over boom length. Use `plotting.quicklook` or custom analysis on the CSV logs for other plots.
 
+Configuration files also accept a `theta0` field (radians) that sets the starting barbell angle.
+Adjust this value—or supply a list when using `sims/run_fom_scenarios.py`—to explore different
+initial orientations.
+
 For a detailed project overview and development roadmap see `docs/overview.md` and `docs/roadmap.md`.
 
 # Repository: `tidal-station-keeping-barbell`
