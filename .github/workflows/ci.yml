@@ -22,7 +22,7 @@ jobs:
       - name: Install self
         run: python -m pip install -e .
       - name: Lint
-        run: ruff src sims tests
+        run: ruff format src sims tests
 
   test:
     runs-on: ubuntu-latest
@@ -39,5 +39,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt pytest
+      - name: Install self
+        run: python -m pip install -e .
       - name: Run tests
         run: pytest -q
