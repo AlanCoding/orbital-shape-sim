@@ -81,8 +81,11 @@ class BangBangController(Controller):
             self.state.p_lp = p
             self.state.last_p_t = t
 
-        dt = max(0.0, t - self.state.last_p_t)
-        alpha = 1.0 - np.exp(-dt / max(self.power_tau, 1e-9))
+        dt = t - self.state.last_p_t
+        if not np.isfinite(dt) or dt <= 0.0:
+            alpha = 0.0
+        else:
+            alpha = -np.expm1(-dt / max(self.power_tau, 1e-9))
         self.state.p_lp = (1.0 - alpha) * self.state.p_lp + alpha * p
         self.state.last_p_t = t
 
