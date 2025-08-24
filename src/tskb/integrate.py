@@ -18,6 +18,7 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
     r0_mag = 6378e3 + alt
     v0_mag = np.sqrt(env.mu_earth / r0_mag)
     n0 = np.sqrt(env.mu_earth / r0_mag**3)
+    n_syn = n0 - env.n_moon
 
     # Initial orientation/length state
     theta0 = cfg.get("theta0", 0.0)
@@ -26,8 +27,8 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
         modes = {
             "tidally_locked": n0,
             "no_rotation": 0.0,
-            "prograde": 2.0 * n0,
-            "retrograde": -1.0 * n0,
+            "prograde": n0 + n_syn,
+            "retrograde": n0 - n_syn,
         }
         if omega_cfg not in modes:
             raise ValueError(f"unknown omega0 mode: {omega_cfg}")
