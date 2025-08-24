@@ -10,6 +10,5 @@ controller:
   delta_phase_deg: 0.0
   nu_window_deg: 10.0
 integrator:
-  # t_final: 108000.0  # 1 month
-  t_final: 3600.0  # 1 hour
+  t_final: 2592000.0  # 1 month
   dt_output: 5.0

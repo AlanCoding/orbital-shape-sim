@@ -11,9 +11,11 @@ import yaml
 from tskb import DualBarbell, Environment, make_controller, plotting, run_simulation
 
 
-def main(cfg_path: str, animate: bool = False) -> dict:
+def main(cfg_path: str, animate: bool = False, t_final: float | None = None) -> dict:
     with open(cfg_path, "r", encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
+    if t_final is not None:
+        cfg.setdefault("integrator", {})["t_final"] = t_final
     env = Environment()
     craft = DualBarbell(cfg["mass"])
     ctrl = make_controller(cfg["controller"])
@@ -35,5 +37,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", required=True)
     parser.add_argument("--animate", action="store_true", help="write orbit animation")
+    parser.add_argument(
+        "--t-final",
+        type=float,
+        help="override simulation duration in seconds",
+    )
     args = parser.parse_args()
-    main(args.config, animate=args.animate)
+    main(args.config, animate=args.animate, t_final=args.t_final)
