@@ -27,6 +27,7 @@ class ControllerState:
     last_switch_t: float = -np.inf
     q_cmd: float = 0.0
     delta_phase: float = 0.0
+    last_p_t: float = 0.0
 
 
 class BangBangController(Controller):
@@ -36,6 +37,10 @@ class BangBangController(Controller):
         # Acceleration bounds for length control
         self.extend_accel = float(cfg.get("extend_accel", 1.0))
         self.retract_accel = float(cfg.get("retract_accel", 1.0))
+
+        # q scaling (defaults ±1)
+        self.q_plus_scale = float(cfg.get("q_plus_scale", 1.0))
+        self.q_minus_scale = float(cfg.get("q_minus_scale", -1.0))
 
         # Power LPF and hysteresis settings
         self.power_tau = float(cfg.get("power_tau_s", 30.0))
@@ -67,23 +72,24 @@ class BangBangController(Controller):
         return v_rad + cd1 * t1 + cd2 * t2
 
     def step(self, t: float, r: np.ndarray, v: np.ndarray, aQ_unit: np.ndarray, rhat: np.ndarray) -> float:
-        """Return commanded ``q`` sign based on instantaneous tidal power."""
+        """Return commanded ``q`` scale based on instantaneous tidal power."""
         aQ_biased = self._rotate_in_plane(aQ_unit, rhat, self.state.delta_phase)
         p = float(np.dot(v, aQ_biased))
-        if self.state.p_lp == 0.0:
+
+        # initialize low-pass filter on first call
+        if self.state.last_p_t == 0.0 and self.state.p_lp == 0.0:
             self.state.p_lp = p
-        alpha = np.clip(
-            (t > 0)
-            * (1.0 - np.exp(-1.0 * min(1.0, (t - self.state.last_switch_t) / max(self.power_tau, 1e-9)))),
-            0.0,
-            1.0,
-        )
+            self.state.last_p_t = t
+
+        dt = max(0.0, t - self.state.last_p_t)
+        alpha = 1.0 - np.exp(-dt / max(self.power_tau, 1e-9))
         self.state.p_lp = (1.0 - alpha) * self.state.p_lp + alpha * p
+        self.state.last_p_t = t
 
         if self.state.p_lp > self.power_deadband:
-            q_des = 1.0
+            q_des = self.q_plus_scale
         elif self.state.p_lp < -self.power_deadband:
-            q_des = -1.0
+            q_des = self.q_minus_scale
         else:
             q_des = self.state.q_cmd
 
