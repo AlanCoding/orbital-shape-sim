@@ -28,7 +28,20 @@ They can be swapped in and out when running scenarios to compare performance.
 - **Run Example**:
 
 ```bash
-  python sims/run_fom_scenarios.py
+  python sims/run_fom_scenarios.py --controller passive
+```
+
+- **Multiple Controllers**: Provide a comma-separated list.
+
+```bash
+  python sims/run_fom_scenarios.py --controller bang_bang,passive
+```
+
+- **Other Config Overrides**: Use `--override key=value1,value2` (dot notation for nested keys) to sweep additional
+  configuration options.
+
+```bash
+  python sims/run_fom_scenarios.py --override mass=500,1000 --override controller.extend_accel=0.02,0.05
 ```
 
 * **Sample Output**:
