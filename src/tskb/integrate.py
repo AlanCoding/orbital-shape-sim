@@ -65,8 +65,13 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
         raise RuntimeError("non-finite state encountered during integration")
 
     r = sol.y[0:3, :].T
-    if np.min(np.linalg.norm(r, axis=1)) < env.r_earth:
-        raise RuntimeError("simulation crashed into Earth")
+    r_mag = np.linalg.norm(r, axis=1)
+    if np.min(r_mag) < env.r_earth:
+        i_hit = int(np.argmin(r_mag))
+        alt = r_mag[i_hit] - env.r_earth
+        raise RuntimeError(
+            f"simulation crashed into Earth at t={sol.t[i_hit]:.3f}s, altitude={alt:.1f} m"
+        )
     v = sol.y[3:6, :].T
     theta = sol.y[6, :]
     omega = sol.y[7, :]

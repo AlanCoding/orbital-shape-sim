@@ -10,5 +10,6 @@ def test_collision_raises_runtime_error():
         "altitude_m": 0.0,
         "integrator": {"t_final": 10.0, "dt_output": 1.0},
     }
-    with pytest.raises(RuntimeError):
+    with pytest.raises(RuntimeError) as excinfo:
         run_simulation(env, craft, ctrl, cfg)
+    assert " at t=" in str(excinfo.value)
