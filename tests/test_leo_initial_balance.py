@@ -56,7 +56,7 @@ def test_accel_clipping():
             return 0.02
 
     y = np.zeros(10)
-    y[0] = 1.0
+    y[0] = env.r_earth + 1.0
     y[8] = 1.0
     dy = f_state(0.0, y, env, craft, _Ctrl())
     assert dy[9] == 0.01

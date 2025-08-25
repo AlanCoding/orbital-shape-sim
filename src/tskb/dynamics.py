@@ -16,6 +16,9 @@ def f_state(t: float, y: np.ndarray, env, craft, ctrl) -> np.ndarray:
     derivative.
     """
 
+    if not np.isfinite(y).all():
+        raise RuntimeError("non-finite state in dynamics")
+
     r = y[0:3]
     v = y[3:6]
     theta = y[6]
@@ -35,6 +38,15 @@ def f_state(t: float, y: np.ndarray, env, craft, ctrl) -> np.ndarray:
     # Positions of the endpoint masses
     r1 = r + 0.5 * L_eff * u_vec
     r2 = r - 0.5 * L_eff * u_vec
+
+    r_mag = np.linalg.norm(r)
+    r1_mag = np.linalg.norm(r1)
+    r2_mag = np.linalg.norm(r2)
+    if r_mag < env.r_earth or r1_mag < env.r_earth or r2_mag < env.r_earth:
+        alt = min(r_mag, r1_mag, r2_mag) - env.r_earth
+        raise RuntimeError(
+            f"craft collided with Earth at t={t:.3f}s, altitude={alt:.1f} m"
+        )
 
     # Gravitational accelerations at each mass
     a1 = env.a_earth(r1) + env.a_moon_tide(r1, t)

@@ -9,15 +9,13 @@ They can be swapped in and out when running scenarios to compare performance.
 ## Controllers
 
 ### Bang–Bang Controller
-- **File**: `controllers/bang_bang.py`
-- **Description**: Implements simple on/off (bang–bang) control that toggles thrust or torque between extremes.
-- **Use Case**: Provides a baseline active control strategy.
-
-Note: this is clearly not working right now, and something very fundamental seems to be broken about it.
+- **File**: `src/tskb/controller.py`
+- **Description**: Adaptive bang-bang controller that chooses tether extension or retraction to maximize instantaneous tidal power using a filtered power-sign heuristic with dwell-time and optional phase adaptation.
+- **Use Case**: Baseline active control strategy for energy gain.
 
 ### Passive Controller
 
-* **File**: `controllers/passive.py`
+* **File**: `src/tskb/controller.py`
 * **Description**: No active control; the system evolves only under natural dynamics.
 * **Use Case**: Baseline for comparison against active controllers. An active controller may not be needed.
 

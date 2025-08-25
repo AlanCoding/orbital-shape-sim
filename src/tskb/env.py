@@ -6,6 +6,7 @@ import numpy as np
 
 MU_EARTH = 3.986004418e14  # m^3/s^2
 MU_MOON = 4.9048695e12
+R_EARTH = 6378e3  # m
 R_MOON = 384400e3  # m
 N_MOON = 2 * np.pi / (27.321661 * 86400.0)
 
@@ -16,6 +17,7 @@ class Environment:
     def __init__(self) -> None:
         self.mu_earth = MU_EARTH
         self.mu_moon = MU_MOON
+        self.r_earth = R_EARTH
         self.r_moon = R_MOON
         self.n_moon = N_MOON
 
