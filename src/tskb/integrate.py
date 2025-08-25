@@ -15,7 +15,7 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
     dt = cfg["integrator"]["dt_output"]
     alt = cfg["altitude_m"]
 
-    r0_mag = 6378e3 + alt
+    r0_mag = env.r_earth + alt
     v0_mag = np.sqrt(env.mu_earth / r0_mag)
     n0 = np.sqrt(env.mu_earth / r0_mag**3)
     n_syn = n0 - env.n_moon
@@ -61,7 +61,12 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
     if not sol.success:
         raise RuntimeError(sol.message)
 
+    if not np.isfinite(sol.y).all():
+        raise RuntimeError("non-finite state encountered during integration")
+
     r = sol.y[0:3, :].T
+    if np.min(np.linalg.norm(r, axis=1)) < env.r_earth:
+        raise RuntimeError("simulation crashed into Earth")
     v = sol.y[3:6, :].T
     theta = sol.y[6, :]
     omega = sol.y[7, :]
