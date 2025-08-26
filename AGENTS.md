@@ -19,6 +19,13 @@ They can be swapped in and out when running scenarios to compare performance.
 * **Description**: No active control; the system evolves only under natural dynamics.
 * **Use Case**: Baseline for comparison against active controllers. An active controller may not be needed.
 
+### Landis Controller
+
+* **File**: `src/tskb/controller.py`
+* **Description**: Implements the Landis perigee-retract / apogee-extend scheme that
+  trades barbell angular momentum for orbital energy.
+* **Use Case**: Simple propellantless orbit-raising controller.
+
 ### Neural Net Controller
 
 * **File**: `src/tskb/controller.py`
@@ -72,6 +79,18 @@ They can be swapped in and out when running scenarios to compare performance.
 
 ```bash
   python sims/run_leo_100km.py --config configs/leo_100km.yaml
+```
+
+### Landis Demo
+
+* **File**: `sims/landis_demo.py`
+* **Description**: Minimal reproduction of the Landis orbit-raising maneuver.
+  Runs with built-in parameters, disables lunar gravity, and writes a
+  semimajor-axis plot.
+* **Run Example**:
+
+```bash
+  python sims/landis_demo.py
 ```
 
 ## Roadmap

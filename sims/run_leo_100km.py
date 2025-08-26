@@ -16,7 +16,7 @@ def main(cfg_path: str, animate: bool = False, t_final: float | None = None) -> 
         cfg = yaml.safe_load(f)
     if t_final is not None:
         cfg.setdefault("integrator", {})["t_final"] = t_final
-    env = Environment()
+    env = Environment(include_moon=cfg.get("include_moon", True))
     craft = DualBarbell(cfg["mass"])
     ctrl = make_controller(cfg["controller"])
     log = run_simulation(env, craft, ctrl, cfg)

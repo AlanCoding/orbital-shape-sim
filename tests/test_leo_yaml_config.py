@@ -13,7 +13,7 @@ def test_yaml_config_simulates():
     # shorten integration for test runtime
     cfg["integrator"]["t_final"] = 60.0
     cfg["integrator"]["dt_output"] = 10.0
-    env = Environment()
+    env = Environment(include_moon=cfg.get("include_moon", True))
     craft = DualBarbell(cfg["mass"])
     ctrl = make_controller(cfg["controller"])
     log = run_simulation(env, craft, ctrl, cfg)

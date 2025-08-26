@@ -6,6 +6,7 @@ from .controller import (
     BangBangController,
     PassiveController,
     NeuralNetController,
+    LandisController,
     make_controller,
 )
 from .integrate import run_simulation
@@ -17,6 +18,7 @@ __all__ = [
     "Q_of_barbell",
     "BangBangController",
     "PassiveController",
+    "LandisController",
     "NeuralNetController",
     "make_controller",
     "run_simulation",
