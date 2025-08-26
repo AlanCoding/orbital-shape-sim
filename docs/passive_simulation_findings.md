@@ -7,3 +7,11 @@ Using the `configs/leo_100km.yaml` configuration with the controller set to `pas
 
 These ∼30° offsets develop over a single month under passive dynamics, indicating that active control is required to maintain alignment with the Moon over longer durations.
 
+To reproduce these measurements locally, run:
+
+```bash
+PYTHONPATH=src python docs/passive_drift_repro.py
+```
+
+which performs the month-long passive simulations for both spin modes and prints the barbell's angle relative to the Moon at the final crossing.
+
