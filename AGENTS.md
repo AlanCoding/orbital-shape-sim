@@ -19,6 +19,16 @@ They can be swapped in and out when running scenarios to compare performance.
 * **Description**: No active control; the system evolves only under natural dynamics.
 * **Use Case**: Baseline for comparison against active controllers. An active controller may not be needed.
 
+### Neural Net Controller
+
+* **File**: `src/tskb/controller.py`
+* **Description**: Feedforward neural-network policy that maps the full state
+  vector to a tether acceleration command. Parameters are optimized to maximize
+  the semimajor-axis FOM.
+* **Training Script**: `sims/train_nn_controller.py`
+* **Use Case**: Learned control strategies and experimentation with optimized
+  policies.
+
 ## Scenario Runners
 
 ### FOM Scenarios
