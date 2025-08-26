@@ -26,6 +26,16 @@ They can be swapped in and out when running scenarios to compare performance.
   trades barbell angular momentum for orbital energy.
 * **Use Case**: Simple propellantless orbit-raising controller.
 
+### Neural Net Controller
+
+* **File**: `src/tskb/controller.py`
+* **Description**: Feedforward neural-network policy that maps the full state
+  vector to a tether acceleration command. Parameters are optimized to maximize
+  the semimajor-axis FOM.
+* **Training Script**: `sims/train_nn_controller.py`
+* **Use Case**: Learned control strategies and experimentation with optimized
+  policies.
+
 ## Scenario Runners
 
 ### FOM Scenarios

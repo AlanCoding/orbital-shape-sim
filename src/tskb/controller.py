@@ -167,6 +167,72 @@ class LandisController(Controller):
             return -self.retract_accel
         return 0.0
 
+      
+class NeuralNetController(Controller):
+    """Feedforward neural-network controller.
+
+    The network maps the full 10-element state vector to a commanded
+    tether acceleration.  Hidden layers use ``tanh`` activations and the
+    final output is clipped to ``±max_accel``.  Parameters are stored as a
+    flat vector to enable simple optimization strategies.
+    """
+
+    def __init__(self, cfg: dict | None = None) -> None:
+        cfg = cfg or {}
+        self.max_accel = float(cfg.get("max_accel", 0.01))
+        self.hidden_sizes = [int(h) for h in cfg.get("hidden_sizes", [16, 16])]
+        self.rng = np.random.default_rng(cfg.get("seed"))
+        layer_sizes = [10] + self.hidden_sizes + [1]
+
+        self.layers: list[tuple[np.ndarray, np.ndarray]] = []
+        scale = float(cfg.get("weight_scale", 0.1))
+        for in_size, out_size in zip(layer_sizes[:-1], layer_sizes[1:]):
+            w = self.rng.normal(0.0, scale, size=(out_size, in_size))
+            b = np.zeros(out_size)
+            self.layers.append((w, b))
+
+        if "weights" in cfg:
+            weights = np.load(cfg["weights"])
+            self.set_parameters(weights)
+
+    # ------------------------------------------------------------------
+    # Parameter helpers
+    def get_parameters(self) -> np.ndarray:
+        """Return flattened parameter vector."""
+
+        parts = []
+        for w, b in self.layers:
+            parts.append(w.ravel())
+            parts.append(b.ravel())
+        return np.concatenate(parts)
+
+    def set_parameters(self, flat: np.ndarray) -> None:
+        """Set network parameters from a flat array."""
+
+        idx = 0
+        new_layers = []
+        for w, b in self.layers:
+            w_size = w.size
+            b_size = b.size
+            w_shape = w.shape
+            b_shape = b.shape
+            w = flat[idx : idx + w_size].reshape(w_shape)
+            idx += w_size
+            b = flat[idx : idx + b_size].reshape(b_shape)
+            idx += b_size
+            new_layers.append((w, b))
+        self.layers = new_layers
+
+    # ------------------------------------------------------------------
+    def action(self, t: float, state: np.ndarray) -> float:
+        x = np.asarray(state, dtype=float)
+        for i, (w, b) in enumerate(self.layers):
+            x = w @ x + b
+            if i < len(self.layers) - 1:
+                x = np.tanh(x)
+        out = float(x.squeeze())
+        return float(np.clip(out, -self.max_accel, self.max_accel))
+
 
 def make_controller(cfg: dict) -> Controller:
     """Instantiate a controller from ``cfg``.
@@ -185,4 +251,6 @@ def make_controller(cfg: dict) -> Controller:
         return PassiveController()
     if ctrl_type == "landis":
         return LandisController(cfg)
+    if ctrl_type == "neural_net":
+        return NeuralNetController(cfg)
     raise ValueError(f"unknown controller type: {ctrl_type}")
