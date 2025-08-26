@@ -26,7 +26,7 @@ def run_case(base_cfg: dict, omega0, ctrl_type: str, theta0: float) -> float:
     cfg["controller"]["type"] = ctrl_type
     cfg["integrator"]["t_final"] = MONTH + ORBIT_BUFFER
 
-    env = Environment()
+    env = Environment(include_moon=cfg.get("include_moon", True))
     craft = DualBarbell(cfg["mass"])
     ctrl = make_controller(cfg["controller"])
     log = run_simulation(env, craft, ctrl, cfg)

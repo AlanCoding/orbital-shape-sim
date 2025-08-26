@@ -3,6 +3,7 @@ altitude_m: 200000.0
 length0: 100000.0
 omega0: tidally_locked  # tidally_locked, no_rotation, prograde, retrograde
 theta0: 0.0            # radians
+include_moon: true
 controller:
   type: bang_bang
   extend_accel: 0.01      # m/s^2

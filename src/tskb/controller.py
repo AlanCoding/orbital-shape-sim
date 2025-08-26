@@ -142,6 +142,32 @@ class PassiveController(Controller):
         return 0.0
 
 
+class LandisController(Controller):
+    """Perigee-retract / apogee-extend controller from Landis.
+
+    This scheme reels the tether out while the spacecraft moves away from the
+    Earth and reels it in while it falls back, converting barbell angular
+    momentum into orbital energy.
+    """
+
+    def __init__(self, cfg: dict) -> None:
+        self.extend_accel = float(cfg.get("extend_accel", 1.0))
+        self.retract_accel = float(cfg.get("retract_accel", 1.0))
+        self.deadband = float(cfg.get("deadband", 1e-9))
+
+    def action(self, t: float, state: np.ndarray) -> float:  # noqa: D401
+        """Return commanded tether acceleration ``L_ddot``."""
+        r = state[0:3]
+        v = state[3:6]
+        rhat = r / (np.linalg.norm(r) + 1e-15)
+        v_rad = float(np.dot(v, rhat))
+        if v_rad > self.deadband:
+            return self.extend_accel
+        if v_rad < -self.deadband:
+            return -self.retract_accel
+        return 0.0
+
+
 def make_controller(cfg: dict) -> Controller:
     """Instantiate a controller from ``cfg``.
 
@@ -149,7 +175,7 @@ def make_controller(cfg: dict) -> Controller:
     ----------
     cfg : dict
         Controller configuration with a ``type`` key specifying
-        ``"bang_bang"`` or ``"passive"``.
+        ``"bang_bang"``, ``"passive"`` or ``"landis"``.
     """
 
     ctrl_type = cfg.get("type", "bang_bang").lower()
@@ -157,4 +183,6 @@ def make_controller(cfg: dict) -> Controller:
         return BangBangController(cfg)
     if ctrl_type == "passive":
         return PassiveController()
+    if ctrl_type == "landis":
+        return LandisController(cfg)
     raise ValueError(f"unknown controller type: {ctrl_type}")

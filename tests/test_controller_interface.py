@@ -1,5 +1,5 @@
 import numpy as np
-from tskb.controller import BangBangController, PassiveController
+from tskb.controller import BangBangController, PassiveController, LandisController
 
 
 def test_controller_action_interface():
@@ -9,4 +9,6 @@ def test_controller_action_interface():
     action = BangBangController(cfg).action(0.0, state)
     assert isinstance(action, float)
     action = PassiveController().action(0.0, state)
+    assert isinstance(action, float)
+    action = LandisController(cfg).action(0.0, state)
     assert isinstance(action, float)

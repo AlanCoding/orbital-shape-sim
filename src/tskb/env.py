@@ -12,14 +12,25 @@ N_MOON = 2 * np.pi / (27.321661 * 86400.0)
 
 
 class Environment:
-    """Gravitational environment with Earth central and lunar tide."""
+    """Gravitational environment with Earth central and optional lunar tide."""
 
-    def __init__(self) -> None:
+    def __init__(self, include_moon: bool = True) -> None:
+        """Create environment.
+
+        Parameters
+        ----------
+        include_moon : bool, optional
+            If ``True`` (default) include the Moon's tidal gravity.  When
+            ``False`` the environment reduces to a simple Earth two-body
+            problem.
+        """
+
+        self.include_moon = bool(include_moon)
         self.mu_earth = MU_EARTH
-        self.mu_moon = MU_MOON
+        self.mu_moon = MU_MOON if self.include_moon else 0.0
         self.r_earth = R_EARTH
         self.r_moon = R_MOON
-        self.n_moon = N_MOON
+        self.n_moon = N_MOON if self.include_moon else 0.0
 
     def moon_position(self, t: float) -> np.ndarray:
         """Return Moon position in an Earth-centered inertial frame."""
@@ -32,7 +43,13 @@ class Environment:
         return -self.mu_earth * r / d**3
 
     def a_moon_tide(self, r: np.ndarray, t: float) -> np.ndarray:
-        """Tidal acceleration from the Moon."""
+        """Tidal acceleration from the Moon.
+
+        Returns a zero vector when ``include_moon`` is ``False``.
+        """
+
+        if not self.include_moon or self.mu_moon == 0.0:
+            return np.zeros(3)
         Rm = self.moon_position(t)
         dr = r - Rm
         d = np.linalg.norm(dr)
@@ -67,6 +84,8 @@ class Environment:
     def tidal_jet_third_deriv(self, r: np.ndarray, t: float) -> np.ndarray:
         """Return ∂³Φ/∂x_i∂x_j∂x_k for Earth and Moon."""
         J_earth = self._third_deriv_point_mass(r, self.mu_earth)
+        if not self.include_moon or self.mu_moon == 0.0:
+            return J_earth
         Rm = self.moon_position(t)
         dr = r - Rm
         J_moon = self._third_deriv_point_mass(dr, self.mu_moon)
