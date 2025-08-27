@@ -94,7 +94,7 @@ They can be swapped in and out when running scenarios to compare performance.
 
 * **File**: `sims/run_leo_100km.py`
 * **Config**: `configs/leo_100km.yaml`
-* **Description**: Runs a detailed simulation of a tether system in low Earth orbit at 100 km altitude. Produces time-series artifacts for deeper analysis.
+* **Description**: Runs a detailed simulation of a tether system in low Earth orbit at 100 km altitude. Produces time-series artifacts for deeper analysis and automatically downsamples outputs to one point every two minutes to match plots and animations.
 * **Run Example**:
 
 ```bash

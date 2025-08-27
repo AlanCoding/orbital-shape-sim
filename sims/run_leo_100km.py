@@ -20,17 +20,20 @@ def main(cfg_path: str, animate: bool = False, t_final: float | None = None) -> 
     craft = DualBarbell(cfg["mass"])
     ctrl = make_controller(cfg["controller"])
     log = run_simulation(env, craft, ctrl, cfg)
+    log_ds = plotting.downsample_log(log, 120.0)
     os.makedirs("outputs", exist_ok=True)
     out_csv = os.path.join("outputs", "leo_100km.csv")
     with open(out_csv, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(["t", "x", "y", "z", "vx", "vy", "vz", "power_control"])
-        for t, r, v, p in zip(log["t"], log["r"], log["v"], log["power_control"]):
+        for t, r, v, p in zip(
+            log_ds["t"], log_ds["r"], log_ds["v"], log_ds["power_control"]
+        ):
             writer.writerow([t, *r, *v, p])
-    plotting.quicklook(log, os.path.join("outputs", "leo_100km.png"))
+    plotting.quicklook(log_ds, os.path.join("outputs", "leo_100km.png"))
     if animate:
-        plotting.animate(log, os.path.join("outputs", "leo_100km.gif"))
-    return log
+        plotting.animate(log_ds, os.path.join("outputs", "leo_100km.gif"))
+    return log_ds
 
 
 if __name__ == "__main__":
