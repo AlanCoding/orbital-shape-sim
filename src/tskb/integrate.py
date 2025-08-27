@@ -79,10 +79,12 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
     length = sol.y[8, :]
     length_rate = sol.y[9, :]
 
+    accel = np.zeros_like(sol.t)
     power_control = np.zeros_like(sol.t)
     for i, (t, L, Ldot) in enumerate(zip(sol.t, length, length_rate)):
         state = sol.y[:, i]
         L_ddot = craft.clip_accel(ctrl.action(t, state))
+        accel[i] = L_ddot
         power_control[i] = craft.mass * L_ddot * Ldot / 4.0
 
     return {
@@ -93,5 +95,6 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
         "omega": omega,
         "length": length,
         "length_rate": length_rate,
+        "accel": accel,
         "power_control": power_control,
     }
