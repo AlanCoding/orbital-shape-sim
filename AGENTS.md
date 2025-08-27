@@ -26,6 +26,17 @@ They can be swapped in and out when running scenarios to compare performance.
   trades barbell angular momentum for orbital energy.
 * **Use Case**: Simple propellantless orbit-raising controller.
 
+### Moon Angle Controller
+
+* **File**: `src/tskb/controller.py`
+* **Description**: Commands tether acceleration using ``max_accel * cos(2*(\theta - offset))`` where ``\theta`` is the angle between the Moon and barbell center of mass. A phase offset ``offset_rad`` allows sweeping different schedules.
+* **Use Case**: Explore angle-based acceleration schedules.
+* **Run Example**:
+
+```bash
+  python sims/run_fom_scenarios.py --controller moon_angle --override controller.offset_rad=0,1.57,3.14,4.71,6.28
+```
+
 ### Neural Net Controller
 
 * **File**: `src/tskb/controller.py`

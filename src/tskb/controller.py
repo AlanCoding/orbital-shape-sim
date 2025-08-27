@@ -167,7 +167,25 @@ class LandisController(Controller):
             return -self.retract_accel
         return 0.0
 
-      
+
+class MoonAngleController(Controller):
+    """Controller scheduling acceleration by Moon-relative angle."""
+
+    def __init__(self, cfg: dict) -> None:
+        self.max_accel = float(cfg.get("max_accel", 0.01))
+        self.offset_rad = float(cfg.get("offset_rad", 0.0))
+        self.env = Environment()
+
+    def action(self, t: float, state: np.ndarray) -> float:  # noqa: D401
+        """Return commanded tether acceleration ``L_ddot``."""
+        r = state[0:3]
+        moon_r = self.env.moon_position(t)
+        theta_r = np.arctan2(r[1], r[0])
+        theta_m = np.arctan2(moon_r[1], moon_r[0])
+        theta = theta_r - theta_m
+        return self.max_accel * np.cos(2.0 * (theta - self.offset_rad))
+
+
 class NeuralNetController(Controller):
     """Feedforward neural-network controller.
 
@@ -241,7 +259,7 @@ def make_controller(cfg: dict) -> Controller:
     ----------
     cfg : dict
         Controller configuration with a ``type`` key specifying
-        ``"bang_bang"``, ``"passive"`` or ``"landis"``.
+        ``"bang_bang"``, ``"passive"``, ``"landis"``, ``"neural_net"`` or ``"moon_angle"``.
     """
 
     ctrl_type = cfg.get("type", "bang_bang").lower()
@@ -251,6 +269,8 @@ def make_controller(cfg: dict) -> Controller:
         return PassiveController()
     if ctrl_type == "landis":
         return LandisController(cfg)
+    if ctrl_type == "moon_angle":
+        return MoonAngleController(cfg)
     if ctrl_type == "neural_net":
         return NeuralNetController(cfg)
     raise ValueError(f"unknown controller type: {ctrl_type}")

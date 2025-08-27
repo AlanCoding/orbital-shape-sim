@@ -1,5 +1,12 @@
 import numpy as np
-from tskb.controller import BangBangController, PassiveController, LandisController, NeuralNetController
+from tskb.controller import (
+    BangBangController,
+    PassiveController,
+    LandisController,
+    NeuralNetController,
+    MoonAngleController,
+    make_controller,
+)
 
 
 def test_controller_action_interface():
@@ -13,4 +20,8 @@ def test_controller_action_interface():
     action = LandisController(cfg).action(0.0, state)
     assert isinstance(action, float)
     action = NeuralNetController({"max_accel": 1.0}).action(0.0, state)
+    assert isinstance(action, float)
+    action = MoonAngleController({"max_accel": 1.0}).action(0.0, state)
+    assert isinstance(action, float)
+    action = make_controller({"type": "moon_angle", "max_accel": 1.0}).action(0.0, state)
     assert isinstance(action, float)
