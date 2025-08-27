@@ -29,6 +29,7 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
             "no_rotation": 0.0,
             "prograde": n0 + n_syn,
             "retrograde": n0 - n_syn,
+            "fast_prograde": 5.0 * (n0 + n_syn),
         }
         if omega_cfg not in modes:
             raise ValueError(f"unknown omega0 mode: {omega_cfg}")

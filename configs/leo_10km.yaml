@@ -1,7 +1,7 @@
 mass: 1000.0
 altitude_m: 10000.0
 length0: 1000.0
-omega0: tidally_locked  # tidally_locked, no_rotation, prograde, retrograde
+omega0: tidally_locked  # tidally_locked, no_rotation, prograde, retrograde, fast_prograde
 theta0: 0.0            # radians
 include_moon: true
 controller:

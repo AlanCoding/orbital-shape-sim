@@ -34,7 +34,9 @@ They can be swapped in and out when running scenarios to compare performance.
 * **Run Example**:
 
 ```bash
-  python sims/run_fom_scenarios.py --controller moon_angle --override controller.offset_rad=0,1.57,3.14,4.71,6.28
+  python sims/run_fom_scenarios.py --controller moon_angle \
+    --omega0 fast_prograde --override theta0=0 \
+    --override controller.offset_rad=0,1.57,3.14,4.71,6.28
 ```
 
 ### Neural Net Controller
@@ -70,6 +72,13 @@ They can be swapped in and out when running scenarios to compare performance.
 
 ```bash
   python sims/run_fom_scenarios.py --override mass=500,1000 --override controller.extend_accel=0.02,0.05
+```
+
+- **Single Spin Mode**: Use `--omega0` to run one initial rotation state. The `fast_prograde`
+  option spins five times faster than the nominal prograde rate.
+
+```bash
+  python sims/run_fom_scenarios.py --controller moon_angle --omega0 fast_prograde --override theta0=0
 ```
 
 * **Sample Output**:

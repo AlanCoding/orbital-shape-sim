@@ -76,6 +76,15 @@ def parse_args() -> argparse.Namespace:
             "Use dot notation for nested keys. Can be supplied multiple times."
         ),
     )
+    parser.add_argument(
+        "--omega0",
+        type=str,
+        default=None,
+        help=(
+            "Run only a single initial spin mode or numeric value. "
+            "Examples: prograde, fast_prograde, 0.01"
+        ),
+    )
     return parser.parse_args()
 
 
@@ -89,13 +98,17 @@ def main() -> None:
     r0 = 6378e3 + base_cfg["altitude_m"]
     n0 = np.sqrt(env.mu_earth / r0**3)
 
-    spin_modes = [
-        ("tidally_locked", "tidally_locked"),
-        ("no_rotation", "no_rotation"),
-        ("prograde", "prograde"),
-        ("retrograde", "retrograde"),
-        ("1.5n0", 1.5 * n0),
-    ]
+    if args.omega0 is not None:
+        spin_modes = [("custom", yaml.safe_load(args.omega0))]
+    else:
+        spin_modes = [
+            ("tidally_locked", "tidally_locked"),
+            ("no_rotation", "no_rotation"),
+            ("prograde", "prograde"),
+            ("retrograde", "retrograde"),
+            ("fast_prograde", "fast_prograde"),
+            ("1.5n0", 1.5 * n0),
+        ]
     overrides = parse_overrides(args.override)
     if args.controller:
         overrides["controller.type"] = [
