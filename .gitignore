@@ -2,3 +2,7 @@
 __pycache__
 *.pyc
 outputs/
+
+tskb.egg-info/
+show/
+numpy/
