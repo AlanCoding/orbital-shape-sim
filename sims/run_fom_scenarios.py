@@ -134,7 +134,13 @@ def main() -> None:
 
         for theta0 in theta0_values:
             for label, omega in spin_modes:
-                fom = run_case(cfg, omega, ctrl_type, theta0)
+                try:
+                    fom = run_case(cfg, omega, ctrl_type, theta0)
+                except Exception as exc:  # pragma: no cover - robustness for sweeps
+                    print(
+                        f"{theta0:<12.3f}{label:<15}{ctrl_type:<12}ERROR: {exc}"
+                    )
+                    continue
                 print(f"{theta0:<12.3f}{label:<15}{ctrl_type:<12}{fom:>10.3f}")
 
 

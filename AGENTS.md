@@ -58,7 +58,7 @@ acceleration command.
 ### FOM Scenarios
 
 * **File**: `sims/run_fom_scenarios.py`
-* **Description**: Sweeps multiple initial conditions (e.g., rotation state, controller type) and reports the **Figure of Merit (FOM)**.
+* **Description**: Sweeps multiple initial conditions (e.g., rotation state, controller type) and reports the **Figure of Merit (FOM)**. Each scenario failure is caught and printed so one error does not halt the sweep.
 - **Run Example**:
 
 ```bash
