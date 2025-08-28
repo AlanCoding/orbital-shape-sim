@@ -8,6 +8,14 @@ from scipy.integrate import solve_ivp
 from .dynamics import f_state
 
 
+class SimulationError(RuntimeError):
+    """Exception carrying a partial log when simulation fails."""
+
+    def __init__(self, message: str, log: dict) -> None:
+        super().__init__(message)
+        self.log = log
+
+
 def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
     """Run a simulation and return a log dictionary."""
 
@@ -66,13 +74,6 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
         raise RuntimeError("non-finite state encountered during integration")
 
     r = sol.y[0:3, :].T
-    r_mag = np.linalg.norm(r, axis=1)
-    if np.min(r_mag) < env.r_earth:
-        i_hit = int(np.argmin(r_mag))
-        alt = r_mag[i_hit] - env.r_earth
-        raise RuntimeError(
-            f"simulation crashed into Earth at t={sol.t[i_hit]:.3f}s, altitude={alt:.1f} m"
-        )
     v = sol.y[3:6, :].T
     theta = sol.y[6, :]
     omega = sol.y[7, :]
@@ -83,11 +84,11 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
     power_control = np.zeros_like(sol.t)
     for i, (t, L, Ldot) in enumerate(zip(sol.t, length, length_rate)):
         state = sol.y[:, i]
-        L_ddot = craft.clip_accel(ctrl.action(t, state))
+        L_ddot = ctrl.action(t, state, env)
         accel[i] = L_ddot
         power_control[i] = craft.mass * L_ddot * Ldot / 4.0
 
-    return {
+    log = {
         "t": sol.t,
         "r": r,
         "v": v,
@@ -98,3 +99,17 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
         "accel": accel,
         "power_control": power_control,
     }
+
+    r_mag = np.linalg.norm(r, axis=1)
+    if np.min(r_mag) < env.r_earth:
+        i_hit = int(np.argmin(r_mag))
+        alt = r_mag[i_hit] - env.r_earth
+        # Truncate logs up to the collision index
+        for k, v_arr in log.items():
+            log[k] = v_arr[: i_hit + 1]
+        raise SimulationError(
+            f"simulation crashed into Earth at t={sol.t[i_hit]:.3f}s, altitude={alt:.1f} m",
+            log,
+        )
+
+    return log

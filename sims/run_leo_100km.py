@@ -12,6 +12,7 @@ import yaml
 from tskb import (
     DualBarbell,
     Environment,
+    SimulationError,
     diagnostics,
     make_controller,
     plotting,
@@ -27,10 +28,21 @@ def main(cfg_path: str, animate: bool = False, t_final: float | None = None) -> 
     env = Environment(include_moon=cfg.get("include_moon", True))
     craft = DualBarbell(cfg["mass"])
     ctrl = make_controller(cfg["controller"])
-    log = run_simulation(env, craft, ctrl, cfg)
-    log_ds = plotting.downsample_log(log, 120.0)
     os.makedirs("outputs", exist_ok=True)
     out_csv = os.path.join("outputs", "leo_100km.csv")
+    out_deriv = os.path.join("outputs", "leo_100km_derived.csv")
+    out_png = os.path.join("outputs", "leo_100km.png")
+    out_gif = os.path.join("outputs", "leo_100km.gif")
+    for path in [out_csv, out_deriv, out_png, out_gif]:
+        if os.path.exists(path):
+            os.remove(path)
+    err = None
+    try:
+        log = run_simulation(env, craft, ctrl, cfg)
+    except SimulationError as e:
+        log = e.log
+        err = e
+    log_ds = plotting.downsample_log(log, 120.0)
     with open(out_csv, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(["t", "x", "y", "z", "vx", "vy", "vz", "power_control"])
@@ -42,7 +54,6 @@ def main(cfg_path: str, animate: bool = False, t_final: float | None = None) -> 
     alt = (np.linalg.norm(log_ds["r"], axis=1) - env.r_earth).tolist()
     ecc = diagnostics._eccentricity_from_rv(log_ds["r"], log_ds["v"]).tolist()
     sma = diagnostics._semimajor_axis_from_rv(log_ds["r"], log_ds["v"]).tolist()
-    out_deriv = os.path.join("outputs", "leo_100km_derived.csv")
     with open(out_deriv, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(
@@ -68,9 +79,11 @@ def main(cfg_path: str, animate: bool = False, t_final: float | None = None) -> 
             sma,
         ):
             writer.writerow(row)
-    plotting.quicklook(log_ds, os.path.join("outputs", "leo_100km.png"))
+    plotting.quicklook(log_ds, out_png)
     if animate:
-        plotting.animate(log_ds, os.path.join("outputs", "leo_100km.gif"))
+        plotting.animate(log_ds, out_gif)
+    if err is not None:
+        raise err
     return log_ds
 
 

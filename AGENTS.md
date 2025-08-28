@@ -8,6 +8,10 @@ They can be swapped in and out when running scenarios to compare performance.
 
 ## Controllers
 
+All controller ``action`` methods take the signature ``action(t, state, env)`` so
+they can access environment data (e.g., Moon position) when computing a tether
+acceleration command.
+
 ### Bang–Bang Controller
 - **File**: `src/tskb/controller.py`
 - **Description**: Adaptive bang-bang controller that chooses tether extension or retraction to maximize instantaneous tidal power using a filtered power-sign heuristic with dwell-time and optional phase adaptation.
@@ -29,7 +33,7 @@ They can be swapped in and out when running scenarios to compare performance.
 ### Moon Angle Controller
 
 * **File**: `src/tskb/controller.py`
-* **Description**: Commands tether acceleration using ``max_accel * cos(2*(\theta - offset))`` where ``\theta`` is the angle between the Moon and barbell center of mass. A phase offset ``offset_rad`` allows sweeping different schedules.
+* **Description**: Commands tether acceleration using ``max_accel * cos(2*(\theta - offset))`` where ``\theta`` is the angle between the Moon and barbell center of mass. Acceleration is zeroed once the tether reaches 80 km during contraction or 110 km during extension. A phase offset ``offset_rad`` allows sweeping different schedules.
 * **Use Case**: Explore angle-based acceleration schedules.
 * **Run Example**:
 
@@ -94,7 +98,7 @@ They can be swapped in and out when running scenarios to compare performance.
 
 * **File**: `sims/run_leo_100km.py`
 * **Config**: `configs/leo_100km.yaml`
-* **Description**: Runs a detailed simulation of a tether system in low Earth orbit at 100 km altitude. Produces time-series artifacts for deeper analysis and automatically downsamples outputs to one point every two minutes to match plots and animations. In addition to the state history (`leo_100km.csv`), a derived-metrics file (`leo_100km_derived.csv`) records altitude, rotation rate, angle, tether length, control acceleration, eccentricity, and semimajor axis at the same cadence.
+* **Description**: Runs a detailed simulation of a tether system in low Earth orbit at 100 km altitude. Produces time-series artifacts for deeper analysis and automatically downsamples outputs to one point every two minutes to match plots and animations. In addition to the state history (`leo_100km.csv`), a derived-metrics file (`leo_100km_derived.csv`) records altitude, rotation rate, angle, tether length, control acceleration, eccentricity, and semimajor axis at the same cadence. Output files are cleared before each run and, even if the barbell collides with Earth, partial logs and plots are still written for debugging.
 * **Run Example**:
 
 ```bash

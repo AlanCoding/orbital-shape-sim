@@ -38,14 +38,12 @@ class DualBarbell:
         mass: float,
         min_length: float = 1.0,
         max_length: float | None = None,
-        max_accel: float = 1e-3,
     ) -> None:
         self.mass = mass
         # ``min_length`` defaults to 1 m to avoid singular inertia when the
         # tether collapses.  Simulations may override this if desired.
         self.min_length = float(min_length)
         self.max_length = None if max_length is None else float(max_length)
-        self.max_accel = float(max_accel)
 
     def tension_ok(self, length: float) -> bool:
         """Return ``True`` if ``length`` lies within allowed limits."""
@@ -56,9 +54,3 @@ class DualBarbell:
             return False
         return True
 
-    # --- internal helpers -------------------------------------------------
-
-    def clip_accel(self, accel: float) -> float:
-        """Clip tether-length acceleration to the allowed range."""
-
-        return float(np.clip(accel, -self.max_accel, self.max_accel))
