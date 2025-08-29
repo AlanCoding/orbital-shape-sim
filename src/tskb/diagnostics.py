@@ -36,6 +36,18 @@ def _semimajor_axis_from_rv(r: np.ndarray, v: np.ndarray) -> np.ndarray:
     return 1.0 / (2.0 / rmag - vmag2 / MU_EARTH)
 
 
+def _eccentricity_from_rv(r: np.ndarray, v: np.ndarray) -> np.ndarray:
+    """Return orbital eccentricity from position/velocity vectors."""
+
+    r = np.asarray(r)
+    v = np.asarray(v)
+    rmag = np.linalg.norm(r, axis=-1)
+    vmag2 = np.sum(v * v, axis=-1)
+    rv = np.sum(r * v, axis=-1)
+    e_vec = ((vmag2 - MU_EARTH / rmag)[..., None] * r - rv[..., None] * v) / MU_EARTH
+    return np.linalg.norm(e_vec, axis=-1)
+
+
 def orbit_period(log: dict, idx: int = 0) -> float:
     """Estimate orbital period from state ``idx``."""
 

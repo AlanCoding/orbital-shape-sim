@@ -11,7 +11,7 @@ from .env import Environment
 class Controller:
     """Abstract controller interface."""
 
-    def action(self, t: float, state: np.ndarray) -> float:
+    def action(self, t: float, state: np.ndarray, env: Environment) -> float:
         """Return tether length acceleration ``L_ddot``.
 
         Subclasses should override this method.  The returned value
@@ -53,7 +53,6 @@ class BangBangController(Controller):
         self.adapt_gain = float(cfg.get("adapt_gain", 1e-5))
 
         self.state = ControllerState(delta_phase=delta_phase)
-        self.env = Environment()
 
     @staticmethod
     def _rotate_in_plane(vec: np.ndarray, axis_rhat: np.ndarray, delta: float) -> np.ndarray:
@@ -114,7 +113,7 @@ class BangBangController(Controller):
 
         return q_cmd
 
-    def action(self, t: float, state: np.ndarray) -> float:
+    def action(self, t: float, state: np.ndarray, env: Environment) -> float:
         """Return commanded tether acceleration ``L_ddot``."""
         r = state[0:3]
         v = state[3:6]
@@ -123,8 +122,8 @@ class BangBangController(Controller):
         u_rad = rhat
         r1 = r + 0.5 * u_rad
         r2 = r - 0.5 * u_rad
-        a1 = self.env.a_earth(r1) + self.env.a_moon_tide(r1, t)
-        a2 = self.env.a_earth(r2) + self.env.a_moon_tide(r2, t)
+        a1 = env.a_earth(r1) + env.a_moon_tide(r1, t)
+        a2 = env.a_earth(r2) + env.a_moon_tide(r2, t)
         aQ_unit = a1 - a2
 
         q_cmd = self.step(t, r, v, aQ_unit, rhat)
@@ -138,7 +137,7 @@ class BangBangController(Controller):
 class PassiveController(Controller):
     """Controller that commands no tether acceleration."""
 
-    def action(self, t: float, state: np.ndarray) -> float:
+    def action(self, t: float, state: np.ndarray, env: Environment) -> float:
         return 0.0
 
 
@@ -155,7 +154,7 @@ class LandisController(Controller):
         self.retract_accel = float(cfg.get("retract_accel", 1.0))
         self.deadband = float(cfg.get("deadband", 1e-9))
 
-    def action(self, t: float, state: np.ndarray) -> float:  # noqa: D401
+    def action(self, t: float, state: np.ndarray, env: Environment) -> float:  # noqa: D401
         """Return commanded tether acceleration ``L_ddot``."""
         r = state[0:3]
         v = state[3:6]
@@ -167,7 +166,30 @@ class LandisController(Controller):
             return -self.retract_accel
         return 0.0
 
-      
+
+class MoonAngleController(Controller):
+    """Controller scheduling acceleration by Moon-relative angle."""
+
+    def __init__(self, cfg: dict) -> None:
+        self.max_accel = float(cfg.get("max_accel", 0.01))
+        self.offset_rad = float(cfg.get("offset_rad", 0.0))
+
+    def action(self, t: float, state: np.ndarray, env: Environment) -> float:  # noqa: D401
+        """Return commanded tether acceleration ``L_ddot``."""
+        r = state[0:3]
+        L = state[8]
+        moon_r = env.moon_position(t)
+        theta_r = np.arctan2(r[1], r[0])
+        theta_m = np.arctan2(moon_r[1], moon_r[0])
+        theta = theta_r - theta_m
+        accel = self.max_accel * np.cos(2.0 * (theta - self.offset_rad))
+        if accel > 0.0 and L >= 110_000.0:
+            return 0.0
+        if accel < 0.0 and L <= 80_000.0:
+            return 0.0
+        return accel
+
+
 class NeuralNetController(Controller):
     """Feedforward neural-network controller.
 
@@ -224,7 +246,7 @@ class NeuralNetController(Controller):
         self.layers = new_layers
 
     # ------------------------------------------------------------------
-    def action(self, t: float, state: np.ndarray) -> float:
+    def action(self, t: float, state: np.ndarray, env: Environment) -> float:
         x = np.asarray(state, dtype=float)
         for i, (w, b) in enumerate(self.layers):
             x = w @ x + b
@@ -241,7 +263,7 @@ def make_controller(cfg: dict) -> Controller:
     ----------
     cfg : dict
         Controller configuration with a ``type`` key specifying
-        ``"bang_bang"``, ``"passive"`` or ``"landis"``.
+        ``"bang_bang"``, ``"passive"``, ``"landis"``, ``"neural_net"`` or ``"moon_angle"``.
     """
 
     ctrl_type = cfg.get("type", "bang_bang").lower()
@@ -251,6 +273,8 @@ def make_controller(cfg: dict) -> Controller:
         return PassiveController()
     if ctrl_type == "landis":
         return LandisController(cfg)
+    if ctrl_type == "moon_angle":
+        return MoonAngleController(cfg)
     if ctrl_type == "neural_net":
         return NeuralNetController(cfg)
     raise ValueError(f"unknown controller type: {ctrl_type}")

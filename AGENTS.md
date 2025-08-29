@@ -8,6 +8,10 @@ They can be swapped in and out when running scenarios to compare performance.
 
 ## Controllers
 
+All controller ``action`` methods take the signature ``action(t, state, env)`` so
+they can access environment data (e.g., Moon position) when computing a tether
+acceleration command.
+
 ### Bang–Bang Controller
 - **File**: `src/tskb/controller.py`
 - **Description**: Adaptive bang-bang controller that chooses tether extension or retraction to maximize instantaneous tidal power using a filtered power-sign heuristic with dwell-time and optional phase adaptation.
@@ -26,6 +30,19 @@ They can be swapped in and out when running scenarios to compare performance.
   trades barbell angular momentum for orbital energy.
 * **Use Case**: Simple propellantless orbit-raising controller.
 
+### Moon Angle Controller
+
+* **File**: `src/tskb/controller.py`
+* **Description**: Commands tether acceleration using ``max_accel * cos(2*(\theta - offset))`` where ``\theta`` is the angle between the Moon and barbell center of mass. Acceleration is zeroed once the tether reaches 80 km during contraction or 110 km during extension. A phase offset ``offset_rad`` allows sweeping different schedules.
+* **Use Case**: Explore angle-based acceleration schedules.
+* **Run Example**:
+
+```bash
+  python sims/run_fom_scenarios.py --controller moon_angle \
+    --omega0 fast_prograde --override theta0=0 \
+    --override controller.offset_rad=0,1.57,3.14,4.71,6.28
+```
+
 ### Neural Net Controller
 
 * **File**: `src/tskb/controller.py`
@@ -41,7 +58,7 @@ They can be swapped in and out when running scenarios to compare performance.
 ### FOM Scenarios
 
 * **File**: `sims/run_fom_scenarios.py`
-* **Description**: Sweeps multiple initial conditions (e.g., rotation state, controller type) and reports the **Figure of Merit (FOM)**.
+* **Description**: Sweeps multiple initial conditions (e.g., rotation state, controller type) and reports the **Figure of Merit (FOM)**. Each scenario failure is caught and printed so one error does not halt the sweep.
 - **Run Example**:
 
 ```bash
@@ -61,6 +78,13 @@ They can be swapped in and out when running scenarios to compare performance.
   python sims/run_fom_scenarios.py --override mass=500,1000 --override controller.extend_accel=0.02,0.05
 ```
 
+- **Single Spin Mode**: Use `--omega0` to run one initial rotation state. The `fast_prograde`
+  option spins five times faster than the nominal prograde rate.
+
+```bash
+  python sims/run_fom_scenarios.py --controller moon_angle --omega0 fast_prograde --override theta0=0
+```
+
 * **Sample Output**:
 
 ```
@@ -74,7 +98,7 @@ They can be swapped in and out when running scenarios to compare performance.
 
 * **File**: `sims/run_leo_100km.py`
 * **Config**: `configs/leo_100km.yaml`
-* **Description**: Runs a detailed simulation of a tether system in low Earth orbit at 100 km altitude. Produces time-series artifacts for deeper analysis.
+* **Description**: Runs a detailed simulation of a tether system in low Earth orbit at 100 km altitude. Produces time-series artifacts for deeper analysis and automatically downsamples outputs to one point every two minutes to match plots and animations. In addition to the state history (`leo_100km.csv`), a derived-metrics file (`leo_100km_derived.csv`) records altitude, rotation rate, angle, tether length, control acceleration, eccentricity, and semimajor axis at the same cadence. Output files are cleared before each run and, even if the barbell collides with Earth, partial logs and plots are still written for debugging.
 * **Run Example**:
 
 ```bash

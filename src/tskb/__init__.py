@@ -7,9 +7,10 @@ from .controller import (
     PassiveController,
     NeuralNetController,
     LandisController,
+    MoonAngleController,
     make_controller,
 )
-from .integrate import run_simulation
+from .integrate import run_simulation, SimulationError
 from . import diagnostics
 
 __all__ = [
@@ -19,8 +20,10 @@ __all__ = [
     "BangBangController",
     "PassiveController",
     "LandisController",
+    "MoonAngleController",
     "NeuralNetController",
     "make_controller",
     "run_simulation",
+    "SimulationError",
     "diagnostics",
 ]

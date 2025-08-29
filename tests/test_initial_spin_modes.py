@@ -4,7 +4,9 @@ import pytest
 from tskb import Environment, DualBarbell, make_controller, run_simulation
 
 
-@pytest.mark.parametrize("mode", ["tidally_locked", "no_rotation", "prograde", "retrograde"])
+@pytest.mark.parametrize(
+    "mode", ["tidally_locked", "no_rotation", "prograde", "retrograde", "fast_prograde"]
+)
 def test_initial_spin_modes(mode):
     cfg = {
         "mass": 1000.0,
@@ -26,5 +28,6 @@ def test_initial_spin_modes(mode):
         "no_rotation": 0.0,
         "prograde": n0 + n_syn,
         "retrograde": n0 - n_syn,
+        "fast_prograde": 5.0 * (n0 + n_syn),
     }[mode]
     assert np.isclose(log["omega"][0], expected)

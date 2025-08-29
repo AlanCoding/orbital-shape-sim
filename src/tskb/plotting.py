@@ -9,6 +9,40 @@ import numpy as np
 from .diagnostics import _semimajor_axis_from_rv
 
 
+def downsample_log(log: dict, max_dt: float) -> dict:
+    """Down-sample a simulation log to a maximum time step.
+
+    Parameters
+    ----------
+    log:
+        Dictionary of time-series arrays as returned by
+        :func:`tskb.integrate.run_simulation`.
+    max_dt:
+        Maximum spacing in seconds between consecutive samples in the
+        returned log. The first and last samples are always preserved.
+
+    Returns
+    -------
+    dict
+        New log dictionary containing a subset of the original samples.
+    """
+
+    t = np.asarray(log["t"], dtype=float)
+    if t.size == 0:
+        return {k: np.asarray(v) for k, v in log.items()}
+
+    keep = [0]
+    last_t = t[0]
+    for i in range(1, t.size - 1):
+        if t[i] - last_t >= max_dt:
+            keep.append(i)
+            last_t = t[i]
+    if keep[-1] != t.size - 1:
+        keep.append(t.size - 1)
+
+    return {k: np.asarray(v)[keep] for k, v in log.items()}
+
+
 def quicklook(log: dict, path: str) -> None:
     """Plot semimajor axis history.
 
