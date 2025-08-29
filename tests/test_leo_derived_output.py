@@ -14,7 +14,8 @@ def test_leo_derived_csv(tmp_path):
     try:
         os.chdir(tmp_path)
         module.main(cfg_path.as_posix(), t_final=60.0)
-        out = tmp_path / "outputs" / "leo_100km_derived.csv"
+        out_dir = tmp_path / "outputs"
+        out = out_dir / "leo_100km_derived.csv"
         assert out.exists()
         with out.open("r", encoding="utf-8", newline="") as f:
             reader = csv.reader(f)
@@ -29,5 +30,14 @@ def test_leo_derived_csv(tmp_path):
             "eccentricity",
             "semimajor_axis",
         ]
+        assert (out_dir / "semi_major_axis.png").exists()
+        assert (out_dir / "angular_position.png").exists()
+        assert (out_dir / "angular_velocity.png").exists()
+        assert (out_dir / "altitude.png").exists()
+        md = out_dir / "md" / "run_summary.md"
+        assert md.exists()
+        text = md.read_text(encoding="utf-8")
+        assert "Duration:" in text
+        assert "Outcome:" in text
     finally:
         os.chdir(cwd)

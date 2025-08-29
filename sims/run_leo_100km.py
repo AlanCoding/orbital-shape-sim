@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import csv
 import os
+import shutil
 
 import numpy as np
 import yaml
@@ -28,14 +29,15 @@ def main(cfg_path: str, animate: bool = False, t_final: float | None = None) -> 
     env = Environment(include_moon=cfg.get("include_moon", True))
     craft = DualBarbell(cfg["mass"])
     ctrl = make_controller(cfg["controller"])
+    shutil.rmtree("outputs", ignore_errors=True)
     os.makedirs("outputs", exist_ok=True)
     out_csv = os.path.join("outputs", "leo_100km.csv")
     out_deriv = os.path.join("outputs", "leo_100km_derived.csv")
-    out_png = os.path.join("outputs", "leo_100km.png")
-    out_gif = os.path.join("outputs", "leo_100km.gif")
-    for path in [out_csv, out_deriv, out_png, out_gif]:
-        if os.path.exists(path):
-            os.remove(path)
+    out_sma = os.path.join("outputs", "semi_major_axis.png")
+    out_theta = os.path.join("outputs", "angular_position.png")
+    out_omega = os.path.join("outputs", "angular_velocity.png")
+    out_alt = os.path.join("outputs", "altitude.png")
+    out_gif = os.path.join("outputs", "orbit.gif")
     err = None
     try:
         log = run_simulation(env, craft, ctrl, cfg)
@@ -79,7 +81,31 @@ def main(cfg_path: str, animate: bool = False, t_final: float | None = None) -> 
             sma,
         ):
             writer.writerow(row)
-    plotting.quicklook(log_ds, out_png)
+    plotting.quicklook(log_ds, out_sma)
+    plotting.plot_timeseries(
+        log_ds["t"], np.degrees(log_ds["theta"]), "Angular position [deg]", out_theta
+    )
+    plotting.plot_timeseries(
+        log_ds["t"], log_ds["omega"], "Angular velocity [rad/s]", out_omega
+    )
+    plotting.plot_timeseries(log_ds["t"], alt, "Altitude [m]", out_alt)
+    md_dir = os.path.join("outputs", "md")
+    os.makedirs(md_dir, exist_ok=True)
+    md_path = os.path.join(md_dir, "run_summary.md")
+    duration = float(log_ds["t"][-1]) if log_ds["t"].size else 0.0
+    outcome = "Simulation completed successfully." if err is None else str(err)
+    md_template = (
+        "# Simulation Report\n\n"
+        f"Duration: {duration:.1f} s\n\n"
+        f"Outcome: {outcome}\n\n"
+        "## Plots\n\n"
+        "![Semimajor axis](../semi_major_axis.png)\n\n"
+        "![Angular position](../angular_position.png)\n\n"
+        "![Angular velocity](../angular_velocity.png)\n\n"
+        "![Altitude](../altitude.png)\n"
+    )
+    with open(md_path, "w", encoding="utf-8") as f:
+        f.write(md_template)
     if animate:
         plotting.animate(log_ds, out_gif)
     if err is not None:
