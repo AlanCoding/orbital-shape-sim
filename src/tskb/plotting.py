@@ -68,6 +68,33 @@ def quicklook(log: dict, path: str) -> None:
     plt.close()
 
 
+def plot_timeseries(t: np.ndarray, y: np.ndarray, ylabel: str, path: str) -> None:
+    """Plot a scalar time series.
+
+    Parameters
+    ----------
+    t : np.ndarray
+        Time samples in **seconds**.
+    y : np.ndarray
+        Quantity to plot, same length as ``t``.
+    ylabel : str
+        Label for the y axis including units.
+    path : str
+        Output path for the PNG file.
+    """
+
+    t = np.asarray(t, dtype=float) / 3600.0  # seconds → hours
+    y = np.asarray(y, dtype=float)
+    mask = np.isfinite(y)
+    plt.figure()
+    plt.plot(t[mask], y[mask])
+    plt.xlabel("Time [h]")
+    plt.ylabel(ylabel)
+    plt.tight_layout()
+    plt.savefig(path)
+    plt.close()
+
+
 def animate(log: dict, path: str) -> None:
     """Create a simple 2D animation of the barbell orbit."""
 

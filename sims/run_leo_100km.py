@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import csv
 import os
+import shutil
 
 import numpy as np
 import yaml
@@ -28,14 +29,15 @@ def main(cfg_path: str, animate: bool = False, t_final: float | None = None) -> 
     env = Environment(include_moon=cfg.get("include_moon", True))
     craft = DualBarbell(cfg["mass"])
     ctrl = make_controller(cfg["controller"])
+    shutil.rmtree("outputs", ignore_errors=True)
     os.makedirs("outputs", exist_ok=True)
     out_csv = os.path.join("outputs", "leo_100km.csv")
     out_deriv = os.path.join("outputs", "leo_100km_derived.csv")
-    out_png = os.path.join("outputs", "leo_100km.png")
-    out_gif = os.path.join("outputs", "leo_100km.gif")
-    for path in [out_csv, out_deriv, out_png, out_gif]:
-        if os.path.exists(path):
-            os.remove(path)
+    out_sma = os.path.join("outputs", "semi_major_axis.png")
+    out_len = os.path.join("outputs", "tether_length.png")
+    out_omega = os.path.join("outputs", "angular_velocity.png")
+    out_ecc = os.path.join("outputs", "eccentricity.png")
+    out_gif = os.path.join("outputs", "orbit.gif")
     err = None
     try:
         log = run_simulation(env, craft, ctrl, cfg)
@@ -79,7 +81,31 @@ def main(cfg_path: str, animate: bool = False, t_final: float | None = None) -> 
             sma,
         ):
             writer.writerow(row)
-    plotting.quicklook(log_ds, out_png)
+    plotting.quicklook(log_ds, out_sma)
+    plotting.plot_timeseries(
+        log_ds["t"], log_ds["length"], "Tether length [m]", out_len
+    )
+    plotting.plot_timeseries(
+        log_ds["t"], log_ds["omega"], "Angular velocity [rad/s]", out_omega
+    )
+    plotting.plot_timeseries(log_ds["t"], ecc, "Eccentricity", out_ecc)
+    html_dir = os.path.join("outputs", "html")
+    os.makedirs(html_dir, exist_ok=True)
+    html_path = os.path.join(html_dir, "run_summary.html")
+    duration = float(log_ds["t"][-1]) if log_ds["t"].size else 0.0
+    outcome = "Simulation completed successfully." if err is None else str(err)
+    html_template = (
+        "<h1>Simulation Report</h1>\n"
+        f"<p>Duration: {duration:.1f} s</p>\n"
+        f"<p>Outcome: {outcome}</p>\n"
+        "<h2>Plots</h2>\n"
+        '<img src="../semi_major_axis.png" alt="Semimajor axis"/><br/><br/>\n'
+        '<img src="../tether_length.png" alt="Tether length"/><br/><br/>\n'
+        '<img src="../angular_velocity.png" alt="Angular velocity"/><br/><br/>\n'
+        '<img src="../eccentricity.png" alt="Eccentricity"/>\n'
+    )
+    with open(html_path, "w", encoding="utf-8") as f:
+        f.write(html_template)
     if animate:
         plotting.animate(log_ds, out_gif)
     if err is not None:

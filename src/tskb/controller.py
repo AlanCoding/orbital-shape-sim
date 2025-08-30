@@ -173,6 +173,8 @@ class MoonAngleController(Controller):
     def __init__(self, cfg: dict) -> None:
         self.max_accel = float(cfg.get("max_accel", 0.01))
         self.offset_rad = float(cfg.get("offset_rad", 0.0))
+        self.extend_limit = float(cfg.get("extend_limit_m", 110_000.0))
+        self.retract_limit = float(cfg.get("retract_limit_m", 80_000.0))
 
     def action(self, t: float, state: np.ndarray, env: Environment) -> float:  # noqa: D401
         """Return commanded tether acceleration ``L_ddot``."""
@@ -183,9 +185,9 @@ class MoonAngleController(Controller):
         theta_m = np.arctan2(moon_r[1], moon_r[0])
         theta = theta_r - theta_m
         accel = self.max_accel * np.cos(2.0 * (theta - self.offset_rad))
-        if accel > 0.0 and L >= 110_000.0:
+        if accel > 0.0 and L >= self.extend_limit:
             return 0.0
-        if accel < 0.0 and L <= 80_000.0:
+        if accel < 0.0 and L <= self.retract_limit:
             return 0.0
         return accel
 
