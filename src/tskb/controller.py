@@ -168,15 +168,16 @@ class LandisController(Controller):
 
 
 class MoonAngleController(Controller):
-    """PI controller tracking a Moon-relative length schedule."""
+    """PID controller tracking a Moon-relative length schedule."""
 
     def __init__(self, cfg: dict) -> None:
         self.max_accel = float(cfg.get("max_accel", 0.01))
         self.offset_rad = float(cfg.get("offset_rad", 0.0))
         self.extend_limit = float(cfg.get("extend_limit_m", 110_000.0))
         self.retract_limit = float(cfg.get("retract_limit_m", 80_000.0))
-        self.kp = float(cfg.get("kp", 1e-4))
-        self.ki = float(cfg.get("ki", 1e-6))
+        self.kp = float(cfg.get("kp", 5e-5))
+        self.ki = float(cfg.get("ki", 1e-8))
+        self.kd = float(cfg.get("kd", 1e-1))
         self._int_err = 0.0
         self._last_t: float | None = None
 
@@ -200,7 +201,8 @@ class MoonAngleController(Controller):
             dt = t - self._last_t
         self._last_t = t
         self._int_err += err * dt
-        accel = self.kp * err + self.ki * self._int_err
+        Ldot = state[9]
+        accel = self.kp * err + self.ki * self._int_err - self.kd * Ldot
         accel = np.clip(accel, -self.max_accel, self.max_accel)
         if accel > 0.0 and L >= self.extend_limit:
             return 0.0
