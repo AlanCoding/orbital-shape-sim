@@ -36,8 +36,9 @@ expected to be cornerstones of sustained economic activity beyond Earth.
    ```bash
    python sims/run_leo_100km.py --config configs/leo_100km.yaml
    ```
-   The script writes `outputs/leo_100km.csv` and several quicklook plots such as
-   `outputs/semi_major_axis.png`. An HTML report is saved to
+   The script writes `outputs/leo_100km.csv` and quicklook plots for the
+   semimajor axis, tether length, angular velocity, and eccentricity (e.g.,
+   `outputs/semi_major_axis.png`). An HTML report is saved to
    `outputs/html/run_summary.html` summarizing the run and embedding all images.
 3. Additional simulations:
    ```bash

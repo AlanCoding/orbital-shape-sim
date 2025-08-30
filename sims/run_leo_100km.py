@@ -34,9 +34,9 @@ def main(cfg_path: str, animate: bool = False, t_final: float | None = None) -> 
     out_csv = os.path.join("outputs", "leo_100km.csv")
     out_deriv = os.path.join("outputs", "leo_100km_derived.csv")
     out_sma = os.path.join("outputs", "semi_major_axis.png")
-    out_theta = os.path.join("outputs", "angular_position.png")
+    out_len = os.path.join("outputs", "tether_length.png")
     out_omega = os.path.join("outputs", "angular_velocity.png")
-    out_alt = os.path.join("outputs", "altitude.png")
+    out_ecc = os.path.join("outputs", "eccentricity.png")
     out_gif = os.path.join("outputs", "orbit.gif")
     err = None
     try:
@@ -83,12 +83,12 @@ def main(cfg_path: str, animate: bool = False, t_final: float | None = None) -> 
             writer.writerow(row)
     plotting.quicklook(log_ds, out_sma)
     plotting.plot_timeseries(
-        log_ds["t"], np.degrees(log_ds["theta"]), "Angular position [deg]", out_theta
+        log_ds["t"], log_ds["length"], "Tether length [m]", out_len
     )
     plotting.plot_timeseries(
         log_ds["t"], log_ds["omega"], "Angular velocity [rad/s]", out_omega
     )
-    plotting.plot_timeseries(log_ds["t"], alt, "Altitude [m]", out_alt)
+    plotting.plot_timeseries(log_ds["t"], ecc, "Eccentricity", out_ecc)
     html_dir = os.path.join("outputs", "html")
     os.makedirs(html_dir, exist_ok=True)
     html_path = os.path.join(html_dir, "run_summary.html")
@@ -99,10 +99,10 @@ def main(cfg_path: str, animate: bool = False, t_final: float | None = None) -> 
         f"<p>Duration: {duration:.1f} s</p>\n"
         f"<p>Outcome: {outcome}</p>\n"
         "<h2>Plots</h2>\n"
-        '<img src="../semi_major_axis.png" alt="Semimajor axis"/>\n'
-        '<img src="../angular_position.png" alt="Angular position"/>\n'
-        '<img src="../angular_velocity.png" alt="Angular velocity"/>\n'
-        '<img src="../altitude.png" alt="Altitude"/>\n'
+        '<img src="../semi_major_axis.png" alt="Semimajor axis"/><br/><br/>\n'
+        '<img src="../tether_length.png" alt="Tether length"/><br/><br/>\n'
+        '<img src="../angular_velocity.png" alt="Angular velocity"/><br/><br/>\n'
+        '<img src="../eccentricity.png" alt="Eccentricity"/>\n'
     )
     with open(html_path, "w", encoding="utf-8") as f:
         f.write(html_template)

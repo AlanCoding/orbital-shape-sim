@@ -31,9 +31,9 @@ def test_leo_derived_csv(tmp_path):
             "semimajor_axis",
         ]
         assert (out_dir / "semi_major_axis.png").exists()
-        assert (out_dir / "angular_position.png").exists()
+        assert (out_dir / "tether_length.png").exists()
         assert (out_dir / "angular_velocity.png").exists()
-        assert (out_dir / "altitude.png").exists()
+        assert (out_dir / "eccentricity.png").exists()
         html = out_dir / "html" / "run_summary.html"
         assert html.exists()
         text = html.read_text(encoding="utf-8")
