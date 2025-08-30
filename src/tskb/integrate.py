@@ -16,6 +16,14 @@ class SimulationError(RuntimeError):
         self.log = log
 
 
+class TetherTooShortError(SimulationError):
+    """Raised when the tether length drops below the safety threshold."""
+
+
+class SpinReversalError(SimulationError):
+    """Raised when the barbell reverses its spin direction."""
+
+
 def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
     """Run a simulation and return a log dictionary."""
 
@@ -101,14 +109,45 @@ def run_simulation(env, craft, ctrl, cfg: dict) -> dict:
     }
 
     r_mag = np.linalg.norm(r, axis=1)
+
+    # Gather potential failure events
+    events: list[tuple[str, float, int]] = []
     if np.min(r_mag) < env.r_earth:
         i_hit = int(np.argmin(r_mag))
-        alt = r_mag[i_hit] - env.r_earth
-        # Truncate logs up to the collision index
+        events.append(("earth", sol.t[i_hit], i_hit))
+
+    min_length = 10_000.0
+    below = np.where(length < min_length)[0]
+    if length[0] > min_length and below.size:
+        i_short = int(below[0])
+        events.append(("short", sol.t[i_short], i_short))
+
+    sign0 = np.sign(omega[0])
+    if sign0 != 0.0:
+        rev = np.where(omega[1:] * sign0 < 0.0)[0]
+        if rev.size:
+            i_rev = int(rev[0] + 1)
+            events.append(("spin", sol.t[i_rev], i_rev))
+
+    if events:
+        kind, t_evt, idx = min(events, key=lambda e: e[1])
         for k, v_arr in log.items():
-            log[k] = v_arr[: i_hit + 1]
-        raise SimulationError(
-            f"simulation crashed into Earth at t={sol.t[i_hit]:.3f}s, altitude={alt:.1f} m",
+            log[k] = v_arr[: idx + 1]
+        if kind == "earth":
+            alt = r_mag[idx] - env.r_earth
+            raise SimulationError(
+                f"simulation crashed into Earth at t={t_evt:.3f}s, altitude={alt:.1f} m",
+                log,
+            )
+        if kind == "short":
+            log["length"][-1] = min_length
+            log["length_rate"][-1] = 0.0
+            raise TetherTooShortError(
+                f"tether length dropped below 10 km at t={t_evt:.3f}s",
+                log,
+            )
+        raise SpinReversalError(
+            f"angular velocity reversed sign at t={t_evt:.3f}s",
             log,
         )
 

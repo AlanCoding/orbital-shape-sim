@@ -168,13 +168,17 @@ class LandisController(Controller):
 
 
 class MoonAngleController(Controller):
-    """Controller scheduling acceleration by Moon-relative angle."""
+    """PI controller tracking a Moon-relative length schedule."""
 
     def __init__(self, cfg: dict) -> None:
         self.max_accel = float(cfg.get("max_accel", 0.01))
         self.offset_rad = float(cfg.get("offset_rad", 0.0))
         self.extend_limit = float(cfg.get("extend_limit_m", 110_000.0))
         self.retract_limit = float(cfg.get("retract_limit_m", 80_000.0))
+        self.kp = float(cfg.get("kp", 1e-4))
+        self.ki = float(cfg.get("ki", 1e-6))
+        self._int_err = 0.0
+        self._last_t: float | None = None
 
     def action(self, t: float, state: np.ndarray, env: Environment) -> float:  # noqa: D401
         """Return commanded tether acceleration ``L_ddot``."""
@@ -184,7 +188,20 @@ class MoonAngleController(Controller):
         theta_r = np.arctan2(r[1], r[0])
         theta_m = np.arctan2(moon_r[1], moon_r[0])
         theta = theta_r - theta_m
-        accel = self.max_accel * np.cos(2.0 * (theta - self.offset_rad))
+
+        L_mid = 0.5 * (self.extend_limit + self.retract_limit)
+        L_amp = 0.5 * (self.extend_limit - self.retract_limit)
+        L_des = L_mid + L_amp * np.cos(2.0 * (theta - self.offset_rad))
+
+        err = L_des - L
+        if self._last_t is None:
+            dt = 0.0
+        else:
+            dt = t - self._last_t
+        self._last_t = t
+        self._int_err += err * dt
+        accel = self.kp * err + self.ki * self._int_err
+        accel = np.clip(accel, -self.max_accel, self.max_accel)
         if accel > 0.0 and L >= self.extend_limit:
             return 0.0
         if accel < 0.0 and L <= self.retract_limit:

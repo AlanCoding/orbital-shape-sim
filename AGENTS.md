@@ -33,8 +33,13 @@ acceleration command.
 ### Moon Angle Controller
 
 * **File**: `src/tskb/controller.py`
-* **Description**: Commands tether acceleration using ``max_accel * cos(2*(\theta - offset))`` where ``\theta`` is the angle between the Moon and barbell center of mass. Acceleration is zeroed once the tether reaches 80 km during contraction or 110 km during extension. A phase offset ``offset_rad`` allows sweeping different schedules.
-* **Use Case**: Explore angle-based acceleration schedules.
+* **Description**: Tracks a Moon-relative length schedule with a PI loop.  The
+  desired tether length is ``L_des = L_mid + L_amp * cos(2*(\theta - offset))``
+  where ``\theta`` is the angle between the Moon and barbell center of mass.
+  Acceleration commands are limited to ``±max_accel`` and zeroed once the tether
+  reaches 80 km during contraction or 110 km during extension.  A phase offset
+  ``offset_rad`` allows sweeping different schedules.
+* **Use Case**: Explore angle-based length schedules.
 * **Run Example**:
 
 ```bash
