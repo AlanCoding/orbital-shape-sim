@@ -89,23 +89,23 @@ def main(cfg_path: str, animate: bool = False, t_final: float | None = None) -> 
         log_ds["t"], log_ds["omega"], "Angular velocity [rad/s]", out_omega
     )
     plotting.plot_timeseries(log_ds["t"], alt, "Altitude [m]", out_alt)
-    md_dir = os.path.join("outputs", "md")
-    os.makedirs(md_dir, exist_ok=True)
-    md_path = os.path.join(md_dir, "run_summary.md")
+    html_dir = os.path.join("outputs", "html")
+    os.makedirs(html_dir, exist_ok=True)
+    html_path = os.path.join(html_dir, "run_summary.html")
     duration = float(log_ds["t"][-1]) if log_ds["t"].size else 0.0
     outcome = "Simulation completed successfully." if err is None else str(err)
-    md_template = (
-        "# Simulation Report\n\n"
-        f"Duration: {duration:.1f} s\n\n"
-        f"Outcome: {outcome}\n\n"
-        "## Plots\n\n"
-        "![Semimajor axis](../semi_major_axis.png)\n\n"
-        "![Angular position](../angular_position.png)\n\n"
-        "![Angular velocity](../angular_velocity.png)\n\n"
-        "![Altitude](../altitude.png)\n"
+    html_template = (
+        "<h1>Simulation Report</h1>\n"
+        f"<p>Duration: {duration:.1f} s</p>\n"
+        f"<p>Outcome: {outcome}</p>\n"
+        "<h2>Plots</h2>\n"
+        '<img src="../semi_major_axis.png" alt="Semimajor axis"/>\n'
+        '<img src="../angular_position.png" alt="Angular position"/>\n'
+        '<img src="../angular_velocity.png" alt="Angular velocity"/>\n'
+        '<img src="../altitude.png" alt="Altitude"/>\n'
     )
-    with open(md_path, "w", encoding="utf-8") as f:
-        f.write(md_template)
+    with open(html_path, "w", encoding="utf-8") as f:
+        f.write(html_template)
     if animate:
         plotting.animate(log_ds, out_gif)
     if err is not None:

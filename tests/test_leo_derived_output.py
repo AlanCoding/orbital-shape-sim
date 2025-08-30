@@ -34,9 +34,9 @@ def test_leo_derived_csv(tmp_path):
         assert (out_dir / "angular_position.png").exists()
         assert (out_dir / "angular_velocity.png").exists()
         assert (out_dir / "altitude.png").exists()
-        md = out_dir / "md" / "run_summary.md"
-        assert md.exists()
-        text = md.read_text(encoding="utf-8")
+        html = out_dir / "html" / "run_summary.html"
+        assert html.exists()
+        text = html.read_text(encoding="utf-8")
         assert "Duration:" in text
         assert "Outcome:" in text
     finally:

@@ -1,15 +1,18 @@
 mass: 1000.0
 altitude_m: 200000.0
 length0: 100000.0
-omega0: tidally_locked  # tidally_locked, no_rotation, prograde, retrograde, fast_prograde
+omega0: fast_prograde  # tidally_locked, no_rotation, prograde, retrograde, fast_prograde
 theta0: 0.0            # radians
 include_moon: true
 controller:
-  type: bang_bang
-  extend_accel: 0.01      # m/s^2
-  retract_accel: 0.01     # m/s^2
-  delta_phase_deg: 0.0
-  nu_window_deg: 10.0
+  type: moon_angle
+  max_accel: 0.1 # m/s^2
+  extend_limit_m: 110000.0
+  retract_limit_m: 95000.0
+  # extend_accel: 0.01      # m/s^2
+  # retract_accel: 0.01     # m/s^2
+  # delta_phase_deg: 0.0
+  # nu_window_deg: 10.0
 integrator:
   t_final: 2592000.0  # 1 month
   dt_output: 5.0

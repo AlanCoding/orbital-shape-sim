@@ -37,8 +37,8 @@ expected to be cornerstones of sustained economic activity beyond Earth.
    python sims/run_leo_100km.py --config configs/leo_100km.yaml
    ```
    The script writes `outputs/leo_100km.csv` and several quicklook plots such as
-   `outputs/semi_major_axis.png`. A markdown report is saved to
-   `outputs/md/run_summary.md` summarizing the run and embedding all images.
+   `outputs/semi_major_axis.png`. An HTML report is saved to
+   `outputs/html/run_summary.html` summarizing the run and embedding all images.
 3. Additional simulations:
    ```bash
    python sims/run_sweep_extent.py
