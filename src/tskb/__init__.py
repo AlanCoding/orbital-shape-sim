@@ -10,7 +10,12 @@ from .controller import (
     MoonAngleController,
     make_controller,
 )
-from .integrate import run_simulation, SimulationError
+from .integrate import (
+    run_simulation,
+    SimulationError,
+    TetherTooShortError,
+    SpinReversalError,
+)
 from . import diagnostics
 
 __all__ = [
@@ -25,5 +30,7 @@ __all__ = [
     "make_controller",
     "run_simulation",
     "SimulationError",
+    "TetherTooShortError",
+    "SpinReversalError",
     "diagnostics",
 ]
