@@ -3,7 +3,7 @@ import yaml
 import numpy as np
 from pathlib import Path
 
-from tskb import Environment, DualBarbell, make_controller, run_simulation
+from tskb import Environment, make_controller, make_craft, run_simulation
 
 
 def test_yaml_config_simulates():
@@ -14,7 +14,7 @@ def test_yaml_config_simulates():
     cfg["integrator"]["t_final"] = 60.0
     cfg["integrator"]["dt_output"] = 10.0
     env = Environment(include_moon=cfg.get("include_moon", True))
-    craft = DualBarbell(cfg["mass"])
+    craft = make_craft(cfg["craft"])
     ctrl = make_controller(cfg["controller"])
     log = run_simulation(env, craft, ctrl, cfg)
     assert log["t"][0] == 0.0

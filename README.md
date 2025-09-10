@@ -1,8 +1,13 @@
 # tidal-station-keeping-barbell
 
-Prototype for tidal station-keeping using a counter-rotating double barbell spacecraft.  The simulation
-propagates the barbell orientation and angular momentum explicitly while controllers command tether
-length accelerations rather than idealized quadrupole magnitudes.
+Prototype simulator for tidal station-keeping.  It now supports both a
+single point-mass orbiter and a counter-rotating double barbell
+spacecraft. The barbell model propagates orientation and angular
+momentum explicitly while controllers command tether-length accelerations
+rather than idealized quadrupole magnitudes.
+
+Craft geometry is specified under a `craft` section in the configuration,
+while controllers own all initial conditions via `controller.initial`.
 
 See the [physics model](docs/physics_model.md) for the simplified Earth–Moon tidal forces, the
 [bang‑bang control law](docs/control_law.md) that schedules tether extensions, and
@@ -32,7 +37,11 @@ expected to be cornerstones of sustained economic activity beyond Earth.
    pip install -r requirements.txt
    ```
    or `make setup`.
-2. Run the baseline case:
+2. Run a single point-mass case:
+   ```bash
+   python sims/run_point_mass.py --config configs/leo_100km.yaml
+   ```
+3. Run the baseline barbell case:
    ```bash
    python sims/run_leo_100km.py --config configs/leo_100km.yaml
    ```
@@ -40,7 +49,7 @@ expected to be cornerstones of sustained economic activity beyond Earth.
    semimajor axis, tether length, angular velocity, and eccentricity (e.g.,
    `outputs/semi_major_axis.png`). An HTML report is saved to
    `outputs/html/run_summary.html` summarizing the run and embedding all images.
-3. Additional simulations:
+4. Additional simulations:
    ```bash
    python sims/run_sweep_extent.py
    ```
@@ -49,9 +58,9 @@ expected to be cornerstones of sustained economic activity beyond Earth.
 Training and usage of a neural-network controller are covered in the
 [neural controller guide](docs/neural_controller.md).
 
-Configuration files also accept a `theta0` field (radians) that sets the starting barbell angle.
+Initial barbell angle is configured via `controller.initial.theta0` (radians).
 Adjust this value—or supply a list when using `sims/run_fom_scenarios.py`—to explore different
-initial orientations.
+orientations.
 
 Passive-drift behavior after one month is summarized in
 [passive simulation findings](docs/passive_simulation_findings.md); the

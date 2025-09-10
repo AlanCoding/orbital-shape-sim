@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from tskb import Environment, DualBarbell, make_controller, run_simulation
+from tskb import Environment, make_controller, make_craft, run_simulation
 
 
 @pytest.mark.parametrize(
@@ -9,18 +9,18 @@ from tskb import Environment, DualBarbell, make_controller, run_simulation
 )
 def test_initial_spin_modes(mode):
     cfg = {
-        "mass": 1000.0,
-        "altitude_m": 200000.0,
-        "length0": 1000.0,
-        "omega0": mode,
-        "controller": {"type": "passive"},
+        "craft": {"type": "barbell", "mass": 1000.0},
+        "controller": {
+            "type": "passive",
+            "initial": {"altitude_m": 200000.0, "length0": 1000.0, "omega0": mode},
+        },
         "integrator": {"t_final": 1.0, "dt_output": 1.0},
     }
     env = Environment()
-    craft = DualBarbell(cfg["mass"])
+    craft = make_craft(cfg["craft"])
     ctrl = make_controller(cfg["controller"])
     log = run_simulation(env, craft, ctrl, cfg)
-    r0 = 6378e3 + cfg["altitude_m"]
+    r0 = 6378e3 + cfg["controller"]["initial"]["altitude_m"]
     n0 = np.sqrt(env.mu_earth / r0**3)
     n_syn = n0 - env.n_moon
     expected = {

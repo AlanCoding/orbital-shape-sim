@@ -8,7 +8,7 @@ script that sweeps two angles without running an integrator:
 - **`theta`** – the barbell's own orientation angle in the orbital plane.
 
 For each angle pair the script evaluates the state-derivative function
-[`f_state`](../src/tskb/dynamics.py) to get the instantaneous
+`DualBarbell.dynamics` to get the instantaneous
 gravitational acceleration on each mass and then computes
 
 - the net torque about +z on the barbell, and

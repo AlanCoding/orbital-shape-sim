@@ -42,15 +42,17 @@ A simulation + control prototype for **tidal station‑keeping / orbital raising
  │   └─ tskb/
  │       ├─ __init__.py
  │       ├─ env.py            # gravity model (Earth central + lunar tidal), frames, ephemeris
+ │       ├─ point.py          # single-mass dynamics
  │       ├─ barbell.py        # geometry → quadrupole Q, tension checks, spin kinematics
+ │       ├─ kite.py           # placeholder four-point structure
  │       ├─ controller.py     # peri/apo bang‑bang, phase‑locked schedules, feedback wrappers
- │       ├─ dynamics.py       # full state derivative, Gauss variational (optional), logging of work terms
  │       ├─ integrate.py      # solve_ivp wrapper, event handling
  │       ├─ diagnostics.py    # energy partition, power from each term, osculating elements
  │       ├─ plotting.py       # quicklook plots
  │       └─ utils.py
  ├─ sims/
  │   ├─ run_leo_100km.py
+ │   ├─ run_point_mass.py
  │   ├─ run_sweep_extent.py
  │   └─ run_single_vs_double_barbell.py
  ├─ tests/
@@ -313,21 +315,6 @@ class BangBangController:
         return 0.0
 ```
 
-### src/tskb/dynamics.py (interfaces)
-
-```python
-import numpy as np
-from .diagnostics import elements, energy_terms
-
-def f_state(t, y, env, craft, ctrl):
-    r = y[0:3]; v = y[3:6]
-    a = env.a_earth(r) + env.a_moon_tide(r, t)
-    # extended-body force via Q and third-deriv tidal jet
-    Q = craft.Q()
-    J3 = env.tidal_jet_third_deriv(r, t)  # (3,3,3)
-    a_Q = 0.5 * contract_Q_J3(Q, J3)      # implement tensor contraction → 3-vector
-    return np.hstack([v, a + a_Q])
-```
 
 ### tests/test\_energy\_growth\_baseline.py (outline)
 

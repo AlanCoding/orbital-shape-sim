@@ -2,7 +2,6 @@
 
 import numpy as np
 
-from tskb.dynamics import f_state
 from tskb.env import Environment
 from tskb.barbell import DualBarbell
 
@@ -36,7 +35,7 @@ def test_leo_100km_initial_balance():
         0.0,
     ])
 
-    dy = f_state(0.0, y0, env, craft, ctrl)
+    dy = craft.dynamics(0.0, y0, env, ctrl)
 
     expected_accel = env.a_earth(y0[0:3]) + env.a_moon_tide(y0[0:3], 0.0)
     assert np.allclose(dy[3:6], expected_accel)

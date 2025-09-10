@@ -2,6 +2,9 @@
 
 from .env import Environment
 from .barbell import DualBarbell, Q_of_barbell
+from .point import PointMass
+from .kite import Kite
+from .craft import make_craft
 from .controller import (
     BangBangController,
     PassiveController,
@@ -20,8 +23,11 @@ from . import diagnostics
 
 __all__ = [
     "Environment",
+    "PointMass",
     "DualBarbell",
     "Q_of_barbell",
+    "Kite",
+    "make_craft",
     "BangBangController",
     "PassiveController",
     "LandisController",

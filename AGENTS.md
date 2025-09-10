@@ -27,7 +27,8 @@ acceleration command.
 
 * **File**: `src/tskb/controller.py`
 * **Description**: Implements the Landis perigee-retract / apogee-extend scheme that
-  trades barbell angular momentum for orbital energy.
+  trades barbell angular momentum for orbital energy and does not attempt to
+  exploit lunar quadrupole effects.
 * **Use Case**: Simple propellantless orbit-raising controller.
 
 ### Moon Angle Controller
@@ -36,18 +37,14 @@ acceleration command.
 * **Description**: Tracks a Moon-relative length schedule with a PID loop and
   velocity damping.  The desired tether length is
   ``L_des = L_mid + L_amp * cos(2*(\theta - offset))`` where ``\theta`` is the
-  angle between the Moon and barbell center of mass.  Acceleration commands are
+  angle between the Moon and barbell center of mass. Acceleration commands are
   limited to ``±max_accel`` and zeroed once the tether reaches 80 km during
-  contraction or 110 km during extension.  A phase offset ``offset_rad`` allows
-  sweeping different schedules.
-* **Use Case**: Explore angle-based length schedules.
-* **Run Example**:
-
-```bash
-  python sims/run_fom_scenarios.py --controller moon_angle \
-    --omega0 fast_prograde --override theta0=0 \
-    --override controller.offset_rad=0,1.57,3.14,4.71,6.28
-```
+  contraction or 110 km during extension. In addition to trading barbell angular
+  momentum for orbital momentum like the Landis controller, it modulates length
+  to exploit the Moon’s quadrupole, though the effect is theoretically very
+  small. This controller was found to produce negligible effect and is retained
+  only for historical reference.
+* **Status**: Ineffective; not recommended for use.
 
 ### Neural Net Controller
 
@@ -81,14 +78,14 @@ acceleration command.
   configuration options.
 
 ```bash
-  python sims/run_fom_scenarios.py --override mass=500,1000 --override controller.extend_accel=0.02,0.05
+  python sims/run_fom_scenarios.py --override craft.mass=500,1000 --override controller.extend_accel=0.02,0.05
 ```
 
 - **Single Spin Mode**: Use `--omega0` to run one initial rotation state. The `fast_prograde`
   option spins five times faster than the nominal prograde rate.
 
 ```bash
-  python sims/run_fom_scenarios.py --controller moon_angle --omega0 fast_prograde --override theta0=0
+  python sims/run_fom_scenarios.py --controller moon_angle --omega0 fast_prograde --override controller.initial.theta0=0
 ```
 
 * **Sample Output**:

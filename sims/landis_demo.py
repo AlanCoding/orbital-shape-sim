@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import os
 
-from tskb import DualBarbell, Environment, make_controller, plotting, run_simulation
+from tskb import Environment, make_controller, make_craft, plotting, run_simulation
 
 
 def main(t_final: float = 86400.0) -> None:
@@ -18,15 +18,17 @@ def main(t_final: float = 86400.0) -> None:
     """
 
     cfg = {
-        "mass": 1000.0,
-        "altitude_m": 200000.0,
-        "length0": 1000.0,
-        "omega0": "tidally_locked",
         "include_moon": False,
+        "craft": {"type": "barbell", "mass": 1000.0},
         "controller": {
             "type": "landis",
             "extend_accel": 0.01,
             "retract_accel": 0.01,
+            "initial": {
+                "altitude_m": 200000.0,
+                "length0": 1000.0,
+                "omega0": "tidally_locked",
+            },
         },
         "integrator": {
             "t_final": t_final,
@@ -35,7 +37,7 @@ def main(t_final: float = 86400.0) -> None:
     }
 
     env = Environment(include_moon=cfg["include_moon"])
-    craft = DualBarbell(cfg["mass"])
+    craft = make_craft(cfg["craft"])
     ctrl = make_controller(cfg["controller"])
     log = run_simulation(env, craft, ctrl, cfg)
 

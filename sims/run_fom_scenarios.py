@@ -9,8 +9,7 @@ import itertools
 import numpy as np
 import yaml
 
-from tskb import Environment, DualBarbell, make_controller, run_simulation
-from tskb import diagnostics
+from tskb import Environment, diagnostics, make_controller, make_craft, run_simulation
 
 
 MONTH = 30 * 24 * 3600.0
@@ -21,13 +20,14 @@ def run_case(base_cfg: dict, omega0, ctrl_type: str, theta0: float) -> float:
     """Run a single scenario and return the semimajor-axis FOM."""
 
     cfg = copy.deepcopy(base_cfg)
-    cfg["omega0"] = omega0
-    cfg["theta0"] = theta0
+    init = cfg.setdefault("controller", {}).setdefault("initial", {})
+    init["omega0"] = omega0
+    init["theta0"] = theta0
     cfg["controller"]["type"] = ctrl_type
     cfg["integrator"]["t_final"] = MONTH + ORBIT_BUFFER
 
     env = Environment(include_moon=cfg.get("include_moon", True))
-    craft = DualBarbell(cfg["mass"])
+    craft = make_craft(cfg["craft"])
     ctrl = make_controller(cfg["controller"])
     log = run_simulation(env, craft, ctrl, cfg)
     return diagnostics.semimajor_axis_fom(log)
@@ -95,7 +95,8 @@ def main() -> None:
         base_cfg = yaml.safe_load(f)
 
     env = Environment()
-    r0 = 6378e3 + base_cfg["altitude_m"]
+    alt = base_cfg["controller"]["initial"]["altitude_m"]
+    r0 = 6378e3 + alt
     n0 = np.sqrt(env.mu_earth / r0**3)
 
     if args.omega0 is not None:
@@ -128,7 +129,7 @@ def main() -> None:
             set_nested(cfg, path.split("."), val)
 
         ctrl_type = current["controller.type"]
-        theta0_values = cfg.get("theta0", 0.0)
+        theta0_values = cfg["controller"]["initial"].get("theta0", 0.0)
         if not isinstance(theta0_values, (list, tuple, np.ndarray)):
             theta0_values = [theta0_values]
 

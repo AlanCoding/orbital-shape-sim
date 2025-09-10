@@ -15,7 +15,7 @@ from __future__ import annotations
 import yaml
 import numpy as np
 
-from tskb import Environment, DualBarbell, make_controller, run_simulation
+from tskb import Environment, make_controller, make_craft, run_simulation
 
 CFG_PATH = "configs/leo_100km.yaml"
 
@@ -40,10 +40,10 @@ def simulate(omega_mode: str) -> tuple[float, float]:
         cfg = yaml.safe_load(f)
 
     cfg["controller"]["type"] = "passive"
-    cfg["omega0"] = omega_mode
+    cfg["controller"]["initial"]["omega0"] = omega_mode
 
     env = Environment()
-    craft = DualBarbell(cfg["mass"])
+    craft = make_craft(cfg["craft"])
     ctrl = make_controller(cfg["controller"])
     log = run_simulation(env, craft, ctrl, cfg)
 
@@ -55,7 +55,7 @@ def simulate(omega_mode: str) -> tuple[float, float]:
     craft_angle = np.arctan2(r[:, 1], r[:, 0])
     diff = (craft_angle - moon_angle + np.pi) % (2 * np.pi) - np.pi
 
-    r0_mag = env.r_earth + cfg["altitude_m"]
+    r0_mag = env.r_earth + cfg["controller"]["initial"]["altitude_m"]
     n0 = np.sqrt(env.mu_earth / r0_mag**3)
     period = 2 * np.pi / n0
     mask = t > t[-1] - period

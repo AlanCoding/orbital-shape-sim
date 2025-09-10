@@ -7,6 +7,8 @@
 - Logging and quicklook plotting utilities
 
 ## TODO
+- Integrate four-point "kite" structure dynamics
+- Consolidate controller-owned initial conditions across craft types
 - Validate simulation against higher fidelity models
 - Implement full tension constraints
 - Implement `tidal_jet_third_deriv` and tensor contraction; run baseline energy-gain simulation
