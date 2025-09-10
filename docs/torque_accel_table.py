@@ -22,7 +22,6 @@ sys.path.append(str(Path(__file__).resolve().parents[1] / "src"))
 
 from tskb.barbell import DualBarbell
 from tskb.controller import PassiveController
-from tskb.dynamics import f_state
 from tskb.env import Environment
 
 
@@ -77,8 +76,6 @@ def main() -> None:
         t = phi / env.n_moon
         for theta in theta_vals:
             state = np.hstack([r, v, theta, omega, L, Ldot])
-            # Compute acceleration via state derivative
-            _ = f_state(t, state, env, craft, ctrl)
             tau, a_tan = torque_and_tan_accel(t, state, env, craft)
             print(f"{np.rad2deg(phi):7.1f} {np.rad2deg(theta):9.1f} {tau:12.3e} {a_tan:14.3e}")
 

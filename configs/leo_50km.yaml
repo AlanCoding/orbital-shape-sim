@@ -1,11 +1,14 @@
-mass: 1000.0
-altitude_m: 50000.0
-length0: 1000.0
-omega0: tidally_locked  # tidally_locked, no_rotation, prograde, retrograde, fast_prograde
-theta0: 0.0            # radians
 include_moon: true
+craft:
+  type: barbell
+  mass: 1000.0
 controller:
   type: bang_bang
+  initial:
+    altitude_m: 50000.0
+    length0: 1000.0
+    omega0: tidally_locked  # tidally_locked, no_rotation, prograde, retrograde, fast_prograde
+    theta0: 0.0            # radians
   extend_accel: 0.001      # m/s^2
   retract_accel: 0.001     # m/s^2
   delta_phase_deg: 0.0
@@ -13,3 +16,4 @@ controller:
 integrator:
   t_final: 2592000.0
   dt_output: 3600.0
+

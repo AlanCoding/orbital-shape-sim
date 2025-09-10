@@ -6,16 +6,23 @@ import numpy as np
 from dataclasses import dataclass
 
 from .env import Environment
+from .barbell import DualBarbell
 
 
 class Controller:
     """Abstract controller interface."""
 
     def action(self, t: float, state: np.ndarray, env: Environment) -> float:
-        """Return tether length acceleration ``L_ddot``.
+        """Return control acceleration for the current state."""
 
-        Subclasses should override this method.  The returned value
-        represents the commanded second derivative of the barbell length.
+        raise NotImplementedError
+
+    def initial_state(self, env: Environment, craft, cfg: dict) -> np.ndarray:
+        """Return initial state vector for ``craft``.
+
+        Controllers own the initial conditions; the configuration ``cfg`` may
+        supply helper fields such as ``altitude_m`` or spin modes.  Subclasses
+        must implement this method.
         """
 
         raise NotImplementedError
@@ -30,7 +37,44 @@ class ControllerState:
     last_p_t: float = 0.0
 
 
-class BangBangController(Controller):
+class BarbellControllerBase(Controller):
+    """Base class for controllers operating on ``DualBarbell`` craft."""
+
+    def initial_state(self, env: Environment, craft, cfg: dict) -> np.ndarray:  # noqa: D401
+        ctrl_cfg = cfg.get("controller", {})
+        init_cfg = ctrl_cfg.get("initial", {})
+        alt = init_cfg.get("altitude_m", 0.0)
+        r0_mag = env.r_earth + alt
+        v0_mag = np.sqrt(env.mu_earth / r0_mag)
+        n0 = np.sqrt(env.mu_earth / r0_mag**3)
+        n_syn = n0 - env.n_moon
+        theta0 = init_cfg.get("theta0", 0.0)
+        omega_cfg = init_cfg.get("omega0", "tidally_locked")
+        if isinstance(omega_cfg, str):
+            modes = {
+                "tidally_locked": n0,
+                "no_rotation": 0.0,
+                "prograde": n0 + n_syn,
+                "retrograde": n0 - n_syn,
+                "fast_prograde": 5.0 * (n0 + n_syn),
+            }
+            if omega_cfg not in modes:
+                raise ValueError(f"unknown omega0 mode: {omega_cfg}")
+            omega0 = modes[omega_cfg]
+        else:
+            omega0 = float(omega_cfg)
+        L0 = init_cfg.get("length0", 1000.0)
+        Ldot0 = init_cfg.get("length_rate0", 0.0)
+        return np.hstack(
+            [
+                np.array([r0_mag, 0.0, 0.0]),
+                np.array([0.0, v0_mag, 0.0]),
+                np.array([theta0, omega0, L0, Ldot0]),
+            ]
+        )
+
+
+class BangBangController(BarbellControllerBase):
     """Adaptive bang-bang controller maximizing tidal power."""
 
     def __init__(self, cfg: dict) -> None:
@@ -135,13 +179,44 @@ class BangBangController(Controller):
 
 
 class PassiveController(Controller):
-    """Controller that commands no tether acceleration."""
+    """Controller that commands no acceleration and provides initial state."""
 
     def action(self, t: float, state: np.ndarray, env: Environment) -> float:
         return 0.0
 
+    def initial_state(self, env: Environment, craft, cfg: dict) -> np.ndarray:  # noqa: D401
+        ctrl_cfg = cfg.get("controller", {})
+        init_cfg = ctrl_cfg.get("initial", {})
+        alt = init_cfg.get("altitude_m", 0.0)
+        r0_mag = env.r_earth + alt
+        v0_mag = np.sqrt(env.mu_earth / r0_mag)
+        r = np.array([r0_mag, 0.0, 0.0])
+        v = np.array([0.0, v0_mag, 0.0])
+        if isinstance(craft, DualBarbell):
+            n0 = np.sqrt(env.mu_earth / r0_mag**3)
+            n_syn = n0 - env.n_moon
+            theta0 = init_cfg.get("theta0", 0.0)
+            omega_cfg = init_cfg.get("omega0", "tidally_locked")
+            if isinstance(omega_cfg, str):
+                modes = {
+                    "tidally_locked": n0,
+                    "no_rotation": 0.0,
+                    "prograde": n0 + n_syn,
+                    "retrograde": n0 - n_syn,
+                    "fast_prograde": 5.0 * (n0 + n_syn),
+                }
+                if omega_cfg not in modes:
+                    raise ValueError(f"unknown omega0 mode: {omega_cfg}")
+                omega0 = modes[omega_cfg]
+            else:
+                omega0 = float(omega_cfg)
+            L0 = init_cfg.get("length0", 1000.0)
+            Ldot0 = init_cfg.get("length_rate0", 0.0)
+            return np.hstack([r, v, theta0, omega0, L0, Ldot0])
+        return np.hstack([r, v])
 
-class LandisController(Controller):
+
+class LandisController(BarbellControllerBase):
     """Perigee-retract / apogee-extend controller from Landis.
 
     This scheme reels the tether out while the spacecraft moves away from the
@@ -167,8 +242,12 @@ class LandisController(Controller):
         return 0.0
 
 
-class MoonAngleController(Controller):
-    """PID controller tracking a Moon-relative length schedule."""
+class MoonAngleController(BarbellControllerBase):
+    """PID controller tracking a Moon-relative length schedule.
+
+    This strategy was explored briefly but found to have negligible impact; it
+    is retained only for reference and is no longer recommended for use.
+    """
 
     def __init__(self, cfg: dict) -> None:
         self.max_accel = float(cfg.get("max_accel", 0.01))
@@ -211,7 +290,7 @@ class MoonAngleController(Controller):
         return accel
 
 
-class NeuralNetController(Controller):
+class NeuralNetController(BarbellControllerBase):
     """Feedforward neural-network controller.
 
     The network maps the full 10-element state vector to a commanded

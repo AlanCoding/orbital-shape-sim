@@ -11,11 +11,11 @@ import numpy as np
 import yaml
 
 from tskb import (
-    DualBarbell,
     Environment,
     SimulationError,
     diagnostics,
     make_controller,
+    make_craft,
     plotting,
     run_simulation,
 )
@@ -27,7 +27,7 @@ def main(cfg_path: str, animate: bool = False, t_final: float | None = None) -> 
     if t_final is not None:
         cfg.setdefault("integrator", {})["t_final"] = t_final
     env = Environment(include_moon=cfg.get("include_moon", True))
-    craft = DualBarbell(cfg["mass"])
+    craft = make_craft(cfg["craft"])
     ctrl = make_controller(cfg["controller"])
     shutil.rmtree("outputs", ignore_errors=True)
     os.makedirs("outputs", exist_ok=True)

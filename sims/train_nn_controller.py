@@ -6,7 +6,7 @@ import argparse
 import numpy as np
 import yaml
 
-from tskb import Environment, DualBarbell, diagnostics
+from tskb import Environment, diagnostics, make_craft
 from tskb.controller import NeuralNetController
 from tskb.integrate import run_simulation
 
@@ -65,9 +65,10 @@ def main() -> None:
         cfg = yaml.safe_load(f)
 
     env = Environment()
-    craft = DualBarbell(cfg["mass"])
+    craft = make_craft(cfg["craft"])
 
-    r0_mag = env.r_earth + cfg["altitude_m"]
+    alt = cfg["controller"]["initial"]["altitude_m"]
+    r0_mag = env.r_earth + alt
     period = 2 * np.pi * np.sqrt(r0_mag**3 / env.mu_earth)
 
     duration = args.duration if args.duration is not None else 2 * period
