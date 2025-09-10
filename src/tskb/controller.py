@@ -7,6 +7,7 @@ from dataclasses import dataclass
 
 from .env import Environment
 from .barbell import DualBarbell
+from .diamond import Diamond
 
 
 class Controller:
@@ -192,6 +193,9 @@ class PassiveController(Controller):
         v0_mag = np.sqrt(env.mu_earth / r0_mag)
         r = np.array([r0_mag, 0.0, 0.0])
         v = np.array([0.0, v0_mag, 0.0])
+        if isinstance(craft, Diamond):
+            r = env.l1_position(0.0)
+            v = np.cross(np.array([0.0, 0.0, env.n_moon]), r)
         if isinstance(craft, DualBarbell):
             n0 = np.sqrt(env.mu_earth / r0_mag**3)
             n_syn = n0 - env.n_moon

@@ -23,6 +23,13 @@ acceleration command.
 * **Description**: No active control; the system evolves only under natural dynamics.
 * **Use Case**: Baseline for comparison against active controllers. An active controller may not be needed.
 
+### Diamond Passive Controller
+
+* **File**: `src/tskb/controller.py`
+* **Description**: Initializes a four-mass diamond craft at the Earth–Moon L1
+  point with the masses fixed 100 km apart. No active control is applied.
+* **Use Case**: Baseline simulation of a rigid diamond tether configuration.
+
 ### Landis Controller
 
 * **File**: `src/tskb/controller.py`

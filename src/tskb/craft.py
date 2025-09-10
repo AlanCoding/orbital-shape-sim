@@ -5,6 +5,7 @@ from __future__ import annotations
 from .barbell import DualBarbell
 from .point import PointMass
 from .kite import Kite
+from .diamond import Diamond
 
 
 def make_craft(cfg: dict):
@@ -13,9 +14,9 @@ def make_craft(cfg: dict):
     Parameters
     ----------
     cfg : dict
-        Must contain a ``type`` key of ``"barbell"``, ``"point"`` or ``"kite"``
-        and a ``mass`` value.  Additional keys are passed through to the
-        specific craft constructor where applicable.
+        Must contain a ``type`` key of ``"barbell"``, ``"point"``, ``"kite"``
+        or ``"diamond"`` and a ``mass`` value.  Additional keys are passed
+        through to the specific craft constructor where applicable.
     """
 
     craft_type = cfg.get("type", "barbell").lower()
@@ -30,5 +31,7 @@ def make_craft(cfg: dict):
         return PointMass(mass)
     if craft_type == "kite":
         return Kite(mass)
+    if craft_type == "diamond":
+        return Diamond(mass, diameter=float(cfg.get("diameter", 100_000.0)))
     raise ValueError(f"unknown craft type: {craft_type}")
 
