@@ -37,6 +37,14 @@ class Environment:
         phase = self.n_moon * t
         return self.r_moon * np.array([np.cos(phase), np.sin(phase), 0.0])
 
+    def l1_position(self, t: float = 0.0) -> np.ndarray:
+        """Approximate Earth–Moon L1 point in an inertial frame."""
+
+        mu = self.mu_moon / (self.mu_earth + self.mu_moon)
+        x = self.r_moon * (1.0 - (mu / 3.0) ** (1.0 / 3.0))
+        phase = self.n_moon * t
+        return x * np.array([np.cos(phase), np.sin(phase), 0.0])
+
     def a_earth(self, r: np.ndarray) -> np.ndarray:
         """Point-mass acceleration from Earth."""
         d = np.linalg.norm(r)

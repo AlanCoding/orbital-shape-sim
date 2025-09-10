@@ -4,6 +4,7 @@ from .env import Environment
 from .barbell import DualBarbell, Q_of_barbell
 from .point import PointMass
 from .kite import Kite
+from .diamond import Diamond
 from .craft import make_craft
 from .controller import (
     BangBangController,
@@ -27,6 +28,7 @@ __all__ = [
     "DualBarbell",
     "Q_of_barbell",
     "Kite",
+    "Diamond",
     "make_craft",
     "BangBangController",
     "PassiveController",
