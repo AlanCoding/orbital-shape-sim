@@ -1,6 +1,15 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 import numpy as np
+
+
+@dataclass
+class DiamondControlCommand:
+    """Controller command describing the diamond's planar deformation."""
+
+    stretch: float = 0.0
 
 
 class Diamond:
@@ -20,9 +29,9 @@ class Diamond:
         """Return time derivative of the state vector ``y``.
 
         The state comprises ``[r(3), v(3)]`` for the craft centre of mass.
-        Offsets of individual masses remain fixed at half the diameter in the
-        ``±x`` and ``±y`` directions.  The controller's action is currently
-        ignored but provides a placeholder for future spacing adjustments.
+        Offsets of individual masses start at half the diameter in the
+        ``±x`` and ``±y`` directions and may be stretched or compressed by
+        the controller via :class:`DiamondControlCommand`.
         """
 
         if not np.isfinite(y).all():
@@ -31,16 +40,21 @@ class Diamond:
         r = y[0:3]
         v = y[3:6]
 
-        # Placeholder for future control over spacing
-        ctrl.action(t, y, env)
+        cmd = ctrl.action(t, y, env)
+        stretch = 0.0
+        if isinstance(cmd, DiamondControlCommand):
+            stretch = float(cmd.stretch)
 
         d = 0.5 * self.diameter
+        dx = max(d + 0.5 * stretch, 0.0)
+        dy = max(d - 0.5 * stretch, 0.0)
+
         offsets = np.array(
             [
-                [ d, 0.0, 0.0],
-                [-d, 0.0, 0.0],
-                [0.0,  d, 0.0],
-                [0.0, -d, 0.0],
+                [ dx, 0.0, 0.0],
+                [-dx, 0.0, 0.0],
+                [0.0,  dy, 0.0],
+                [0.0, -dy, 0.0],
             ]
         )
 

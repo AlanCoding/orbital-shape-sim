@@ -7,7 +7,8 @@ from dataclasses import dataclass
 
 from .env import Environment
 from .barbell import DualBarbell
-from .diamond import Diamond
+from .diamond import Diamond, DiamondControlCommand
+from .cr3bp import l1_unstable_mode
 
 
 class Controller:
@@ -196,6 +197,10 @@ class PassiveController(Controller):
         if isinstance(craft, Diamond):
             r = env.l1_position(0.0)
             v = np.cross(np.array([0.0, 0.0, env.n_moon]), r)
+            vx0 = float(init_cfg.get("vx0", 0.0))
+            vy0 = float(init_cfg.get("vy0", 0.0))
+            vz0 = float(init_cfg.get("vz0", 0.0))
+            v = v + np.array([vx0, vy0, vz0])
         if isinstance(craft, DualBarbell):
             n0 = np.sqrt(env.mu_earth / r0_mag**3)
             n_syn = n0 - env.n_moon
@@ -218,6 +223,98 @@ class PassiveController(Controller):
             Ldot0 = init_cfg.get("length_rate0", 0.0)
             return np.hstack([r, v, theta0, omega0, L0, Ldot0])
         return np.hstack([r, v])
+
+
+class DiamondL1Stabilizer(Controller):
+    """PD stabilizer for the diamond craft about the Earth–Moon L1 point."""
+
+    def __init__(self, cfg: dict) -> None:
+        self.kp = float(cfg.get("kp", 5.0e-2))
+        self.kd = float(cfg.get("kd", 5.0e-1))
+        self.ku = max(float(cfg.get("ku", 2.0e-3)), 1e-6)
+        self.delta_limit = float(cfg.get("delta_limit_m", 150_000.0))
+        self.delta_rate = float(cfg.get("delta_rate_limit_mps", 80.0))
+
+        self._mode = None
+        self._x_l1 = None
+        self._delta = 0.0
+        self._last_t: float | None = None
+
+    @staticmethod
+    def _rotation(theta: float) -> np.ndarray:
+        c = float(np.cos(theta))
+        s = float(np.sin(theta))
+        return np.array(
+            [
+                [c, s, 0.0],
+                [-s, c, 0.0],
+                [0.0, 0.0, 1.0],
+            ]
+        )
+
+    def _ensure_mode(self, env: Environment) -> None:
+        if self._mode is not None:
+            return
+        mu = env.mu_moon / (env.mu_earth + env.mu_moon)
+        self._mode = l1_unstable_mode(mu, env.r_moon, env.n_moon)
+        self._x_l1 = (self._mode.x_l1_bary + mu) * env.r_moon
+
+    def _l1_position(self, theta: float) -> np.ndarray:
+        assert self._x_l1 is not None
+        x = float(self._x_l1)
+        c = float(np.cos(theta))
+        s = float(np.sin(theta))
+        return np.array([x * c, x * s, 0.0])
+
+    def initial_state(self, env: Environment, craft, cfg: dict) -> np.ndarray:  # noqa: D401
+        self._ensure_mode(env)
+        ctrl_cfg = cfg.get("controller", {})
+        init_cfg = ctrl_cfg.get("initial", {})
+        theta0 = float(init_cfg.get("theta0", 0.0))
+        r = self._l1_position(theta0)
+        omega_vec = np.array([0.0, 0.0, env.n_moon])
+        v = np.cross(omega_vec, r)
+        vx0 = float(init_cfg.get("vx0", 0.0))
+        vy0 = float(init_cfg.get("vy0", 0.0))
+        vz0 = float(init_cfg.get("vz0", 0.0))
+        v = v + np.array([vx0, vy0, vz0])
+        return np.hstack([r, v])
+
+    def action(self, t: float, state: np.ndarray, env: Environment) -> DiamondControlCommand:
+        self._ensure_mode(env)
+        assert self._mode is not None
+        assert self._x_l1 is not None
+
+        r = state[0:3]
+        v = state[3:6]
+
+        theta = env.n_moon * t
+        rot = self._rotation(theta)
+        r_l1 = self._l1_position(theta)
+        delta_r = rot @ (r - r_l1)
+
+        omega_vec = np.array([0.0, 0.0, env.n_moon])
+        v_rel = v - np.cross(omega_vec, r)
+        delta_v = rot @ v_rel
+
+        q = float(self._mode.pos_dir @ delta_r[0:2])
+        qdot = float(self._mode.vel_dir @ delta_v[0:2])
+
+        u = -self.kp * q - self.kd * qdot
+        delta_des = np.clip(u / self.ku, -self.delta_limit, self.delta_limit)
+
+        if self._last_t is None:
+            delta = delta_des
+        else:
+            dt = t - self._last_t
+            if dt <= 0.0:
+                delta = self._delta
+            else:
+                max_change = self.delta_rate * dt
+                delta = np.clip(delta_des, self._delta - max_change, self._delta + max_change)
+        self._delta = float(np.clip(delta, -self.delta_limit, self.delta_limit))
+        self._last_t = float(t)
+        return DiamondControlCommand(stretch=self._delta)
 
 
 class LandisController(BarbellControllerBase):
@@ -381,4 +478,6 @@ def make_controller(cfg: dict) -> Controller:
         return MoonAngleController(cfg)
     if ctrl_type == "neural_net":
         return NeuralNetController(cfg)
+    if ctrl_type == "diamond_l1_stabilizer":
+        return DiamondL1Stabilizer(cfg)
     raise ValueError(f"unknown controller type: {ctrl_type}")
