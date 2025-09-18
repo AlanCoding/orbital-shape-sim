@@ -12,6 +12,7 @@ from .controller import (
     NeuralNetController,
     LandisController,
     MoonAngleController,
+    DiamondL1Stabilizer,
     make_controller,
 )
 from .integrate import (
@@ -34,6 +35,7 @@ __all__ = [
     "PassiveController",
     "LandisController",
     "MoonAngleController",
+    "DiamondL1Stabilizer",
     "NeuralNetController",
     "make_controller",
     "run_simulation",
