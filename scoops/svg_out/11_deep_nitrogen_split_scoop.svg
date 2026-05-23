@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Deep nitrogen split-scoop">
+  <defs>
+    <radialGradient id="atmoGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8ec9ff" stop-opacity="0"/>
+      <stop offset="62%" stop-color="#8ec9ff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#8ec9ff" stop-opacity="0.26"/>
+    </radialGradient>
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 4 L 0 8 z" fill="#aab7c4"/>
+    </marker>
+    <marker id="arrowheadWarm" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 4 L 0 8 z" fill="#ff8e42"/>
+    </marker>
+    <marker id="arrowheadGreen" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 4 L 0 8 z" fill="#a8d85f"/>
+    </marker>
+    <style>
+      .bg { fill: #11161c; }
+      .title { fill: #e9eef3; font: 600 26px Arial, Helvetica, sans-serif; letter-spacing: 0.2px; }
+      .label { fill: #e9eef3; font: 20px Arial, Helvetica, sans-serif; }
+      .soft { fill: #aab7c4; font: 18px Arial, Helvetica, sans-serif; }
+      .orbit { fill: none; stroke: #bcc5cf; stroke-width: 2.5; opacity: 0.95; }
+      .orbit-dashed { fill: none; stroke: #a8d85f; stroke-width: 2.5; stroke-dasharray: 9 8; opacity: 0.95; }
+      .beam { fill: none; stroke: #7fdcff; stroke-width: 2.6; stroke-dasharray: 2 8; opacity: 0.95; }
+      .collect-arc { fill: none; stroke: #ff8e42; stroke-width: 8; stroke-linecap: round; }
+      .collect-hot { fill: none; stroke: #ff5d4d; stroke-width: 10; stroke-linecap: round; }
+      .recovery-arc { fill: none; stroke: #6fd0c8; stroke-width: 6; stroke-linecap: round; opacity: 0.9; }
+      .tether { fill: none; stroke: #d8e4ef; stroke-width: 4; }
+      .vehicle { fill: #e9eef3; stroke: #11161c; stroke-width: 2; }
+      .station { fill: #e9eef3; stroke: #11161c; stroke-width: 2; }
+      .ring { fill: none; stroke: #e9eef3; stroke-width: 3; opacity: 0.9; }
+      .leader { fill: none; stroke: #aab7c4; stroke-width: 1.8; }
+      .arrow { fill: none; stroke: #aab7c4; stroke-width: 2.4; }
+      .arrow-warm { fill: none; stroke: #ff8e42; stroke-width: 2.4; marker-end: url(#arrowheadWarm); }
+      .arrow-green { fill: none; stroke: #a8d85f; stroke-width: 2.6; marker-end: url(#arrowheadGreen); }
+      .field { fill: none; stroke: #7fdcff; stroke-width: 2.2; opacity: 0.5; }
+      .ionosphere { fill: none; stroke: #6f89d0; stroke-width: 18; opacity: 0.16; }
+      .magnetic { fill: none; stroke: #7fdcff; stroke-width: 1.8; opacity: 0.35; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1200" height="900"/>
+  <text x="48" y="54" class="title">Deep nitrogen split-scoop</text>
+  
+    
+    <g>
+      <circle cx="600" cy="450" r="190" fill="url(#atmoGlow)" opacity="0.55"/>
+      <circle cx="600" cy="450" r="169" fill="none" stroke="#8ec9ff" stroke-opacity="0.22" stroke-width="26"/>
+      <circle cx="600" cy="450" r="153" fill="none" stroke="#a9dcff" stroke-opacity="0.20" stroke-width="14"/>
+      <circle cx="600" cy="450" r="147" fill="none" stroke="#a9dcff" stroke-opacity="0.22" stroke-width="18"/><circle cx="600" cy="450" r="163" fill="none" stroke="#8ec9ff" stroke-opacity="0.18" stroke-width="18"/><circle cx="600" cy="450" r="183" fill="none" stroke="#8ec9ff" stroke-opacity="0.13" stroke-width="20"/>
+      <circle cx="600" cy="450" r="135" fill="#4d7ea8"/>
+    </g>
+    
+    <ellipse cx="600" cy="345" rx="237.85" ry="260" class="orbit"/>
+    <path d="M 657.54 597.28 A 237.85 260 0 0 1 542.46 597.28" class="collect-hot"/>
+    <path d="M 382.71 450.75 L 375.44 430.72 L 369.72 410.1 L 365.58 389.03 L 363.05 367.66 L 362.15 346.13 L 362.88 324.6 L 365.24 303.21 L 369.21 282.1 L 374.77 261.43 L 381.87 241.33 L 390.48 221.94 L 400.52 203.39 L 411.93 185.82 L 424.63 169.35 L 438.54 154.08 L 453.56 140.12 L 469.59 127.57 L 486.51 116.51 L 504.2 107.02 L 522.56 99.17 L 541.45 93 L 560.74 88.57 L 580.3 85.89 L 600 85 L 619.7 85.89 L 639.26 88.57 L 658.55 93 L 677.44 99.17 L 695.8 107.02 L 713.49 116.51 L 730.41 127.57 L 746.44 140.12 L 761.46 154.08 L 775.37 169.35 L 788.07 185.82 L 799.48 203.39 L 809.52 221.94 L 818.13 241.33 L 825.23 261.43 L 830.79 282.1 L 834.76 303.21 L 837.12 324.6 L 837.85 346.13 L 836.95 367.66 L 834.42 389.03 L 830.28 410.1 L 824.56 430.72 L 817.29 450.75" class="recovery-arc"/>
+    <path d="M 460.19 555.34 A 237.85 260 0 0 1 382.71 450.75" class="collect-arc"/>
+    <path d="M 817.29 450.75 A 237.85 260 0 0 1 739.81 555.34" class="collect-arc"/>
+    <circle cx="600" cy="605" r="7" class="vehicle"/>
+    <circle cx="951.94" cy="230.08" r="11" class="station"/>
+    <path d="M 600 605 L 622 553" class="leader"/><text x="570" y="549" class="label">deep collector</text>
+    <path d="M 951.94 230.08 L 985.94 194.08" class="leader"/><text x="993.94" y="190.08" class="label">courier craft</text>
+    <text x="446" y="626" class="label">nitrogen-rich / severe heating</text>
+    <text x="500" y="45" class="label" fill="#6fd0c8">gas liquefaction</text>
+    <path d="M 640 470 L 460 507.5" class="leader"/>
+    <path d="M 646 472 L 748 541" class="leader"/>
+    <text x="650" y="468" class="soft">ion thrusters fire close to perigee</text>
+    <text x="698" y="490" class="soft">when outside deep atmosphere</text>
+    <text x="989.94" y="214.08" class="soft">own thrusters</text>
+    
+</svg>

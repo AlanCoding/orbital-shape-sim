@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="PROFAC-style split">
+  <defs>
+    <radialGradient id="atmoGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8ec9ff" stop-opacity="0"/>
+      <stop offset="62%" stop-color="#8ec9ff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#8ec9ff" stop-opacity="0.26"/>
+    </radialGradient>
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 4 L 0 8 z" fill="#aab7c4"/>
+    </marker>
+    <marker id="arrowheadWarm" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 4 L 0 8 z" fill="#ff8e42"/>
+    </marker>
+    <marker id="arrowheadGreen" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 4 L 0 8 z" fill="#a8d85f"/>
+    </marker>
+    <style>
+      .bg { fill: #11161c; }
+      .title { fill: #e9eef3; font: 600 26px Arial, Helvetica, sans-serif; letter-spacing: 0.2px; }
+      .label { fill: #e9eef3; font: 20px Arial, Helvetica, sans-serif; }
+      .soft { fill: #aab7c4; font: 18px Arial, Helvetica, sans-serif; }
+      .orbit { fill: none; stroke: #bcc5cf; stroke-width: 2.5; opacity: 0.95; }
+      .orbit-dashed { fill: none; stroke: #a8d85f; stroke-width: 2.5; stroke-dasharray: 9 8; opacity: 0.95; }
+      .beam { fill: none; stroke: #7fdcff; stroke-width: 2.6; stroke-dasharray: 2 8; opacity: 0.95; }
+      .collect-arc { fill: none; stroke: #ff8e42; stroke-width: 8; stroke-linecap: round; }
+      .collect-hot { fill: none; stroke: #ff5d4d; stroke-width: 10; stroke-linecap: round; }
+      .recovery-arc { fill: none; stroke: #6fd0c8; stroke-width: 6; stroke-linecap: round; opacity: 0.9; }
+      .tether { fill: none; stroke: #d8e4ef; stroke-width: 4; }
+      .vehicle { fill: #e9eef3; stroke: #11161c; stroke-width: 2; }
+      .station { fill: #e9eef3; stroke: #11161c; stroke-width: 2; }
+      .ring { fill: none; stroke: #e9eef3; stroke-width: 3; opacity: 0.9; }
+      .leader { fill: none; stroke: #aab7c4; stroke-width: 1.8; }
+      .arrow { fill: none; stroke: #aab7c4; stroke-width: 2.4; }
+      .arrow-warm { fill: none; stroke: #ff8e42; stroke-width: 2.4; marker-end: url(#arrowheadWarm); }
+      .arrow-green { fill: none; stroke: #a8d85f; stroke-width: 2.6; marker-end: url(#arrowheadGreen); }
+      .field { fill: none; stroke: #7fdcff; stroke-width: 2.2; opacity: 0.5; }
+      .ionosphere { fill: none; stroke: #6f89d0; stroke-width: 18; opacity: 0.16; }
+      .magnetic { fill: none; stroke: #7fdcff; stroke-width: 1.8; opacity: 0.35; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1200" height="900"/>
+  <text x="48" y="54" class="title">PROFAC-style split</text>
+  
+    
+    <g>
+      <circle cx="600" cy="450" r="190" fill="url(#atmoGlow)" opacity="0.55"/>
+      <circle cx="600" cy="450" r="169" fill="none" stroke="#8ec9ff" stroke-opacity="0.22" stroke-width="26"/>
+      <circle cx="600" cy="450" r="153" fill="none" stroke="#a9dcff" stroke-opacity="0.20" stroke-width="14"/>
+      
+      <circle cx="600" cy="450" r="135" fill="#4d7ea8"/>
+    </g>
+    
+    <circle cx="600" cy="450" r="185" class="orbit"/>
+    <path d="M 650.99 272.17 A 185 185 0 0 1 780.96 411.54" class="collect-hot"/>
+    <circle cx="745.78" cy="336.1" r="7" class="vehicle"/>
+    <circle cx="768.8" cy="275.2" r="11" class="station"/>
+    <circle cx="757.29" cy="305.65" r="14" class="ring"/>
+    <path d="M 773.29 301.65 L 752.8 285.2" class="arrow-green"/>
+    <path d="M 750.8 291.2 C 726.8 250.2 680.8 180.2 600.8 40.2" class="orbit-dashed"/>
+    <path d="M 745.78 336.1 L 779.78 384.1" class="leader"/><text x="787.78" y="402.1" class="label">nuclear collector</text>
+    <path d="M 768.8 275.2 L 796.8 241.2" class="leader"/><text x="804.8" y="237.2" class="label">space vehicle</text>
+    <path d="M 757.29 305.65 L 733.29 327.65" class="leader"/><text x="681.29" y="355.65" class="label">transfer</text>
+    <text x="760.8" y="203.2" class="soft">passing outbound spacecraft</text>
+    <text x="508.8" y="36.2" class="soft">escape / departure path</text>
+    
+</svg>

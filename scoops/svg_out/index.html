@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Orbital Scoop SVGs</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0f1419;
+      --panel: #182028;
+      --panel-border: #273341;
+      --text: #e8edf2;
+      --muted: #9eb0c2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 28px;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.4 Arial, Helvetica, sans-serif;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
+    p.lead {
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+    .frame {
+      display: block;
+      background: #0c1116;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #202a35;
+      transition: border-color 120ms ease, transform 120ms ease;
+    }
+    .frame:hover {
+      border-color: #4d7ea8;
+      transform: translateY(-1px);
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .card p {
+      margin: 10px 0 0;
+    }
+    .caption {
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .meta {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .source {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .source span {
+      color: var(--text);
+    }
+    .source a {
+      color: #9fd1ff;
+      text-decoration: none;
+    }
+    .source a:hover {
+      text-decoration: underline;
+    }
+    .section-title {
+      margin: 0 0 16px;
+      font-size: 22px;
+    }
+    .section-block {
+      margin-top: 18px;
+    }
+    .notes {
+      margin-top: 28px;
+      padding: 18px 20px;
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+    }
+    .notes h2 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+    .notes p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .notes strong {
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <h1>Orbital Scoop SVG Set</h1>
+  <p class="lead">Standalone schematic SVG diagrams generated for atmospheric scoop architecture concepts.</p>
+  <section class="section-block">
+    <h2 class="section-title">ToughSF References</h2>
+    <section class="grid">
+      
+            <article class="card">
+              <h2>Legend</h2>
+              <a class="frame" href="00_legend.svg" target="_blank" rel="noopener noreferrer" title="Open full-size SVG">
+                <img src="00_legend.svg" alt="Legend" />
+              </a>
+              <p class="caption">Visual key for the schematic conventions used across the set.</p>
+              <p class="source"><span>Source:</span> original legend / no external source</p>
+              <p class="meta">00_legend.svg</p>
+            </article>
+            
+            <article class="card">
+              <h2>Single-body continuous scoop</h2>
+              <a class="frame" href="01_single_body_continuous_scoop.svg" target="_blank" rel="noopener noreferrer" title="Open full-size SVG">
+                <img src="01_single_body_continuous_scoop.svg" alt="Single-body continuous scoop" />
+              </a>
+              <p class="caption">Baseline PROFAC-style scoopcraft: one low vehicle collects while thrust continuously offsets drag.</p>
+              <p class="source"><span>Source:</span> <a href="https://www.osti.gov/biblio/4163348" target="_blank" rel="noopener noreferrer">Demetriades PROFAC (1960)</a>; <a href="https://hpepl.ae.gatech.edu/papers/Singh.pdf" target="_blank" rel="noopener noreferrer">VLEO propellant collection feasibility</a></p>
+              <p class="meta">01_single_body_continuous_scoop.svg</p>
+            </article>
+            
+            <article class="card">
+              <h2>Two-tier tethered trawler</h2>
+              <a class="frame" href="02_two_tier_tethered_trawler.svg" target="_blank" rel="noopener noreferrer" title="Open full-size SVG">
+                <img src="02_two_tier_tethered_trawler.svg" alt="Two-tier tethered trawler" />
+              </a>
+              <p class="caption">ToughSF’s trawler split: a hot low collector feeds a higher safer main station through a tethered link.</p>
+              <p class="source"><span>Source:</span> <a href="https://hpepl.ae.gatech.edu/papers/Singh.pdf" target="_blank" rel="noopener noreferrer">VLEO propellant collection feasibility</a>; <a href="https://www.hpepl.ae.gatech.edu/papers/ProgAerospace_Singh_V75_2015_pp15-25.pdf" target="_blank" rel="noopener noreferrer">LEO propellant collection review</a></p>
+              <p class="meta">02_two_tier_tethered_trawler.svg</p>
+            </article>
+            
+            <article class="card">
+              <h2>Elliptical diver</h2>
+              <a class="frame" href="03_elliptical_diver_single_vehicle.svg" target="_blank" rel="noopener noreferrer" title="Open full-size SVG">
+                <img src="03_elliptical_diver_single_vehicle.svg" alt="Elliptical diver" />
+              </a>
+              <p class="caption">ToughSF’s diver shows apogee-side recovery thrust, but thrust that changes the low point of the orbit should be applied near perigee instead.</p>
+              <p class="source"><span>Source:</span> <a href="https://hpepl.ae.gatech.edu/papers/Singh.pdf" target="_blank" rel="noopener noreferrer">VLEO propellant collection feasibility</a>; <a href="https://www.hpepl.ae.gatech.edu/papers/ProgAerospace_Singh_V75_2015_pp15-25.pdf" target="_blank" rel="noopener noreferrer">LEO propellant collection review</a></p>
+              <p class="meta">03_elliptical_diver_single_vehicle.svg</p>
+            </article>
+            
+            <article class="card">
+              <h2>Diver + mothership</h2>
+              <a class="frame" href="04_diver_plus_mothership.svg" target="_blank" rel="noopener noreferrer" title="Open full-size SVG">
+                <img src="04_diver_plus_mothership.svg" alt="Diver + mothership" />
+              </a>
+              <p class="caption">Derived hybrid: a diver makes the hot pass, but its period differs from the mothership unless it waits for later rendezvous or uses aerodynamic control.</p>
+              <p class="source"><span>Source:</span> <a href="https://www.osti.gov/biblio/4163348" target="_blank" rel="noopener noreferrer">PROFAC precedent</a>; <a href="https://ui.adsabs.harvard.edu/abs/2010aero.conf...13J/abstract" target="_blank" rel="noopener noreferrer">PHARO abstract</a>; <a href="https://www.hpepl.ae.gatech.edu/papers/ProgAerospace_Singh_V75_2015_pp15-25.pdf" target="_blank" rel="noopener noreferrer">LEO propellant collection review</a></p>
+              <p class="meta">04_diver_plus_mothership.svg</p>
+            </article>
+            
+            <article class="card">
+              <h2>Collector-to-depot cycle</h2>
+              <a class="frame" href="05_collector_to_depot_cycle.svg" target="_blank" rel="noopener noreferrer" title="Open full-size SVG">
+                <img src="05_collector_to_depot_cycle.svg" alt="Collector-to-depot cycle" />
+              </a>
+              <p class="caption">PHARO-like cycle: collect low, receive power from the high system, transfer loaded to a depot, offload, then return empty.</p>
+              <p class="source"><span>Source:</span> <a href="https://ui.adsabs.harvard.edu/abs/2010aero.conf...13J/abstract" target="_blank" rel="noopener noreferrer">PHARO abstract (2010)</a>; <a href="https://www.hpepl.ae.gatech.edu/papers/ProgAerospace_Singh_V75_2015_pp15-25.pdf" target="_blank" rel="noopener noreferrer">LEO propellant collection review</a></p>
+              <p class="meta">05_collector_to_depot_cycle.svg</p>
+            </article>
+            
+            <article class="card">
+              <h2>PROFAC-style split</h2>
+              <a class="frame" href="06_profac_split_vehicle.svg" target="_blank" rel="noopener noreferrer" title="Open full-size SVG">
+                <img src="06_profac_split_vehicle.svg" alt="PROFAC-style split" />
+              </a>
+              <p class="caption">PROFAC split: a low collector transfers propellant to a passing outbound spacecraft rather than to a standing depot orbit.</p>
+              <p class="source"><span>Source:</span> <a href="https://www.osti.gov/biblio/4163348" target="_blank" rel="noopener noreferrer">Demetriades PROFAC (1960)</a>; <a href="https://ui.adsabs.harvard.edu/abs/2010aero.conf...13J/abstract" target="_blank" rel="noopener noreferrer">PHARO comparison point</a></p>
+              <p class="meta">06_profac_split_vehicle.svg</p>
+            </article>
+            
+            <article class="card">
+              <h2>Electrodynamic tether assist</h2>
+              <a class="frame" href="07_electrodynamic_tether_assist.svg" target="_blank" rel="noopener noreferrer" title="Open full-size SVG">
+                <img src="07_electrodynamic_tether_assist.svg" alt="Electrodynamic tether assist" />
+              </a>
+              <p class="caption">A tether-assisted scoop uses Lorentz thrust to counter drag instead of spending onboard propellant.</p>
+              <p class="source"><span>Source:</span> <a href="https://ui.adsabs.harvard.edu/abs/1998sct..conf..147G/abstract" target="_blank" rel="noopener noreferrer">Electrodynamic tether propulsion</a>; <a href="https://deepblue.lib.umich.edu/bitstreams/1400a7e4-f5d3-4821-b732-3b7062709329/download" target="_blank" rel="noopener noreferrer">technical paper</a>; <a href="https://ntrs.nasa.gov/api/citations/20160007056/downloads/20160007056.pdf" target="_blank" rel="noopener noreferrer">TSS lessons learned</a>; <a href="https://aerospaceamerica.aiaa.org/year-in-review/tethers-demonstrate-propellantless-propulsion-in-low-earth-orbit/" target="_blank" rel="noopener noreferrer">Prox-1 demo</a></p>
+              <p class="meta">07_electrodynamic_tether_assist.svg</p>
+            </article>
+            
+            <article class="card">
+              <h2>Beamed-power scoop</h2>
+              <a class="frame" href="08_beamed_power_scoop.svg" target="_blank" rel="noopener noreferrer" title="Open full-size SVG">
+                <img src="08_beamed_power_scoop.svg" alt="Beamed-power scoop" />
+              </a>
+              <p class="caption">Derived remote-power variant: a high station beams energy to a low draggy collector.</p>
+              <p class="source"><span>Source:</span> <a href="https://ui.adsabs.harvard.edu/abs/2010aero.conf...13J/abstract" target="_blank" rel="noopener noreferrer">PHARO abstract</a></p>
+              <p class="meta">08_beamed_power_scoop.svg</p>
+            </article>
+            
+            <article class="card">
+              <h2>High-altitude electric scoop</h2>
+              <a class="frame" href="09_high_altitude_electric_scoop.svg" target="_blank" rel="noopener noreferrer" title="Open full-size SVG">
+                <img src="09_high_altitude_electric_scoop.svg" alt="High-altitude electric scoop" />
+              </a>
+              <p class="caption">An electric scoop gathers ionospheric particles with a large electromagnetic capture area rather than a big funnel.</p>
+              <p class="source"><span>Source:</span> <a href="https://www.iris.sssup.it/retrieve/ea75eb42-2e80-462b-be1e-588ed43871e3/Andreussi%20et.al.%202022.pdf" target="_blank" rel="noopener noreferrer">Andreussi et al. ABEP review</a>; <a href="https://www.sciencedirect.com/science/article/abs/pii/S0094576521003301" target="_blank" rel="noopener noreferrer">ABEP intake / RF helicon thruster intake</a>; <a href="https://www.esa.int/Enabling_Support/Space_Engineering_Technology/World-first_firing_of_air-breathing_electric_thruster" target="_blank" rel="noopener noreferrer">ESA ABEP demo</a></p>
+              <p class="meta">09_high_altitude_electric_scoop.svg</p>
+            </article>
+            
+            <article class="card">
+              <h2>Distributed collectors + central depot</h2>
+              <a class="frame" href="10_distributed_collectors_central_depot.svg" target="_blank" rel="noopener noreferrer" title="Open full-size SVG">
+                <img src="10_distributed_collectors_central_depot.svg" alt="Distributed collectors + central depot" />
+              </a>
+              <p class="caption">Derived depot network: many small collectors transfer to one shared higher depot.</p>
+              <p class="source"><span>Source:</span> <a href="https://ui.adsabs.harvard.edu/abs/2010aero.conf...13J/abstract" target="_blank" rel="noopener noreferrer">PHARO abstract</a>; <a href="https://www.hpepl.ae.gatech.edu/papers/ProgAerospace_Singh_V75_2015_pp15-25.pdf" target="_blank" rel="noopener noreferrer">LEO propellant collection review</a></p>
+              <p class="meta">10_distributed_collectors_central_depot.svg</p>
+            </article>
+            
+    </section>
+  </section>
+  
+    <section class="notes">
+      <h2>Acronyms And Architecture</h2>
+      <p><strong>PROFAC</strong> means <em>Propulsive Fluid Accumulator</em>: the older Demetriades concept in which a low atmospheric collector acts more like a self-filling orbital fuel station and can directly support a separate mission vehicle.</p>
+      <p><strong>PHARO</strong> means <em>Propellant Harvesting of Atmospheric Resources in Orbit</em>: the later depot-oriented concept in which collector craft harvest low, then transfer propellant into a higher logistics and storage system.</p>
+      <p><strong>Orbital design difference:</strong> PROFAC is closer to a low collector or collector-plus-space-vehicle arrangement, while PHARO is closer to a collector fleet plus higher depot architecture with externalized power and logistics.</p>
+      <p><strong>Power difference:</strong> PROFAC is historically tied to onboard nuclear or plasma-power assumptions, while PHARO shifts the burden toward orbital infrastructure such as beamed power and distributed depot operations.</p>
+    </section>
+    
+  <section class="section-block">
+    <h2 class="section-title">Original Designs</h2>
+    <section class="grid">
+      
+            <article class="card">
+              <h2>Deep nitrogen split-scoop</h2>
+              <a class="frame" href="11_deep_nitrogen_split_scoop.svg" target="_blank" rel="noopener noreferrer" title="Open full-size SVG">
+                <img src="11_deep_nitrogen_split_scoop.svg" alt="Deep nitrogen split-scoop" />
+              </a>
+              <p class="caption">Original nitrogen-driven variant: a deeper hotter collector pass is split from the higher storage infrastructure.</p>
+              <p class="source"><span>Source:</span> <a href="https://www.hpepl.ae.gatech.edu/papers/ProgAerospace_Singh_V75_2015_pp15-25.pdf" target="_blank" rel="noopener noreferrer">LEO propellant collection review</a>; <a href="https://hpepl.ae.gatech.edu/papers/Singh.pdf" target="_blank" rel="noopener noreferrer">VLEO propellant collection feasibility</a>; <a href="https://www.osti.gov/biblio/4163348" target="_blank" rel="noopener noreferrer">PROFAC precedent</a></p>
+              <p class="meta">11_deep_nitrogen_split_scoop.svg</p>
+            </article>
+            
+            <article class="card">
+              <h2>Jousters</h2>
+              <a class="frame" href="12_jousters.svg" target="_blank" rel="noopener noreferrer" title="Open full-size SVG">
+                <img src="12_jousters.svg" alt="Jousters" />
+              </a>
+              <p class="caption">Original concept: two craft run the same ellipse in opposite directions and exchange push-off impulses at perigee and apogee.</p>
+              <p class="source"><span>Source:</span> original legend / no external source</p>
+              <p class="meta">12_jousters.svg</p>
+            </article>
+            
+    </section>
+  </section>
+</body>
+</html>

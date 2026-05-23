@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Collector-to-depot cycle">
+  <defs>
+    <radialGradient id="atmoGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8ec9ff" stop-opacity="0"/>
+      <stop offset="62%" stop-color="#8ec9ff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#8ec9ff" stop-opacity="0.26"/>
+    </radialGradient>
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 4 L 0 8 z" fill="#aab7c4"/>
+    </marker>
+    <marker id="arrowheadWarm" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 4 L 0 8 z" fill="#ff8e42"/>
+    </marker>
+    <marker id="arrowheadGreen" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 4 L 0 8 z" fill="#a8d85f"/>
+    </marker>
+    <style>
+      .bg { fill: #11161c; }
+      .title { fill: #e9eef3; font: 600 26px Arial, Helvetica, sans-serif; letter-spacing: 0.2px; }
+      .label { fill: #e9eef3; font: 20px Arial, Helvetica, sans-serif; }
+      .soft { fill: #aab7c4; font: 18px Arial, Helvetica, sans-serif; }
+      .orbit { fill: none; stroke: #bcc5cf; stroke-width: 2.5; opacity: 0.95; }
+      .orbit-dashed { fill: none; stroke: #a8d85f; stroke-width: 2.5; stroke-dasharray: 9 8; opacity: 0.95; }
+      .beam { fill: none; stroke: #7fdcff; stroke-width: 2.6; stroke-dasharray: 2 8; opacity: 0.95; }
+      .collect-arc { fill: none; stroke: #ff8e42; stroke-width: 8; stroke-linecap: round; }
+      .collect-hot { fill: none; stroke: #ff5d4d; stroke-width: 10; stroke-linecap: round; }
+      .recovery-arc { fill: none; stroke: #6fd0c8; stroke-width: 6; stroke-linecap: round; opacity: 0.9; }
+      .tether { fill: none; stroke: #d8e4ef; stroke-width: 4; }
+      .vehicle { fill: #e9eef3; stroke: #11161c; stroke-width: 2; }
+      .station { fill: #e9eef3; stroke: #11161c; stroke-width: 2; }
+      .ring { fill: none; stroke: #e9eef3; stroke-width: 3; opacity: 0.9; }
+      .leader { fill: none; stroke: #aab7c4; stroke-width: 1.8; }
+      .arrow { fill: none; stroke: #aab7c4; stroke-width: 2.4; }
+      .arrow-warm { fill: none; stroke: #ff8e42; stroke-width: 2.4; marker-end: url(#arrowheadWarm); }
+      .arrow-green { fill: none; stroke: #a8d85f; stroke-width: 2.6; marker-end: url(#arrowheadGreen); }
+      .field { fill: none; stroke: #7fdcff; stroke-width: 2.2; opacity: 0.5; }
+      .ionosphere { fill: none; stroke: #6f89d0; stroke-width: 18; opacity: 0.16; }
+      .magnetic { fill: none; stroke: #7fdcff; stroke-width: 1.8; opacity: 0.35; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1200" height="900"/>
+  <text x="48" y="54" class="title">Collector-to-depot cycle</text>
+  
+    
+    <g>
+      <circle cx="600" cy="450" r="190" fill="url(#atmoGlow)" opacity="0.55"/>
+      <circle cx="600" cy="450" r="169" fill="none" stroke="#8ec9ff" stroke-opacity="0.22" stroke-width="26"/>
+      <circle cx="600" cy="450" r="153" fill="none" stroke="#a9dcff" stroke-opacity="0.20" stroke-width="14"/>
+      
+      <circle cx="600" cy="450" r="135" fill="#4d7ea8"/>
+    </g>
+    
+    <circle cx="600" cy="450" r="183" class="orbit"/>
+    <circle cx="600" cy="450" r="355" class="orbit"/>
+    <path d="M 771.96 387.41 A 183 183 0 0 1 702.33 601.71" class="collect-arc"/>
+    <path d="M 702.33 601.71 L 696.32 605.64 L 690.18 609.39 L 683.93 612.96 L 677.57 616.35 L 671.1 619.55 L 664.52 622.57 L 657.84 625.39 L 651.05 628.02 L 644.16 630.46 L 637.17 632.7 L 630.09 634.73 L 622.91 636.56 L 615.64 638.18 L 608.28 639.59 L 600.83 640.79 L 593.3 641.76 L 585.69 642.51 L 578.01 643.03 L 570.25 643.31 L 562.42 643.36 L 554.52 643.16 L 546.56 642.71 L 538.54 642.01 L 530.47 641.04 L 522.35 639.81 L 514.18 638.31 L 505.99 636.52 L 497.76 634.45 L 489.5 632.09 L 481.23 629.44 L 472.96 626.47 L 464.68 623.2 L 456.42 619.61 L 448.17 615.69 L 439.96 611.44 L 431.79 606.86 L 423.67 601.94 L 415.62 596.66 L 407.65 591.03 L 399.78 585.05 L 392.02 578.7 L 384.4 571.98 L 376.91 564.9 L 369.6 557.44 L 362.47 549.61 L 355.54 541.4 L 348.85 532.82 L 342.4 523.87 L 336.23 514.54 L 330.35 504.86 L 324.8 494.82 L 319.6 484.43 L 314.77 473.7 L 310.34 462.65 L 306.34 451.28 L 302.79 439.62 L 299.73 427.69 L 297.17 415.5 L 295.15 403.08 L 293.68 390.46 L 292.8 377.67 L 292.53 364.73 L 292.88 351.69 L 293.88 338.58 L 295.55 325.44 L 297.89 312.32 L 300.91 299.25 L 304.64 286.28 L 309.07 273.46 L 314.19 260.83 L 320.02 248.45 L 326.55 236.35 L 333.75 224.6 L 341.62 213.24 L 350.14 202.31 L 359.28 191.86 L 369.02 181.94 L 379.33 172.58 L 390.16 163.82 L 401.49 155.69" class="orbit-dashed"/>
+    <path d="M 497.67 298.29 L 503.68 294.36 L 509.82 290.61 L 516.07 287.04 L 522.43 283.65 L 528.9 280.45 L 535.48 277.43 L 542.16 274.61 L 548.95 271.98 L 555.84 269.54 L 562.83 267.3 L 569.91 265.27 L 577.09 263.44 L 584.36 261.82 L 591.72 260.41 L 599.17 259.21 L 606.7 258.24 L 614.31 257.49 L 621.99 256.97 L 629.75 256.69 L 637.58 256.64 L 645.48 256.84 L 653.44 257.29 L 661.46 257.99 L 669.53 258.96 L 677.65 260.19 L 685.82 261.69 L 694.01 263.48 L 702.24 265.55 L 710.5 267.91 L 718.77 270.56 L 727.04 273.53 L 735.32 276.8 L 743.58 280.39 L 751.83 284.31 L 760.04 288.56 L 768.21 293.14 L 776.33 298.06 L 784.38 303.34 L 792.35 308.97 L 800.22 314.95 L 807.98 321.3 L 815.6 328.02 L 823.09 335.1 L 830.4 342.56 L 837.53 350.39 L 844.46 358.6 L 851.15 367.18 L 857.6 376.13 L 863.77 385.46 L 869.65 395.14 L 875.2 405.18 L 880.4 415.57 L 885.23 426.3 L 889.66 437.35 L 893.66 448.72 L 897.21 460.38 L 900.27 472.31 L 902.83 484.5 L 904.85 496.92 L 906.32 509.54 L 907.2 522.33 L 907.47 535.27 L 907.12 548.31 L 906.12 561.42 L 904.45 574.56 L 902.11 587.68 L 899.09 600.75 L 895.36 613.72 L 890.93 626.54 L 885.81 639.17 L 879.98 651.55 L 873.45 663.65 L 866.25 675.4 L 858.38 686.76 L 849.86 697.69 L 840.72 708.14 L 830.98 718.06 L 820.67 727.42 L 809.84 736.18 L 798.51 744.31" class="orbit-dashed"/>
+    <circle cx="702.33" cy="601.71" r="7" class="vehicle"/>
+    <circle cx="401.49" cy="155.69" r="11" class="station"/>
+    <circle cx="497.67" cy="298.29" r="5" class="vehicle"/>
+    <path d="M 401.49 155.69 L 497.67 298.29" class="beam"/>
+    <path d="M 702.33 601.71 L 748.33 597.71" class="leader"/><text x="756.33" y="593.71" class="label">collector</text>
+    <path d="M 401.49 155.69 L 359.49 173.69" class="leader"/><text x="297.49" y="197.69" class="label">depot</text>
+    <text x="640.33" y="683.71" class="label">collect</text>
+    <text x="383.49" y="109.69" class="label">offload</text>
+    <text x="358.22" y="680.34" class="soft">loaded transfer to depot</text>
+    <text x="754.03" y="251.18" class="soft">empty return transfer</text>
+    <text x="415.58" y="208.99" class="soft">beamed power during skim</text>
+    
+</svg>
