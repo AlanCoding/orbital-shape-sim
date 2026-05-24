@@ -6,3 +6,11 @@ outputs/
 tskb.egg-info/
 show/
 numpy/
+
+# Generated Blender outputs for the L1 diamond scene.
+docs/blender_l1_diamond/output*/
+docs/blender_l1_diamond/*.blend
+docs/blender_l1_diamond/*.blend1
+docs/blender_l1_diamond/**/*.blend
+docs/blender_l1_diamond/**/*.blend1
+docs/blender_l1_diamond/**/*.png
