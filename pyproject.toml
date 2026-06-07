@@ -1,13 +1,18 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "tskb"
+name = "orbital-shape-sim"
 version = "0.1.0"
-description = "Tidal station keeping barbell simulation"
-authors = [{name = "ChatGPT"}]
+description = "Simulation of orbital tethers and multiple masses in orbit"
 requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "pillow"
+]
 
 [tool.setuptools.packages.find]
-where = ["src", "."]
+where = ["src"]

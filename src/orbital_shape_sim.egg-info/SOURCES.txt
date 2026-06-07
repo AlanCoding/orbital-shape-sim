@@ -1,0 +1,7 @@
+LICENSE
+pyproject.toml
+src/orbital_shape_sim.egg-info/PKG-INFO
+src/orbital_shape_sim.egg-info/SOURCES.txt
+src/orbital_shape_sim.egg-info/dependency_links.txt
+src/orbital_shape_sim.egg-info/requires.txt
+src/orbital_shape_sim.egg-info/top_level.txt
