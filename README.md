@@ -33,15 +33,8 @@ To run the simulation and generate the educational GIFs:
    python main.py
    ```
 
-3. The outputs will be saved in `outputs/`:
-   - `outputs/01_radial_libration.gif`
-   - `outputs/02_tumbling.gif`
-   - `outputs/03_unequal_masses.gif`
-   - `outputs/04_elliptical_forcing.gif`
-   - `outputs/05_long_tether_nonlinear.gif`
-   - `outputs/06_chaotic_tumbling.gif`
-   - `outputs/07_orbit_attitude_coupling.gif`
-   - `outputs/08_fast_rotating_elliptical.gif`
+3. The GIFs are written to `docs/assets/rigid_barbell/` and embedded in
+   [docs/rigid_barbell_chapter.md](docs/rigid_barbell_chapter.md).
 
 ---
 
@@ -55,16 +48,11 @@ momentum and the changing inertia maps that angular momentum into spin rate.
 Run the first-pass scenarios with:
 
 ```bash
-python -m tether_length_control
+MPLCONFIGDIR=/tmp .env/bin/python -m tether_length_control
 ```
 
-The outputs are written to:
-
-- `outputs/tether_length_control/01_fixed_length.gif`
-- `outputs/tether_length_control/02_quadrant_forward.gif`
-- `outputs/tether_length_control/03_quadrant_reverse.gif`
-- `outputs/tether_length_control/04_perigee_apogee_forward.gif`
-- `outputs/tether_length_control/05_perigee_apogee_reverse.gif`
+The GIFs are written to `docs/assets/tether_length_control/` and embedded in
+[docs/variable_length_chapter.md](docs/variable_length_chapter.md).
 
 ## Failed Ideas Archive
 

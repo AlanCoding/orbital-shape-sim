@@ -38,7 +38,7 @@ def run_simulation(scenario):
 
 def main():
     scenarios = get_scenarios()
-    output_dir = "outputs"
+    output_dir = os.path.join("docs", "assets", "rigid_barbell")
     os.makedirs(output_dir, exist_ok=True)
     
     for scenario_id, scenario in scenarios.items():

@@ -143,7 +143,7 @@ def run_simulation(scenario, *, log_every=5000):
 
 def main():
     scenarios = get_scenarios()
-    output_dir = os.path.join("outputs", "tether_length_control")
+    output_dir = os.path.join("docs", "assets", "tether_length_control")
     os.makedirs(output_dir, exist_ok=True)
 
     scenario_filter = os.environ.get("TETHER_LENGTH_SCENARIOS")
