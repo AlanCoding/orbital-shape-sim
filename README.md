@@ -45,6 +45,27 @@ To run the simulation and generate the educational GIFs:
 
 ---
 
+## Tether Length Control Experiments
+
+This repository also includes a separate state-feedback tether-length-control
+experiment in `src/tether_length_control/`. The controller chooses the tether
+length from the current state, while the tidal torque term evolves the angular
+momentum and the changing inertia maps that angular momentum into spin rate.
+
+Run the first-pass scenarios with:
+
+```bash
+python -m tether_length_control
+```
+
+The outputs are written to:
+
+- `outputs/tether_length_control/01_fixed_length.gif`
+- `outputs/tether_length_control/02_quadrant_forward.gif`
+- `outputs/tether_length_control/03_quadrant_reverse.gif`
+- `outputs/tether_length_control/04_perigee_apogee_forward.gif`
+- `outputs/tether_length_control/05_perigee_apogee_reverse.gif`
+
 ## Failed Ideas Archive
 
 ### Moon Tidal Station-Keeping (Tidal Station Keeping Barbell - TSKB)
