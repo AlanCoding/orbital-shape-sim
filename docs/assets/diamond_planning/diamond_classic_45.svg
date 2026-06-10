@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="560" viewBox="0 0 860 560">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#b23a48" />
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="860" height="560" fill="#ffffff" />
+  <circle cx="430" cy="290" r="4" fill="#111111" />
+  <line x1="105" y1="290" x2="755" y2="290" stroke="#d8d8d8" stroke-width="2" />
+  <line x1="430" y1="85" x2="430" y2="495" stroke="#d8d8d8" stroke-width="2" />
+
+  <line x1="430" y1="290" x2="543.1" y2="176.9" stroke="#b23a48" stroke-width="7" marker-end="url(#arrow)" />
+  <text x="560" y="166" font-family="monospace" font-size="18" fill="#b23a48">alpha = 45 deg</text>
+  <text x="560" y="190" font-family="monospace" font-size="18" fill="#111111">rho = 0.10</text>
+
+  <polygon points="530,190 530,390 330,390 330,190" fill="none" stroke="#bfbfbf" stroke-width="3" stroke-dasharray="8 6" />
+  <polygon points="474.7,245.3 563.2,424.2 385.3,334.7 296.8,155.8" fill="none" stroke="#222222" stroke-width="4" />
+
+  <circle cx="474.7" cy="245.3" r="12" fill="#2b8a3e" stroke="#111111" stroke-width="2" />
+  <circle cx="563.2" cy="424.2" r="12" fill="#2b8a3e" stroke="#111111" stroke-width="2" />
+  <circle cx="385.3" cy="334.7" r="12" fill="#2b8a3e" stroke="#111111" stroke-width="2" />
+  <circle cx="296.8" cy="155.8" r="12" fill="#2b8a3e" stroke="#111111" stroke-width="2" />
+
+  <text x="36" y="44" font-family="monospace" font-size="24" fill="#111111">classic diamond</text>
+  <text x="36" y="78" font-family="monospace" font-size="18" fill="#111111">the action axis is at 45 degrees</text>
+  <text x="36" y="106" font-family="monospace" font-size="18" fill="#111111">the diagonal pair on that axis pinches inward</text>
+  <text x="36" y="132" font-family="monospace" font-size="18" fill="#111111">the opposite pair is pushed outward</text>
+</svg>

@@ -54,6 +54,28 @@ MPLCONFIGDIR=/tmp .env/bin/python -m tether_length_control
 The GIFs are written to `docs/assets/tether_length_control/` and embedded in
 [docs/variable_length_chapter.md](docs/variable_length_chapter.md).
 
+## Diamond Chapter
+
+The finalized four-mass diamond orbital-control chapter lives in
+[docs/diamond_chapter.md](docs/diamond_chapter.md).
+
+Run it with:
+
+```bash
+PYTHONPATH=src MPLCONFIGDIR=/tmp .env/bin/python -m diamond
+```
+
+## Diamond L1 Chapter
+
+The Earth-Moon L1 diamond chapter lives in
+[docs/diamond_l1_chapter.md](docs/diamond_l1_chapter.md).
+
+Run it with:
+
+```bash
+PYTHONPATH=src MPLCONFIGDIR=/tmp .env/bin/python -m diamond_l1
+```
+
 ## Failed Ideas Archive
 
 ### Moon Tidal Station-Keeping (Tidal Station Keeping Barbell - TSKB)
