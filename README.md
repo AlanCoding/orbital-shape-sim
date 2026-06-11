@@ -67,13 +67,24 @@ PYTHONPATH=src MPLCONFIGDIR=/tmp .env/bin/python -m diamond
 
 ## Diamond L1 Chapter
 
-The Earth-Moon L1 diamond chapter lives in
+The Earth-Moon L1 stabilizer chapter lives in
 [docs/diamond_l1_chapter.md](docs/diamond_l1_chapter.md).
 
 Run it with:
 
 ```bash
 PYTHONPATH=src MPLCONFIGDIR=/tmp .env/bin/python -m diamond_l1
+```
+
+## Diamond L1 Reachability Map
+
+The static L1 reachability map chapter lives in
+[docs/diamond_l1_reachability_chapter.md](docs/diamond_l1_reachability_chapter.md).
+
+Run it with:
+
+```bash
+PYTHONPATH=src MPLCONFIGDIR=/tmp .env/bin/python -m diamond_l1_reachability
 ```
 
 ## Failed Ideas Archive

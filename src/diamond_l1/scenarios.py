@@ -6,6 +6,7 @@ from typing import Any, Callable
 import numpy as np
 from scipy.optimize import root_scalar
 
+from .controllers import controller
 from .physics import G
 
 
@@ -21,6 +22,8 @@ class Scenario:
     t_max: float
     half_span_m: float
     plot_half_width_m: float
+    zoom_half_width_m: float
+    zoom_body_scale: float
     render_duration: float
     fps: int
     num_samples: int
@@ -98,14 +101,20 @@ def get_scenarios(half_span_km: float = 200.0) -> dict[str, Scenario]:
     rho_min = 0.1
     rho_max = 1.9
     rho_tau = 60.0
-    rho_kp = 32.0
-    rho_kd = 4.0
+    rho_kp = 2000.0
+    rho_kd = 180.0
     v_scale = 10.0
+    earthward_vx = -0.006
+    tangential_vy = 0.001
+    moonward_vx = 0.009
+    offset_dx = 500.0
     t_max = 45.0 * 24.0 * 3600.0
     render_duration = 8.0
     fps = 80
     num_samples = 1800
     plot_half_width_m = 5_000_000.0
+    zoom_half_width_m = 20_000.0
+    zoom_body_scale = 0.02
 
     def base_state(vx: float = 0.0, vy: float = 0.0, dx: float = 0.0, dy: float = 0.0) -> np.ndarray:
         return make_state(l1_x + dx, dy, vx, vy, rho_eq)
@@ -116,11 +125,13 @@ def get_scenarios(half_span_km: float = 200.0) -> dict[str, Scenario]:
     scenarios[f"01_noop_{suffix}"] = Scenario(
         id=f"01_noop_{suffix}",
         title=f"01: L1 No-Op Baseline ({half_span_km:.0f} km)",
-        description="Nominal L1 configuration with the control law active but commanding the neutral diamond shape.",
+        description="Nominal L1 configuration with x = 0 m, y = 0 m, vx = 0 m/s, vy = 0 m/s; the same control law is active, but there is no initial perturbation so this serves as the baseline response.",
         state0=base_state(),
         t_max=t_max,
         half_span_m=half_span_m,
         plot_half_width_m=plot_half_width_m,
+        zoom_half_width_m=zoom_half_width_m,
+        zoom_body_scale=zoom_body_scale,
         render_duration=render_duration,
         fps=fps,
         num_samples=num_samples,
@@ -129,8 +140,8 @@ def get_scenarios(half_span_km: float = 200.0) -> dict[str, Scenario]:
         rho_min=rho_min,
         rho_max=rho_max,
         rho_tau=rho_tau,
-        rho_kp=0.0,
-        rho_kd=0.0,
+        rho_kp=rho_kp,
+        rho_kd=rho_kd,
         v_scale=v_scale,
         mu_earth=constants["mu_earth"],
         mu_moon=constants["mu_moon"],
@@ -139,15 +150,18 @@ def get_scenarios(half_span_km: float = 200.0) -> dict[str, Scenario]:
         omega=constants["omega"],
         l1_x=l1_x,
     )
+    scenarios[f"01_noop_{suffix}"].state0[4] = controller(0.0, scenarios[f"01_noop_{suffix}"].state0, scenarios[f"01_noop_{suffix}"])
 
-    scenarios[f"02_earthward_{suffix}"] = Scenario(
+    active = Scenario(
         id=f"02_earthward_{suffix}",
         title=f"02: Earthward Perturbation ({half_span_km:.0f} km)",
-        description="The craft starts at L1 with a velocity toward Earth so the controller has to work against the unstable direction.",
-        state0=base_state(vx=-0.2),
+        description="The craft starts at L1 with vx = -0.006 m/s toward Earth and vy = 0 m/s so the controller has to work against the unstable direction.",
+        state0=base_state(vx=earthward_vx),
         t_max=t_max,
         half_span_m=half_span_m,
         plot_half_width_m=plot_half_width_m,
+        zoom_half_width_m=zoom_half_width_m,
+        zoom_body_scale=zoom_body_scale,
         render_duration=render_duration,
         fps=fps,
         num_samples=num_samples,
@@ -166,15 +180,20 @@ def get_scenarios(half_span_km: float = 200.0) -> dict[str, Scenario]:
         omega=constants["omega"],
         l1_x=l1_x,
     )
+    active.state0 = active.state0.copy()
+    active.state0[4] = controller(0.0, active.state0, active)
+    scenarios[active.id] = active
 
-    scenarios[f"03_tangential_{suffix}"] = Scenario(
+    active = Scenario(
         id=f"03_tangential_{suffix}",
         title=f"03: Tangential Perturbation ({half_span_km:.0f} km)",
-        description="The craft starts at L1 with a tangential velocity so the response is dominated by the sideways motion instead of the unstable axis.",
-        state0=base_state(vy=0.2),
+        description="The craft starts at L1 with vy = 0.001 m/s tangentially and vx = 0 m/s so the response is dominated by sideways motion instead of the unstable axis.",
+        state0=base_state(vy=tangential_vy),
         t_max=t_max,
         half_span_m=half_span_m,
         plot_half_width_m=plot_half_width_m,
+        zoom_half_width_m=zoom_half_width_m,
+        zoom_body_scale=zoom_body_scale,
         render_duration=render_duration,
         fps=fps,
         num_samples=num_samples,
@@ -193,15 +212,20 @@ def get_scenarios(half_span_km: float = 200.0) -> dict[str, Scenario]:
         omega=constants["omega"],
         l1_x=l1_x,
     )
+    active.state0 = active.state0.copy()
+    active.state0[4] = controller(0.0, active.state0, active)
+    scenarios[active.id] = active
 
-    scenarios[f"04_offset_{suffix}"] = Scenario(
+    active = Scenario(
         id=f"04_offset_{suffix}",
-        title=f"04: Offset Position, Zero Velocity ({half_span_km:.0f} km)",
-        description="The craft begins slightly displaced from L1 with no initial velocity to test whether the controller can pull it back gently.",
-        state0=base_state(dx=10e3),
+        title=f"04: Offset Recovery ({half_span_km:.0f} km)",
+        description="The craft begins displaced by dx = +500 m from L1 with zero initial velocity so the case stays inside the practical control envelope while still showing recovery behavior.",
+        state0=base_state(dx=offset_dx),
         t_max=t_max,
         half_span_m=half_span_m,
         plot_half_width_m=plot_half_width_m,
+        zoom_half_width_m=zoom_half_width_m,
+        zoom_body_scale=zoom_body_scale,
         render_duration=render_duration,
         fps=fps,
         num_samples=num_samples,
@@ -220,6 +244,41 @@ def get_scenarios(half_span_km: float = 200.0) -> dict[str, Scenario]:
         omega=constants["omega"],
         l1_x=l1_x,
     )
+    active.state0 = active.state0.copy()
+    active.state0[4] = controller(0.0, active.state0, active)
+    scenarios[active.id] = active
+
+    active = Scenario(
+        id=f"05_moonward_compression_{suffix}",
+        title=f"05: Moonward Compression Stress Test ({half_span_km:.0f} km)",
+        description="The craft starts at L1 with vx = 0.009 m/s moonward and no rho floor so the controller can collapse the diamond much closer to a line without immediately running away.",
+        state0=base_state(vx=moonward_vx),
+        t_max=t_max,
+        half_span_m=half_span_m,
+        plot_half_width_m=plot_half_width_m,
+        zoom_half_width_m=zoom_half_width_m,
+        zoom_body_scale=zoom_body_scale,
+        render_duration=render_duration,
+        fps=fps,
+        num_samples=num_samples,
+        mass_total=mass_total,
+        rho_eq=rho_eq,
+        rho_min=0.0,
+        rho_max=rho_max,
+        rho_tau=rho_tau,
+        rho_kp=rho_kp,
+        rho_kd=rho_kd,
+        v_scale=v_scale,
+        mu_earth=constants["mu_earth"],
+        mu_moon=constants["mu_moon"],
+        earth_pos=constants["earth_pos"],
+        moon_pos=constants["moon_pos"],
+        omega=constants["omega"],
+        l1_x=l1_x,
+    )
+    active.state0 = active.state0.copy()
+    active.state0[4] = controller(0.0, active.state0, active)
+    scenarios[active.id] = active
 
     return scenarios
 
