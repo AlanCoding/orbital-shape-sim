@@ -130,22 +130,22 @@ the later scenarios.
 This is the reversed time-driven schedule on the same orbit. It is still
 orbital pumping, just with the sign flipped.
 
-### 06. Eccentricity Pumping Up
+### 06. Eccentricity Pumping Down
 
-![Eccentricity pumping up](assets/diamond_planning/06_eccentricity_pumping_up.gif)
+![Eccentricity pumping down](assets/diamond_planning/06_eccentricity_pumping_down.gif)
 
 This is the apsis-switched control law. When the radius is increasing, the
 controller selects one branch; when the radius is decreasing, it selects the
-opposed branch. That outbound/inbound split is what makes this eccentricity
-pumping rather than ordinary orbital pumping.
+opposed branch. This case is the one that trends more circular overall, so the
+label is now aligned with the actual motion.
 
-### 07. Eccentricity Pumping Down
+### 07. Eccentricity Pumping Up
 
-![Eccentricity pumping down](assets/diamond_planning/07_eccentricity_pumping_down.gif)
+![Eccentricity pumping up](assets/diamond_planning/07_eccentricity_pumping_up.gif)
 
 This is the sign-reversed partner to the previous case. It uses the same
 apsis-based switch but flips which branch is active on the two halves of the
-orbit.
+orbit, producing the more eccentric overall evolution.
 
 ## Notes
 

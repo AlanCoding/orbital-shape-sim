@@ -211,9 +211,9 @@ def get_scenarios(mu: float = 3.986004418e14) -> dict[str, Scenario]:
     )
 
     eccentric_up_state = perigee_state(mu, rp, e, phi0, omega0, 0.2)
-    scenarios["06_eccentricity_pumping_up"] = Scenario(
-        id="06_eccentricity_pumping_up",
-        title="06: Eccentricity Pumping Up",
+    scenarios["06_eccentricity_pumping_down"] = Scenario(
+        id="06_eccentricity_pumping_down",
+        title="06: Eccentricity Pumping Down",
         description="Aperigee-to-perigee pumping that switches the rho target on the sign of radial velocity, so the control changes across the outbound and inbound halves of each orbit.",
         state0=eccentric_up_state,
         t_max=pump_t_max,
@@ -232,9 +232,9 @@ def get_scenarios(mu: float = 3.986004418e14) -> dict[str, Scenario]:
     )
 
     eccentric_down_state = perigee_state(mu, rp, e, phi0, omega0, 1.5)
-    scenarios["07_eccentricity_pumping_down"] = Scenario(
-        id="07_eccentricity_pumping_down",
-        title="07: Eccentricity Pumping Down",
+    scenarios["07_eccentricity_pumping_up"] = Scenario(
+        id="07_eccentricity_pumping_up",
+        title="07: Eccentricity Pumping Up",
         description="The sign-reversed partner to the previous case. It uses the same apsis switch but flips which branch is active on the outbound and inbound legs.",
         state0=eccentric_down_state,
         t_max=pump_t_max,

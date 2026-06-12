@@ -37,7 +37,7 @@ def test_short_diamond_simulation_runs():
 
 def test_eccentricity_pumping_switches_on_radial_velocity():
     scenarios = get_scenarios()
-    scenario = scenarios["06_eccentricity_pumping_up"]
+    scenario = scenarios["06_eccentricity_pumping_down"]
     state_outbound = np.array([7.0e6, 0.0, 1.0e3, 0.0, 0.0, 0.0, 0.2], dtype=float)
     state_inbound = np.array([7.0e6, 0.0, -1.0e3, 0.0, 0.0, 0.0, 0.2], dtype=float)
 
