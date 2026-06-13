@@ -108,22 +108,27 @@ the post-perigee return.
 
 ### 11. Scan
 
-The next step is a small speed sweep focused on the first dip of the
+The next step is a speed sweep focused on the first dip of the
 closest-approach curve. I am not doing any crossing search here yet; the point
-is to see how the dip moves as the release speed changes.
+is to record the velocity guesses we tried and how the first dip moved as the
+release speed changed.
 
-| Release speed | First dip result | Note |
-| --- | --- | --- |
-| `100 m/s` | no cross | still a useful comparison case |
-| `102 m/s` | closest approach about `1550 km` | this is the scan shown below |
-| `120 m/s` | closest approach about `500 km` | used as the high-speed comparison point |
+| Release speed | Search setup | First dip result | Note |
+| --- | --- | --- | --- |
+| `100 m/s` | full scan | no cross | useful comparison case |
+| `102 m/s` | dense scan, `50°` to `120°` | closest approach about `1550 km` | scan shown below |
+| `105 m/s` | dense scan, `50°` to `120°` | closest approach about `1550 km` | later replaced by the bounded searches |
+| `110 m/s` | dense scan, `50°` to `120°` | closest approach about `1063 km` | exploratory mid-case |
+| `120 m/s` | capped/bounded follow-up | closest approach about `500 km` | high-speed comparison point |
+| `130 m/s` | hard cap `8.4 days` | closest approach about `1528 km` | later capped search |
 
 ![102 m/s lunar scan](assets/diamond_l1_reachability/11_lunar_grazing_102ms_scan.png)
 
 This is the same angle-versus-closest-approach scan, but at `102 m/s`. The
 sample density is increased between `50°` and `120°` so the interesting dip is
-easier to inspect. The table above collects the three speed cases we have
-checked while looking for a crossing in the first dip.
+easier to inspect. The table above collects the release-speed guesses we used
+while looking for a crossing in the first dip, including the later capped
+passes that informed the final trajectories.
 
 ### 12. Bounded Grazing Search
 
