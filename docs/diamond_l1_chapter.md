@@ -56,6 +56,18 @@ These are rough, order-of-magnitude figures from the current Earth-Moon model,
 measured as the amount of unstable-axis displacement the full shape swing can
 offset near L1.
 
+### Magnitude of Acceleration
+
+At the published 400 km half-span, the smallest contracted shape at L1
+(`rho = 0.1` in the current chapter) produces a center-of-mass acceleration of
+about `8.11e-8 m/s^2` along the Earth-Moon line. As a linear speed estimate,
+that corresponds to roughly `1.60e9 s`, or about `50.8 years`, to accumulate
+`130 m/s` of delta-v if that acceleration were held constant the whole time.
+That is only a back-of-the-envelope controllability check, not a practical
+arrival model. The actual stabilizer must be much larger than the payload it is
+receiving if it is expected to absorb real incoming mass without immediately
+saturating.
+
 The 100 m operating bound is intentionally smaller than that raw authority
 figure. It is the range where the first visual examples stay comfortably in the
 stable, legible part of the chapter.
