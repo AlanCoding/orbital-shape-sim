@@ -87,6 +87,17 @@ Run it with:
 PYTHONPATH=src MPLCONFIGDIR=/tmp .env/bin/python -m diamond_l1_reachability
 ```
 
+## L4 Mass Receipt Chapter
+
+The L4 mass receipt chapter lives in
+[docs/l4_receipt_chapter.md](docs/l4_receipt_chapter.md).
+
+Run it with:
+
+```bash
+PYTHONPATH=src MPLCONFIGDIR=/tmp .env/bin/python -m l4_receipt
+```
+
 ## Failed Ideas Archive
 
 ### Moon Tidal Station-Keeping (Tidal Station Keeping Barbell - TSKB)
