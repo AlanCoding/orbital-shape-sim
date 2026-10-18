@@ -1,0 +1,204 @@
+{
+  "arguments": {
+    "radius_factor": 4.0,
+    "months": 1,
+    "loops": 2,
+    "inclination": 3.0,
+    "starts": 4,
+    "interface_altitude_km": 100.0,
+    "initial_latitude": -4.0
+  },
+  "candidates": [
+    {
+      "start_longitude": -3.141592653589793,
+      "x": [
+        -3.140581214889217,
+        -0.29999999999999993,
+        5.30052547726484
+      ],
+      "residual": 0.0001327935378552718,
+      "tight_position_residual": 8.84800992733155e-06,
+      "period": 6.297506102153458,
+      "integration_success": true,
+      "nfev": 18,
+      "runtime_seconds": 1.508208367973566,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection"
+      ],
+      "period_days": 27.38393322123778,
+      "position_closure_norm": 8.84800992733155e-06,
+      "velocity_closure_norm": 4.3711359542152116e-05,
+      "periapsis_radii": [
+        0.06153656379571588,
+        0.06662936584366419
+      ],
+      "minimum_primary_clearance_km": -1857.8900769268155,
+      "minimum_secondary_altitude_km": 285932.6095993618,
+      "maximum_osculating_inclination_deg": 17.6432903182517,
+      "fraction_time_within_5deg_of_lunar_plane": 0.019532682243925202,
+      "fraction_time_within_10deg_of_lunar_plane": 0.055331488950368324,
+      "bank": {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": 4.122667329006276,
+        "final_angle_deg": 3.036447631588419,
+        "all_segments_passive": true,
+        "maximum_local_ld": 39.9860394779232,
+        "minimum_local_ld": 29.478814967695097,
+        "integrated_lift_over_drag": 33.93554140808234,
+        "integrated_drag": 0.0029243649926245677,
+        "integrated_lift": 0.09923990929955742
+      },
+      "finite_impulse_work": {
+        "rotating_frame_work": -1.4839844499160683e-15,
+        "atmosphere_relative_work": -0.010415484754749871,
+        "incoming_projection_work": -0.01534392547419384,
+        "omitted_quadratic_work": 0.004928440719443968,
+        "angular_momentum_z_change": 0.00039457881559909914
+      }
+    },
+    {
+      "start_longitude": -1.5707963267948966,
+      "x": [
+        -1.7094634860273277,
+        -0.06750960617629569,
+        5.30307377570505
+      ],
+      "residual": 1.744928924163568e-07,
+      "tight_position_residual": 6.507681020435881e-15,
+      "period": 6.150702852763644,
+      "integration_success": true,
+      "nfev": 4,
+      "runtime_seconds": 1.523484773002565,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "primary surface intersection"
+      ],
+      "period_days": 26.7455772891051,
+      "position_closure_norm": 6.507681020435881e-15,
+      "velocity_closure_norm": 3.690283242809746e-12,
+      "periapsis_radii": [
+        0.06574686833912811,
+        0.0666299302809556
+      ],
+      "minimum_primary_clearance_km": -239.4490104391517,
+      "minimum_secondary_altitude_km": 71113.115854966,
+      "maximum_osculating_inclination_deg": 14.276071046050152,
+      "fraction_time_within_5deg_of_lunar_plane": 0.7400753308223059,
+      "fraction_time_within_10deg_of_lunar_plane": 0.9439685343821873,
+      "bank": {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": 12.993751641749137,
+        "final_angle_deg": 3.038066687382883,
+        "all_segments_passive": true,
+        "maximum_local_ld": 37.465192427542895,
+        "minimum_local_ld": 8.93875951671491,
+        "integrated_lift_over_drag": 14.35248203685251,
+        "integrated_drag": 0.06322608860248609,
+        "integrated_lift": 0.9074513009276268
+      },
+      "finite_impulse_work": {
+        "rotating_frame_work": 1.526617786058394e-15,
+        "atmosphere_relative_work": -0.22238007123813805,
+        "incoming_projection_work": -0.6353205305269655,
+        "omitted_quadratic_work": 0.4129404592888275,
+        "angular_momentum_z_change": 0.008424616538561495
+      }
+    },
+    {
+      "start_longitude": 0.0,
+      "x": [
+        0.0008078363721663178,
+        -0.29999999999999993,
+        5.298130066223361
+      ],
+      "residual": 9.503052283850202e-05,
+      "tight_position_residual": 6.331879506036963e-06,
+      "period": 6.296537509298426,
+      "integration_success": true,
+      "nfev": 12,
+      "runtime_seconds": 1.0163920050254092,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed"
+      ],
+      "period_days": 27.379721413955576,
+      "position_closure_norm": 6.331879506036963e-06,
+      "velocity_closure_norm": 3.134211323903398e-05,
+      "periapsis_radii": [
+        0.07205754611792642,
+        0.0666295237112564
+      ],
+      "minimum_primary_clearance_km": 99.84371460696015,
+      "minimum_secondary_altitude_km": 291466.6450553957,
+      "maximum_osculating_inclination_deg": 17.63172945843655,
+      "fraction_time_within_5deg_of_lunar_plane": 0.02156594780173994,
+      "fraction_time_within_10deg_of_lunar_plane": 0.060464651178294054,
+      "bank": {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": 4.060591966890529,
+        "final_angle_deg": 3.0364643105414855,
+        "all_segments_passive": true,
+        "maximum_local_ld": 39.95937862415937,
+        "minimum_local_ld": 29.907821619114817,
+        "integrated_lift_over_drag": 34.20856251647162,
+        "integrated_drag": 0.0027339581183997044,
+        "integrated_lift": 0.09352477721069141
+      },
+      "finite_impulse_work": {
+        "rotating_frame_work": -7.980447157952895e-17,
+        "atmosphere_relative_work": -0.00973054441717627,
+        "incoming_projection_work": -0.01410763287681138,
+        "omitted_quadratic_work": 0.004377088459635114,
+        "angular_momentum_z_change": 0.0003686306284989189
+      }
+    },
+    {
+      "start_longitude": 1.5707963267948966,
+      "x": [
+        1.5490606326772072,
+        -0.0702675728342422,
+        5.301934775652091
+      ],
+      "residual": 2.226138474340598e-07,
+      "tight_position_residual": 1.1043838571206573e-14,
+      "period": 6.145742022341783,
+      "integration_success": true,
+      "nfev": 3,
+      "runtime_seconds": 1.3188089679460973,
+      "accepted_idealized_return": true,
+      "rejection_reasons": [],
+      "period_days": 26.724005726205355,
+      "position_closure_norm": 1.1043838571206573e-14,
+      "velocity_closure_norm": 9.890830138989134e-12,
+      "periapsis_radii": [
+        0.06759766707421652,
+        0.06662993028095142
+      ],
+      "minimum_primary_clearance_km": 99.9999999977265,
+      "minimum_secondary_altitude_km": 67429.86587876052,
+      "maximum_osculating_inclination_deg": 16.09301851180492,
+      "fraction_time_within_5deg_of_lunar_plane": 0.908036398786707,
+      "fraction_time_within_10deg_of_lunar_plane": 0.9881337288757042,
+      "bank": {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": 14.44957173967217,
+        "final_angle_deg": 3.0380676322565288,
+        "all_segments_passive": true,
+        "maximum_local_ld": 37.46378321676357,
+        "minimum_local_ld": 8.078404104067427,
+        "integrated_lift_over_drag": 13.192668451129112,
+        "integrated_drag": 0.07878394659148778,
+        "integrated_lift": 1.0393704866529618
+      },
+      "finite_impulse_work": {
+        "rotating_frame_work": -1.928919347394572e-15,
+        "atmosphere_relative_work": -0.277650851286608,
+        "incoming_projection_work": -0.8195281366319507,
+        "omitted_quadratic_work": 0.5418772853453427,
+        "angular_momentum_z_change": 0.010518487293719547
+      }
+    }
+  ]
+}

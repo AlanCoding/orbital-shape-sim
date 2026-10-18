@@ -1,0 +1,39 @@
+{
+  "primitive_nominal_resonance": "1:4",
+  "repeated_nominal_resonance": "2:8",
+  "repetitions": 2,
+  "independent_primitive_family": false,
+  "primary_passes": 2,
+  "atmospheric_banks": 2,
+  "period_days": 218.4096748341869,
+  "position_closure_norm": 1.301791860464187e-12,
+  "velocity_closure_norm": 1.1735837631698753e-11,
+  "periapsis_radii": [
+    0.06662993028095308,
+    0.06662993028093304
+  ],
+  "banks": [
+    {
+      "model": "zero-duration fixed-position continuous velocity-space bank",
+      "initial_angle_deg": 93.70176521123888,
+      "final_angle_deg": 87.47446692467256,
+      "all_segments_passive": true,
+      "maximum_local_ld": 3.1600353263868826,
+      "minimum_local_ld": 3.047775027126713,
+      "integrated_lift_over_drag": 3.100532140976613,
+      "integrated_drag": 0.18056815096316714,
+      "integrated_lift": 0.5598573556980169
+    },
+    {
+      "model": "zero-duration fixed-position continuous velocity-space bank",
+      "initial_angle_deg": 93.70176521121799,
+      "final_angle_deg": 87.47446692467256,
+      "all_segments_passive": true,
+      "maximum_local_ld": 3.1600353263877787,
+      "minimum_local_ld": 3.0477750271280466,
+      "integrated_lift_over_drag": 3.10053214097775,
+      "integrated_drag": 0.1805681509625296,
+      "integrated_lift": 0.5598573556962455
+    }
+  ]
+}

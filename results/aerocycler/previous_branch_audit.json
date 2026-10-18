@@ -1,0 +1,88 @@
+{
+  "earth_moon_4_2_baseline": {
+    "minimum_lunar_plane_inclination_deg": 89.99099948472498,
+    "maximum_lunar_plane_inclination_deg": 101.95827925081562,
+    "reported_initial_plane_drift_deg": 7.164085722344108,
+    "legacy_drift_reference_frame": "lunar rotating axes; includes coordinate rotation",
+    "fixed_initial_inertial_plane_excursions_deg": [
+      8.537736462515939e-07,
+      0.9835517719361687,
+      1.5618456879821838,
+      2.545397456924316,
+      3.1236913744116133
+    ],
+    "finite_impulse_work": [
+      {
+        "rotating_frame_work": 5.72307900747699e-09,
+        "atmosphere_relative_work": 1.2284055198635353e-08,
+        "incoming_projection_work": -0.001193959406280923,
+        "omitted_quadratic_work": 0.0011939716903361212,
+        "angular_momentum_z_change": -2.4855513456353666e-10
+      },
+      {
+        "rotating_frame_work": -5.536817602431066e-09,
+        "atmosphere_relative_work": 1.0783765452405778e-09,
+        "incoming_projection_work": -0.0011939706119595765,
+        "omitted_quadratic_work": 0.0011939716903361214,
+        "angular_momentum_z_change": -2.5060912028852973e-10
+      },
+      {
+        "rotating_frame_work": 5.723403127833176e-09,
+        "atmosphere_relative_work": 1.2284367724099825e-08,
+        "incoming_projection_work": -0.001193959405968397,
+        "omitted_quadratic_work": 0.0011939716903361214,
+        "angular_momentum_z_change": -2.4855469530580274e-10
+      },
+      {
+        "rotating_frame_work": -5.536665780400117e-09,
+        "atmosphere_relative_work": 1.078525868402359e-09,
+        "incoming_projection_work": -0.001193970611810253,
+        "omitted_quadratic_work": 0.001193971690336121,
+        "angular_momentum_z_change": -2.50609025610575e-10
+      }
+    ]
+  },
+  "earth_moon_4_2_je_0p002": {
+    "minimum_lunar_plane_inclination_deg": 89.94934214350248,
+    "maximum_lunar_plane_inclination_deg": 101.93340506275119,
+    "reported_initial_plane_drift_deg": 7.164937376219481,
+    "legacy_drift_reference_frame": "lunar rotating axes; includes coordinate rotation",
+    "fixed_initial_inertial_plane_excursions_deg": [
+      0.010570245833806122,
+      0.9839673483346677,
+      1.562295868011344,
+      2.546221700849384,
+      3.1245497449963833
+    ],
+    "finite_impulse_work": [
+      {
+        "rotating_frame_work": 2.4526028566995043e-07,
+        "atmosphere_relative_work": 0.0008761984982334994,
+        "incoming_projection_work": -0.0003199024540550175,
+        "omitted_quadratic_work": 0.0011961009522885174,
+        "angular_momentum_z_change": -3.318449398066448e-05
+      },
+      {
+        "rotating_frame_work": 2.47647044172731e-07,
+        "atmosphere_relative_work": 0.0008762384301529668,
+        "incoming_projection_work": -0.00031986252213555015,
+        "omitted_quadratic_work": 0.0011961009522885172,
+        "angular_momentum_z_change": -3.318591633646392e-05
+      },
+      {
+        "rotating_frame_work": 2.4483775278195886e-07,
+        "atmosphere_relative_work": 0.0008761975293931395,
+        "incoming_projection_work": -0.0003199034228953789,
+        "omitted_quadratic_work": 0.0011961009522885179,
+        "angular_momentum_z_change": -3.3184473284426095e-05
+      },
+      {
+        "rotating_frame_work": 2.472438949013722e-07,
+        "atmosphere_relative_work": 0.00087623751413156,
+        "incoming_projection_work": -0.000319863438156958,
+        "omitted_quadratic_work": 0.0011961009522885183,
+        "angular_momentum_z_change": -3.31858969068853e-05
+      }
+    ]
+  }
+}

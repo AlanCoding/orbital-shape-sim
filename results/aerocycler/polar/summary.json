@@ -1,0 +1,353 @@
+{
+  "verified_returns": [
+    {
+      "period_days": 27.44133563807251,
+      "period_in_lunar_months": 1.0043802109276045,
+      "earth_orbits_per_return": 1,
+      "atmospheric_banks_per_return": 1,
+      "primary_pass_inclinations_deg": [
+        88.77192035021109,
+        91.13431851977366,
+        88.77192035021163
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 1.22807964978891,
+      "minimum_primary_clearance_km": 99.99999998387248,
+      "minimum_secondary_altitude_km": 376141.9951560615,
+      "maximum_primary_distance_km": 770237.3132346361,
+      "initial_periapsis_latitude_deg": 19.14609189157389,
+      "impulse_local_components_m_s": {
+        "east": 481.452070738146,
+        "north": 0.29372133450543575,
+        "radial_away_from_primary_center": -1.048664738443485e-09,
+        "magnitude": 481.45216033399527
+      },
+      "position_closure_norm": 8.694408534303675e-13,
+      "velocity_closure_norm": 1.9346247770231894e-10,
+      "energy_budget_J_kg": {
+        "orbital_energy_gain_at_bank": 7842.406676302108,
+        "orbital_energy_change_over_coast": -7842.40667407805,
+        "atmosphere_relative_dissipation": 207011.79066997103,
+        "primary_rotation_work": 214854.19734627535
+      },
+      "name": "earth_1_1",
+      "radius_factor": 1.0,
+      "nominal_resonance": "1:1",
+      "max_local_ld": 25.68543100980815
+    },
+    {
+      "period_days": 27.441769769179515,
+      "period_in_lunar_months": 1.0043961005584365,
+      "earth_orbits_per_return": 1,
+      "atmospheric_banks_per_return": 1,
+      "primary_pass_inclinations_deg": [
+        88.81995805419837,
+        90.63697830214119,
+        88.81995805419902
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 1.1800419458016336,
+      "minimum_primary_clearance_km": 99.99999997807109,
+      "minimum_secondary_altitude_km": 369650.7537358658,
+      "maximum_primary_distance_km": 763236.2040000097,
+      "initial_periapsis_latitude_deg": 24.805353235675405,
+      "impulse_local_components_m_s": {
+        "east": 272.4328497245675,
+        "north": -0.3373532195149755,
+        "radial_away_from_primary_center": 1.4716947113576482e-10,
+        "magnitude": 272.4330585964991
+      },
+      "position_closure_norm": 1.0424141803192742e-12,
+      "velocity_closure_norm": 1.0978872136760946e-10,
+      "energy_budget_J_kg": {
+        "orbital_energy_gain_at_bank": 8462.413172805696,
+        "orbital_energy_change_over_coast": -8462.413181687054,
+        "atmosphere_relative_dissipation": 223377.76866179734,
+        "primary_rotation_work": 231840.18183460622
+      },
+      "name": "toy2_1_1",
+      "radius_factor": 2.0,
+      "nominal_resonance": "1:1",
+      "max_local_ld": 9.528151633913929
+    },
+    {
+      "period_days": 27.44140373370321,
+      "period_in_lunar_months": 1.004382703295499,
+      "earth_orbits_per_return": 1,
+      "atmospheric_banks_per_return": 1,
+      "primary_pass_inclinations_deg": [
+        88.91714053286461,
+        90.32450903272164,
+        88.91714053286552
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 1.0828594671353926,
+      "minimum_primary_clearance_km": 99.99999997896464,
+      "minimum_secondary_altitude_km": 356907.0750284658,
+      "maximum_primary_distance_km": 749312.6731584285,
+      "initial_periapsis_latitude_deg": 33.592807492044706,
+      "impulse_local_components_m_s": {
+        "east": 161.5617138031642,
+        "north": 0.39084328612914904,
+        "radial_away_from_primary_center": 4.400772683386403e-11,
+        "magnitude": 161.5621865582719
+      },
+      "position_closure_norm": 8.424553660149114e-13,
+      "velocity_closure_norm": 4.492174328781852e-11,
+      "energy_budget_J_kg": {
+        "orbital_energy_gain_at_bank": 9174.668283343568,
+        "orbital_energy_change_over_coast": -9174.668283695028,
+        "atmosphere_relative_dissipation": 242178.78369850863,
+        "primary_rotation_work": 251353.45198185203
+      },
+      "name": "toy4_1_1",
+      "radius_factor": 4.0,
+      "nominal_resonance": "1:1",
+      "max_local_ld": 3.6725417115442847
+    },
+    {
+      "period_days": 54.52647583022205,
+      "period_in_lunar_months": 1.9957233138286155,
+      "earth_orbits_per_return": 1,
+      "atmospheric_banks_per_return": 1,
+      "primary_pass_inclinations_deg": [
+        86.38853302508703,
+        94.1507625950304,
+        86.38853302508767
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 4.1507625950304,
+      "minimum_primary_clearance_km": 99.99999998199738,
+      "minimum_secondary_altitude_km": 212110.65923477945,
+      "maximum_primary_distance_km": 1201116.655241618,
+      "initial_periapsis_latitude_deg": 8.327232063505285,
+      "impulse_local_components_m_s": {
+        "east": 872.9992563158671,
+        "north": 11.066645343041882,
+        "radial_away_from_primary_center": -9.230990175020937e-11,
+        "magnitude": 873.0693971083889
+      },
+      "position_closure_norm": 2.509283317218074e-12,
+      "velocity_closure_norm": 4.905825468492116e-11,
+      "energy_budget_J_kg": {
+        "orbital_energy_gain_at_bank": 44223.05082192407,
+        "orbital_energy_change_over_coast": -44223.05082192779,
+        "atmosphere_relative_dissipation": 1167332.0853398575,
+        "primary_rotation_work": 1211555.136161783
+      },
+      "name": "toy3_1_2",
+      "radius_factor": 3.0,
+      "nominal_resonance": "1:2",
+      "max_local_ld": 4.8696064338381335
+    },
+    {
+      "period_days": 54.5405588329496,
+      "period_in_lunar_months": 1.9962387657525507,
+      "earth_orbits_per_return": 1,
+      "atmospheric_banks_per_return": 1,
+      "primary_pass_inclinations_deg": [
+        86.38676081633054,
+        92.85392206637421,
+        86.38676081633162
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 3.6132391836694637,
+      "minimum_primary_clearance_km": 99.99999997352866,
+      "minimum_secondary_altitude_km": 225927.89525077722,
+      "maximum_primary_distance_km": 1194630.1698028801,
+      "initial_periapsis_latitude_deg": 8.133151463201159,
+      "impulse_local_components_m_s": {
+        "east": 628.6095101302458,
+        "north": 3.471077718689198,
+        "radial_away_from_primary_center": -1.0535622321609433e-10,
+        "magnitude": 628.6190934156524
+      },
+      "position_closure_norm": 4.041901576679106e-12,
+      "velocity_closure_norm": 4.973233756269374e-11,
+      "energy_budget_J_kg": {
+        "orbital_energy_gain_at_bank": 42423.10461140651,
+        "orbital_energy_change_over_coast": -42423.104611492054,
+        "atmosphere_relative_dissipation": 1119819.87339672,
+        "primary_rotation_work": 1162242.978008127
+      },
+      "name": "toy4_1_2",
+      "radius_factor": 4.0,
+      "nominal_resonance": "1:2",
+      "max_local_ld": 3.1649179556523355
+    },
+    {
+      "period_days": 54.689187357978135,
+      "period_in_lunar_months": 2.0016787177755457,
+      "earth_orbits_per_return": 3,
+      "atmospheric_banks_per_return": 1,
+      "primary_pass_inclinations_deg": [
+        88.94187181683601,
+        90.74917355540767,
+        91.45116816906332,
+        90.07325171034327,
+        88.94187181683536
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 1.4511681690633225,
+      "minimum_primary_clearance_km": 99.99999999999905,
+      "minimum_secondary_altitude_km": 167381.28482277074,
+      "maximum_primary_distance_km": 571801.471487788,
+      "initial_periapsis_latitude_deg": -0.5669834522729704,
+      "impulse_local_components_m_s": {
+        "east": 115.35380324534478,
+        "north": 0.18707567344144896,
+        "radial_away_from_primary_center": 8.404558385023554e-11,
+        "magnitude": 115.35395494075316
+      },
+      "position_closure_norm": 1.0864846774018617e-13,
+      "velocity_closure_norm": 2.3923857399601915e-12,
+      "energy_budget_J_kg": {
+        "orbital_energy_gain_at_bank": 6884.503692845111,
+        "orbital_energy_change_over_coast": -6884.503694254673,
+        "atmosphere_relative_dissipation": 181726.540863463,
+        "primary_rotation_work": 188611.04455630988
+      },
+      "name": "toy35_3_2",
+      "radius_factor": 3.5,
+      "nominal_resonance": "3:2",
+      "max_local_ld": 3.7194698589848803
+    },
+    {
+      "period_days": 54.682111053926874,
+      "period_in_lunar_months": 2.0014197180005593,
+      "earth_orbits_per_return": 3,
+      "atmospheric_banks_per_return": 1,
+      "primary_pass_inclinations_deg": [
+        88.94189831203168,
+        90.72333574716075,
+        91.8536530020885,
+        90.65796172077914,
+        88.94189831203181
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 1.8536530020885067,
+      "minimum_primary_clearance_km": 99.99999999587006,
+      "minimum_secondary_altitude_km": 163011.98777533806,
+      "maximum_primary_distance_km": 569684.645845944,
+      "initial_periapsis_latitude_deg": -0.6970277861005587,
+      "impulse_local_components_m_s": {
+        "east": 163.25574398710268,
+        "north": 1.4715134495891793,
+        "radial_away_from_primary_center": 2.913924174975906e-11,
+        "magnitude": 163.262375630807
+      },
+      "position_closure_norm": 3.4066570160871174e-13,
+      "velocity_closure_norm": 1.7477256235099211e-12,
+      "energy_budget_J_kg": {
+        "orbital_energy_gain_at_bank": 11128.793850762935,
+        "orbital_energy_change_over_coast": -11128.793852020011,
+        "atmosphere_relative_dissipation": 293760.78519412974,
+        "primary_rotation_work": 304889.57904489234
+      },
+      "name": "toy4_3_2",
+      "radius_factor": 4.0,
+      "nominal_resonance": "3:2",
+      "max_local_ld": 3.0539780738073112
+    },
+    {
+      "period_days": 109.19611345070459,
+      "period_in_lunar_months": 3.996686491743843,
+      "earth_orbits_per_return": 1,
+      "atmospheric_banks_per_return": 1,
+      "primary_pass_inclinations_deg": [
+        86.7880120825437,
+        94.21074310515432,
+        86.78801208254701
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 4.210743105154322,
+      "minimum_primary_clearance_km": 99.9999999009458,
+      "minimum_secondary_altitude_km": 266828.8952181163,
+      "maximum_primary_distance_km": 1918530.1952405984,
+      "initial_periapsis_latitude_deg": 5.552546903311807,
+      "impulse_local_components_m_s": {
+        "east": 832.3519459999694,
+        "north": 13.902530709390344,
+        "radial_away_from_primary_center": 5.870606269559382e-10,
+        "magnitude": 832.4680428521335
+      },
+      "position_closure_norm": 1.16955420624872e-11,
+      "velocity_closure_norm": 1.6079880208567598e-10,
+      "energy_budget_J_kg": {
+        "orbital_energy_gain_at_bank": 42413.32424633183,
+        "orbital_energy_change_over_coast": -42413.32425030762,
+        "atmosphere_relative_dissipation": 1119561.706360778,
+        "primary_rotation_work": 1161975.0306071097
+      },
+      "name": "toy3_1_4",
+      "radius_factor": 3.0,
+      "nominal_resonance": "1:4",
+      "max_local_ld": 4.8564895799551095
+    },
+    {
+      "period_days": 109.20483741773282,
+      "period_in_lunar_months": 3.9970057976245594,
+      "earth_orbits_per_return": 1,
+      "atmospheric_banks_per_return": 1,
+      "primary_pass_inclinations_deg": [
+        86.78491668067478,
+        92.98878892465397,
+        86.78491668067805
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 3.215083319325217,
+      "minimum_primary_clearance_km": 99.9999999174938,
+      "minimum_secondary_altitude_km": 278037.2473292219,
+      "maximum_primary_distance_km": 1912049.1140186607,
+      "initial_periapsis_latitude_deg": 4.952870314697574,
+      "impulse_local_components_m_s": {
+        "east": 601.5533226027619,
+        "north": 6.174898103263362,
+        "radial_away_from_primary_center": 3.32905697635489e-10,
+        "magnitude": 601.5850141925148
+      },
+      "position_closure_norm": 1.0529069089859197e-11,
+      "velocity_closure_norm": 8.398408438332924e-11,
+      "energy_budget_J_kg": {
+        "orbital_energy_gain_at_bank": 40856.50635846335,
+        "orbital_energy_change_over_coast": -40856.50636168786,
+        "atmosphere_relative_dissipation": 1078467.221973731,
+        "primary_rotation_work": 1119323.728332194
+      },
+      "name": "toy4_1_4",
+      "radius_factor": 4.0,
+      "nominal_resonance": "1:4",
+      "max_local_ld": 3.1600353263979164
+    }
+  ],
+  "repeated_cycle": {
+    "primitive_nominal_resonance": "1:4",
+    "repeated_nominal_resonance": "2:8",
+    "repetitions": 2,
+    "independent_primitive_family": false,
+    "primary_passes": 2,
+    "atmospheric_banks": 2,
+    "period_days": 218.4096748341869,
+    "position_closure_norm": 1.301791860464187e-12,
+    "velocity_closure_norm": 1.1735837631698753e-11,
+    "periapsis_radii": [
+      0.06662993028095308,
+      0.06662993028093304
+    ],
+    "banks": [
+      {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": 93.70176521123888,
+        "final_angle_deg": 87.47446692467256,
+        "all_segments_passive": true,
+        "maximum_local_ld": 3.1600353263868826,
+        "minimum_local_ld": 3.047775027126713,
+        "integrated_lift_over_drag": 3.100532140976613,
+        "integrated_drag": 0.18056815096316714,
+        "integrated_lift": 0.5598573556980169
+      },
+      {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": 93.70176521121799,
+        "final_angle_deg": 87.47446692467256,
+        "all_segments_passive": true,
+        "maximum_local_ld": 3.1600353263877787,
+        "minimum_local_ld": 3.0477750271280466,
+        "integrated_lift_over_drag": 3.10053214097775,
+        "integrated_drag": 0.1805681509625296,
+        "integrated_lift": 0.5598573556962455
+      }
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "je": 0.0,
+    "excursion_deg": 7.16391,
+    "jd": 0.000110135,
+    "jr": -0.0488665,
+    "period": 12.511852,
+    "min_r": 0.016592431,
+    "status": "verified"
+  },
+  {
+    "je": 0.002,
+    "excursion_deg": 7.16508,
+    "jd": 0.000113371,
+    "jr": -0.0488694,
+    "period": 12.511836,
+    "min_r": 0.01659242,
+    "status": "verified"
+  },
+  {
+    "je": 0.01,
+    "excursion_deg": 7.18181,
+    "jd": 0.000127207,
+    "jr": -0.0488706,
+    "period": 12.5118,
+    "min_r": 0.01659112,
+    "status": "radius/closure failure"
+  },
+  {
+    "je": 0.05,
+    "excursion_deg": 7.27558,
+    "jd": 0.000284953,
+    "jr": -0.0489293,
+    "period": 12.5118,
+    "min_r": 0.01658455,
+    "status": "radius/closure failure"
+  },
+  {
+    "je": 0.1,
+    "excursion_deg": 7.40009,
+    "jd": 0.000690213,
+    "jr": -0.0490804,
+    "period": 12.5118,
+    "min_r": 0.01657665,
+    "status": "radius/closure failure"
+  },
+  {
+    "je": 0.15,
+    "excursion_deg": 7.72867,
+    "jd": 0.00131544,
+    "jr": -0.0492675,
+    "period": 12.5118,
+    "min_r": 0.0165638,
+    "status": "radius/closure failure"
+  },
+  {
+    "je": 0.2,
+    "excursion_deg": 7.83801,
+    "jd": 0.00218155,
+    "jr": -0.0495902,
+    "period": 12.5118,
+    "min_r": 0.01655538,
+    "status": "radius/closure failure"
+  }
+]

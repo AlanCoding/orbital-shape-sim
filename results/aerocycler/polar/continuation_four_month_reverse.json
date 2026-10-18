@@ -1,0 +1,187 @@
+[
+  {
+    "radius_factor": 4.0,
+    "heading_deviation": 1.0,
+    "x": [
+      -1.75581283427224,
+      0.03752221759743639,
+      -0.1617837705914729,
+      -0.08899572609754766
+    ],
+    "residual": [
+      3.2182109145441574e-13,
+      -6.789979827789953e-14,
+      -1.5872358903420802e-13
+    ],
+    "accepted": true,
+    "rejections": [],
+    "period_days": 109.2077655208261,
+    "period_in_lunar_months": 3.997112969113631,
+    "maximum_primary_pass_departure_from_polar_deg": 5.095480885745189,
+    "primary_pass_inclinations_deg": [
+      84.9045191142549,
+      90.99929605266954,
+      84.90451911425481
+    ],
+    "minimum_secondary_altitude_km": 287496.77127994597,
+    "minimum_primary_clearance_km": 99.99999999999372,
+    "position_closure_norm": 2.4333372342902788e-14,
+    "velocity_closure_norm": 7.946608227400864e-13,
+    "impulse_local_components_m_s": {
+      "east": 589.0483617617903,
+      "north": -13.838644505043627,
+      "radial_away_from_primary_center": 2.1344979857464307e-10,
+      "magnitude": 589.2108965183739
+    },
+    "maximum_local_ld": 3.109294420951609,
+    "candidate_file": "follow_four_month_reverse_r4_d1.json"
+  },
+  {
+    "radius_factor": 4.0,
+    "heading_deviation": 2.0,
+    "x": [
+      -1.7592659712021141,
+      0.06203751093873054,
+      -0.16126790865117566,
+      -0.07262886147655395
+    ],
+    "residual": [
+      -1.3856713818039292e-12,
+      3.0888159768750003e-13,
+      6.632466875496514e-14
+    ],
+    "accepted": true,
+    "rejections": [],
+    "period_days": 109.20652352665931,
+    "period_in_lunar_months": 3.9970675108903264,
+    "maximum_primary_pass_departure_from_polar_deg": 4.1533079849832575,
+    "primary_pass_inclinations_deg": [
+      85.84669201501679,
+      91.99615102250425,
+      85.84669201501674
+    ],
+    "minimum_secondary_altitude_km": 283015.7022449921,
+    "minimum_primary_clearance_km": 99.99999999898014,
+    "position_closure_norm": 9.469639178486552e-14,
+    "velocity_closure_norm": 9.31474874716177e-13,
+    "impulse_local_components_m_s": {
+      "east": 595.2125326079608,
+      "north": -3.9232202682955046,
+      "radial_away_from_primary_center": 1.3435914635031554e-10,
+      "magnitude": 595.2254620149045
+    },
+    "maximum_local_ld": 3.133260961455002,
+    "candidate_file": "follow_four_month_reverse_r4_d2.json"
+  },
+  {
+    "radius_factor": 4.0,
+    "heading_deviation": 3.0,
+    "x": [
+      -1.7656155304370098,
+      0.08644387100872995,
+      -0.16074058918524128,
+      -0.05632433877823582
+    ],
+    "residual": [
+      -1.3311536756712905e-12,
+      2.984675181970247e-13,
+      6.235430094922139e-15
+    ],
+    "accepted": true,
+    "rejections": [],
+    "period_days": 109.204837418918,
+    "period_in_lunar_months": 3.997005797667938,
+    "maximum_primary_pass_departure_from_polar_deg": 3.2150842183560826,
+    "primary_pass_inclinations_deg": [
+      86.78491578164402,
+      92.98878797320229,
+      86.78491578164392
+    ],
+    "minimum_secondary_altitude_km": 278037.25981592055,
+    "minimum_primary_clearance_km": 99.9999999991135,
+    "position_closure_norm": 9.089777701093696e-14,
+    "velocity_closure_norm": 1.210791458915235e-12,
+    "impulse_local_components_m_s": {
+      "east": 601.5533163967325,
+      "north": 6.174888306760468,
+      "radial_away_from_primary_center": 2.6934916776352834e-10,
+      "magnitude": 601.5850078862574
+    },
+    "maximum_local_ld": 3.160035299294534,
+    "candidate_file": "follow_four_month_reverse_r4_d3.json"
+  },
+  {
+    "radius_factor": 4.0,
+    "heading_deviation": 4.0,
+    "x": [
+      -1.775069572050824,
+      0.11067303094977504,
+      -0.16019515242882648,
+      -0.04010070444420706
+    ],
+    "residual": [
+      6.246885582361663e-13,
+      -1.1580456393408632e-13,
+      -6.977433258618511e-14
+    ],
+    "accepted": true,
+    "rejections": [],
+    "period_days": 109.2026403710645,
+    "period_in_lunar_months": 3.9969253835286405,
+    "maximum_primary_pass_departure_from_polar_deg": 3.975488484870212,
+    "primary_pass_inclinations_deg": [
+      87.71646310003572,
+      93.97548848487021,
+      87.71646310003558
+    ],
+    "minimum_secondary_altitude_km": 272508.45991342864,
+    "minimum_primary_clearance_km": 99.99999999946559,
+    "position_closure_norm": 4.258663600869165e-14,
+    "velocity_closure_norm": 1.096434860475116e-12,
+    "impulse_local_components_m_s": {
+      "east": 608.1692661954067,
+      "north": 16.46673847615558,
+      "radial_away_from_primary_center": 3.5874287793406757e-10,
+      "magnitude": 608.3921513470581
+    },
+    "maximum_local_ld": 3.1896105570303726,
+    "candidate_file": "follow_four_month_reverse_r4_d4.json"
+  },
+  {
+    "radius_factor": 4.0,
+    "heading_deviation": 5.0,
+    "x": [
+      -1.787861059750729,
+      0.13467621457077728,
+      -0.15962299984456244,
+      -0.023980834368195897
+    ],
+    "residual": [
+      1.8026511246025638e-12,
+      -3.8344640683930383e-13,
+      3.858416451221132e-14
+    ],
+    "accepted": true,
+    "rejections": [],
+    "period_days": 109.19985139166857,
+    "period_in_lunar_months": 3.9968233041054333,
+    "maximum_primary_pass_departure_from_polar_deg": 4.954610573762778,
+    "primary_pass_inclinations_deg": [
+      88.63844352575653,
+      94.95461057376278,
+      88.63844352575606
+    ],
+    "minimum_secondary_altitude_km": 266359.248750301,
+    "minimum_primary_clearance_km": 99.99999999978033,
+    "position_closure_norm": 1.228246628900757e-13,
+    "velocity_closure_norm": 4.0419326159838475e-12,
+    "impulse_local_components_m_s": {
+      "east": 615.1825765272431,
+      "north": 26.969602447197904,
+      "radial_away_from_primary_center": -1.5392730178315816e-10,
+      "magnitude": 615.7734663972274
+    },
+    "maximum_local_ld": 3.22197715645981,
+    "candidate_file": "follow_four_month_reverse_r4_d5.json"
+  }
+]

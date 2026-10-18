@@ -1,0 +1,1907 @@
+{
+  "arguments": {
+    "families": [
+      "3:2",
+      "4:2"
+    ],
+    "radii": [
+      1.0,
+      2.0,
+      4.0
+    ],
+    "starts": 6,
+    "deviation_limit": 5.0,
+    "max_nfev": 50,
+    "exact_period": false,
+    "tag": "two_month"
+  },
+  "trials": [
+    {
+      "family": "3:2",
+      "radius_factor": 1.0,
+      "start_longitude": -3.141592653589793,
+      "x": [
+        -3.127562104733758,
+        0.00035224678064216274,
+        -0.6429387565293214,
+        -0.06970418831459273
+      ],
+      "residual": [
+        9.419378082245603e-05,
+        -0.00023360012368173422,
+        0.007543015421961674
+      ],
+      "nfev": 50,
+      "runtime_seconds": 10.506233215914108,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "bank requires nonpassive aerodynamic segments"
+      ],
+      "period_days": 54.735237534139316,
+      "period_in_lunar_months": 2.0033642000806364,
+      "position_closure_norm": 0.00012719021076849988,
+      "velocity_closure_norm": 0.08120525853165861,
+      "primary_pass_inclinations_deg": [
+        86.006244443359,
+        87.52198977467397,
+        87.26047621212666,
+        85.41243840379452,
+        86.00637972237212
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 4.587561596205475,
+      "periapsis_radii": [
+        0.01762761741316138,
+        0.017522963120105473,
+        0.016851584525123406
+      ],
+      "minimum_primary_clearance_km": 99.6127914574375,
+      "minimum_secondary_altitude_km": 171591.3552085691,
+      "impulse_local_components_m_s": {
+        "east": -113.90836870856928,
+        "north": 8.367519244538704,
+        "radial_away_from_primary_center": -1.1586049305986816e-09,
+        "magnitude": 114.21528724367458
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 0.5940294860709656
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 1.0,
+      "start_longitude": -2.0943951023931957,
+      "x": [
+        -2.3611262307249636,
+        0.13952671239454958,
+        -0.5588214500175384,
+        0.06451130248920434
+      ],
+      "residual": [
+        7.538967812869281e-13,
+        3.600670318052532e-13,
+        4.4370181263480384e-13
+      ],
+      "nfev": 25,
+      "runtime_seconds": 11.16444784507621,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 54.29682980864795,
+      "period_in_lunar_months": 1.9873180407533768,
+      "position_closure_norm": 1.594223051889587e-14,
+      "velocity_closure_norm": 2.5041303941129296e-11,
+      "primary_pass_inclinations_deg": [
+        93.66025599839111,
+        119.88775649993765,
+        116.89018762404473,
+        116.91778586674998,
+        93.66025599839068
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 29.88775649993765,
+      "periapsis_radii": [
+        0.02656484227920805,
+        0.017788349512154283,
+        0.016852591831413473
+      ],
+      "minimum_primary_clearance_km": 99.99999999533925,
+      "minimum_secondary_altitude_km": 41139.412071373925,
+      "impulse_local_components_m_s": {
+        "east": 4326.4238928516315,
+        "north": 1202.5605192187036,
+        "radial_away_from_primary_center": -2.8764903762228657e-09,
+        "magnitude": 4490.444911478263
+      },
+      "maximum_local_ld": 28.04133410050547,
+      "bank_angle_change_deg": -23.497768530166553
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 1.0,
+      "start_longitude": -1.0471975511965979,
+      "x": [
+        -1.1349583513231376,
+        0.012241718209747248,
+        -0.6482226879219756,
+        -0.06025839594637219
+      ],
+      "residual": [
+        -9.45636327995786e-05,
+        0.0001991829716752529,
+        0.0072508087480489085
+      ],
+      "nfev": 50,
+      "runtime_seconds": 10.917548296041787,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 54.73605186009433,
+      "period_in_lunar_months": 2.00339400522151,
+      "position_closure_norm": 0.00012225140491502835,
+      "velocity_closure_norm": 0.07796597574231434,
+      "primary_pass_inclinations_deg": [
+        86.54770724147394,
+        86.34837860148329,
+        84.37156074230549,
+        85.82226109189476,
+        86.54812962191855
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 5.6284392576945095,
+      "periapsis_radii": [
+        0.01675118317401207,
+        0.01616380772778945,
+        0.01685081553307211
+      ],
+      "minimum_primary_clearance_km": -164.7686094377355,
+      "minimum_secondary_altitude_km": 169476.81905084001,
+      "impulse_local_components_m_s": {
+        "east": -139.30894268714852,
+        "north": 9.072378427923654,
+        "radial_away_from_primary_center": -2.268287434340118e-09,
+        "magnitude": 139.60404565395189
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 0.7260827045667639
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 1.0,
+      "start_longitude": 0.0,
+      "x": [
+        -7.4157796638042,
+        0.014140863641760594,
+        -0.6484953751074594,
+        -0.08721543950978161
+      ],
+      "residual": [
+        -7.501126515916991e-05,
+        0.00016537076969565267,
+        0.0068556278254155115
+      ],
+      "nfev": 50,
+      "runtime_seconds": 10.121344878920354,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 54.73286182676064,
+      "period_in_lunar_months": 2.003277246824805,
+      "position_closure_norm": 0.00011557561916057821,
+      "velocity_closure_norm": 0.07356586318432333,
+      "primary_pass_inclinations_deg": [
+        85.00342428759872,
+        84.74642680739541,
+        82.61767614122199,
+        84.11745178858298,
+        85.004046879018
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 7.382323858778008,
+      "periapsis_radii": [
+        0.016718441524196145,
+        0.016207180090334446,
+        0.01685156213454512
+      ],
+      "minimum_primary_clearance_km": -148.09627327543853,
+      "minimum_secondary_altitude_km": 169581.81677352494,
+      "impulse_local_components_m_s": {
+        "east": -169.773905908425,
+        "north": 15.902478388671756,
+        "radial_away_from_primary_center": -1.3057096222296657e-09,
+        "magnitude": 170.51706057255655
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 0.8869239461427156
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 1.0,
+      "start_longitude": 1.0471975511965974,
+      "x": [
+        1.1462402844336477,
+        -0.012341413814487907,
+        -0.647162487293945,
+        -0.06597410108689225
+      ],
+      "residual": [
+        1.2458044635864044e-05,
+        4.6719571240992406e-05,
+        0.0072615744423338196
+      ],
+      "nfev": 50,
+      "runtime_seconds": 10.869635308044963,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 54.736188607850316,
+      "period_in_lunar_months": 2.003399010325555,
+      "position_closure_norm": 0.00012237906301257925,
+      "velocity_closure_norm": 0.07802708564994577,
+      "primary_pass_inclinations_deg": [
+        86.2202507349269,
+        84.49708911119365,
+        86.22528023862087,
+        86.20743192360533,
+        86.22000772385155
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 5.502910888806355,
+      "periapsis_radii": [
+        0.01623162866706642,
+        0.016888636678667645,
+        0.016852329780111985
+      ],
+      "minimum_primary_clearance_km": -138.69824037966754,
+      "minimum_secondary_altitude_km": 175188.52127966942,
+      "impulse_local_components_m_s": {
+        "east": -2.4131076067162684,
+        "north": 0.15591517546750736,
+        "radial_away_from_primary_center": -2.1072375045506778e-09,
+        "magnitude": 2.4181393391475563
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 0.012577263073978884
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 1.0,
+      "start_longitude": 2.094395102393195,
+      "x": [
+        2.31003220998335,
+        -0.14124140901115692,
+        -0.6299876779126307,
+        0.049398736333735635
+      ],
+      "residual": [
+        -0.002303780499065327,
+        0.005994804726237217,
+        0.03167234850777841
+      ],
+      "nfev": 50,
+      "runtime_seconds": 10.036873369012028,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 54.23510529793873,
+      "period_in_lunar_months": 1.9850588621950447,
+      "position_closure_norm": 0.0005446237133887267,
+      "velocity_closure_norm": 0.3469803727210917,
+      "primary_pass_inclinations_deg": [
+        92.80213199148042,
+        93.28673808775612,
+        100.17878829533257,
+        70.70338915467444,
+        92.812876043685
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 19.29661084532556,
+      "periapsis_radii": [
+        0.017677530053999264,
+        0.026347744219237156,
+        0.016886031369157492
+      ],
+      "minimum_primary_clearance_km": 100.00000000000038,
+      "minimum_secondary_altitude_km": 40942.573515403856,
+      "impulse_local_components_m_s": {
+        "east": -4204.865307945305,
+        "north": 606.4301391715761,
+        "radial_away_from_primary_center": -2.815338648757722e-09,
+        "magnitude": 4248.370248890464
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 22.251329447074184
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 2.0,
+      "start_longitude": -3.141592653589793,
+      "x": [
+        -3.1333340557910834,
+        -0.00029908801849133767,
+        -0.6399318891569868,
+        -0.055405840326590725
+      ],
+      "residual": [
+        3.093296935931209e-05,
+        -0.00011984418843432709,
+        0.004599292253448962
+      ],
+      "nfev": 50,
+      "runtime_seconds": 9.547483569011092,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "bank requires nonpassive aerodynamic segments"
+      ],
+      "period_days": 54.70968671741263,
+      "period_in_lunar_months": 2.002429014744478,
+      "position_closure_norm": 0.00015387919395413554,
+      "velocity_closure_norm": 0.034958561947380076,
+      "primary_pass_inclinations_deg": [
+        86.82547933104232,
+        88.51802899345343,
+        88.41649893033019,
+        86.62820231503817,
+        86.82551877344515
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 3.371797684961834,
+      "periapsis_radii": [
+        0.03444775711566725,
+        0.034347341781394924,
+        0.0334443445457914
+      ],
+      "minimum_primary_clearance_km": 99.73344340221435,
+      "minimum_secondary_altitude_km": 177341.6930529567,
+      "impulse_local_components_m_s": {
+        "east": -26.750565494539146,
+        "north": 1.4119870257342308,
+        "radial_away_from_primary_center": -1.7813833976105675e-10,
+        "magnitude": 26.787804345232743
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 0.1973678633608813
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 2.0,
+      "start_longitude": -2.0943951023931957,
+      "x": [
+        -2.311587983975744,
+        0.18146355492139782,
+        -0.5720568799966762,
+        0.05157967709524121
+      ],
+      "residual": [
+        -1.2365304440810593e-13,
+        4.0768159775491306e-14,
+        -1.19036802397904e-13
+      ],
+      "nfev": 25,
+      "runtime_seconds": 10.550608222954907,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 54.36112447732491,
+      "period_in_lunar_months": 1.9896712896527378,
+      "position_closure_norm": 5.9001709561124876e-15,
+      "velocity_closure_norm": 4.175617982511443e-12,
+      "primary_pass_inclinations_deg": [
+        92.90673162597604,
+        109.49157879535096,
+        106.84367715262779,
+        106.83364216639309,
+        92.90673162597595
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 19.49157879535096,
+      "periapsis_radii": [
+        0.04557900444755504,
+        0.035001977630238816,
+        0.03344503798127055
+      ],
+      "minimum_primary_clearance_km": 99.99999999999905,
+      "minimum_secondary_altitude_km": 47207.09986346303,
+      "impulse_local_components_m_s": {
+        "east": 1888.9207427145627,
+        "north": 342.634983301258,
+        "radial_away_from_primary_center": 3.885804100089798e-10,
+        "magnitude": 1919.7448538905342
+      },
+      "maximum_local_ld": 9.498222304312575,
+      "bank_angle_change_deg": -14.157308830924507
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 2.0,
+      "start_longitude": -1.0471975511965979,
+      "x": [
+        -1.140430005126493,
+        0.013076765852318458,
+        -0.6476764709418827,
+        -0.0549533696085287
+      ],
+      "residual": [
+        -3.6608157798695964e-05,
+        0.00010180437878657634,
+        0.00421372084466251
+      ],
+      "nfev": 50,
+      "runtime_seconds": 9.660654566949233,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 54.70749174948615,
+      "period_in_lunar_months": 2.0023486767325807,
+      "position_closure_norm": 0.0001409744955315252,
+      "velocity_closure_norm": 0.03199460324617355,
+      "primary_pass_inclinations_deg": [
+        86.85167332666529,
+        86.77074622809539,
+        84.8860407540894,
+        86.62662824854971,
+        86.85190780211268
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 5.113959245910607,
+      "periapsis_radii": [
+        0.03335101618889503,
+        0.032591168471694895,
+        0.03344357301836553
+      ],
+      "minimum_primary_clearance_km": -228.22743948048173,
+      "minimum_secondary_altitude_km": 177297.0672986768,
+      "impulse_local_components_m_s": {
+        "east": -30.542502923073926,
+        "north": 1.6057551332427666,
+        "radial_away_from_primary_center": -2.4426259189507533e-10,
+        "magnitude": 30.584684637149927
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 0.22536974606455829
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 2.0,
+      "start_longitude": 0.0,
+      "x": [
+        1.1518598495758272,
+        -0.012665686009920584,
+        -0.6473559456260458,
+        0.005051098323130211
+      ],
+      "residual": [
+        3.227893721284518e-05,
+        0.00012028656593021334,
+        0.005585391071048371
+      ],
+      "nfev": 50,
+      "runtime_seconds": 9.438469054060988,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments"
+      ],
+      "period_days": 54.716817003648586,
+      "period_in_lunar_months": 2.002689990321181,
+      "position_closure_norm": 0.00018685004964506642,
+      "velocity_closure_norm": 0.04245955835186639,
+      "primary_pass_inclinations_deg": [
+        90.28938340268682,
+        88.62869250827406,
+        90.21063704967194,
+        90.15386994738294,
+        90.28935960714685
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 1.3713074917259434,
+      "periapsis_radii": [
+        0.03244127504822538,
+        0.033557953432694416,
+        0.033447307833105386
+      ],
+      "minimum_primary_clearance_km": -285.84647146216315,
+      "minimum_secondary_altitude_km": 178038.29698749864,
+      "impulse_local_components_m_s": {
+        "east": -18.390587669918354,
+        "north": -0.15205959442546058,
+        "radial_away_from_primary_center": -6.963050137240528e-10,
+        "magnitude": 18.391216299233985
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 0.13549074915600556
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 2.0,
+      "start_longitude": 1.0471975511965974,
+      "x": [
+        1.1534660081729609,
+        -0.011319635241439781,
+        -0.6474962447290776,
+        -0.05197451269839545
+      ],
+      "residual": [
+        2.6770037044215907e-05,
+        9.15292552872556e-05,
+        0.004320397486296406
+      ],
+      "nfev": 50,
+      "runtime_seconds": 9.836200071964413,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments"
+      ],
+      "period_days": 54.70830069242665,
+      "period_in_lunar_months": 2.002378284849762,
+      "position_closure_norm": 0.00014453105387590912,
+      "velocity_closure_norm": 0.032804885983556735,
+      "primary_pass_inclinations_deg": [
+        87.02227073668308,
+        85.17500916972928,
+        86.93213514335717,
+        86.86029883926062,
+        87.02212190536926
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 4.824990830270721,
+      "periapsis_radii": [
+        0.032677563535513765,
+        0.033561942178765486,
+        0.033446875778669845
+      ],
+      "minimum_primary_clearance_km": -195.01717694850817,
+      "minimum_secondary_altitude_km": 177803.48455062174,
+      "impulse_local_components_m_s": {
+        "east": -21.939427772791547,
+        "north": 1.0757243082596546,
+        "radial_away_from_primary_center": -1.8138256361647285e-10,
+        "magnitude": 21.965784160482816
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 0.16186504712119643
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 2.0,
+      "start_longitude": 2.094395102393195,
+      "x": [
+        2.297152251647673,
+        -0.20068541218777722,
+        -0.6345066178741149,
+        0.029583918070310664
+      ],
+      "residual": [
+        -0.002574137346245463,
+        0.004112382355950056,
+        0.014262625830479695
+      ],
+      "nfev": 50,
+      "runtime_seconds": 9.409052129951306,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 54.16139920200305,
+      "period_in_lunar_months": 1.9823611456859467,
+      "position_closure_norm": 0.0005038563152441752,
+      "velocity_closure_norm": 0.11365429195428123,
+      "primary_pass_inclinations_deg": [
+        91.66100499103621,
+        92.01443625196664,
+        96.22021381120776,
+        70.72162884637876,
+        91.66442867305231
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 19.278371153621237,
+      "periapsis_radii": [
+        0.035026100202161646,
+        0.04446689951880098,
+        0.03351047162967733
+      ],
+      "minimum_primary_clearance_km": 99.99999999999905,
+      "minimum_secondary_altitude_km": 34136.62590800566,
+      "impulse_local_components_m_s": {
+        "east": -2844.456859873231,
+        "north": 436.62994419114654,
+        "radial_away_from_primary_center": 3.9676465525393746e-10,
+        "magnitude": 2877.7735379706733
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 21.337557368951934
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 4.0,
+      "start_longitude": -3.141592653589793,
+      "x": [
+        -3.295036098512896,
+        -0.012165427184946415,
+        -0.6321015604074685,
+        -0.018468672274789787
+      ],
+      "residual": [
+        -9.909454854684913e-11,
+        -2.457259593566853e-10,
+        -1.7010739831723794e-11
+      ],
+      "nfev": 25,
+      "runtime_seconds": 7.182271293946542,
+      "accepted_idealized_return": true,
+      "rejection_reasons": [],
+      "period_days": 54.6821110617764,
+      "period_in_lunar_months": 2.0014197182878597,
+      "position_closure_norm": 1.769025802410842e-11,
+      "velocity_closure_norm": 1.910634868146028e-10,
+      "primary_pass_inclinations_deg": [
+        88.94190133721774,
+        90.72333869359858,
+        91.85365566423036,
+        90.65796441404706,
+        88.94190133715138
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 1.8536556642303594,
+      "periapsis_radii": [
+        0.06674336105674251,
+        0.06951210935905773,
+        0.06662993028499346
+      ],
+      "minimum_primary_clearance_km": 99.99999999999905,
+      "minimum_secondary_altitude_km": 163011.9985625574,
+      "impulse_local_components_m_s": {
+        "east": 163.25571233445746,
+        "north": 1.4715213118467887,
+        "radial_away_from_primary_center": 6.689995214276865e-11,
+        "magnitude": 163.2623440503117
+      },
+      "maximum_local_ld": 3.053978125746299,
+      "bank_angle_change_deg": -1.7162650384229892,
+      "validated_candidate_file": "candidate_3_2_r4_two_month_0.json"
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 4.0,
+      "start_longitude": -2.0943951023931957,
+      "x": [
+        -2.167742822086078,
+        0.20527649954827418,
+        -0.5981912671906006,
+        0.02598351262668625
+      ],
+      "residual": [
+        -1.0775448048794886e-12,
+        -1.6784371914799186e-12,
+        -6.613929814003467e-12
+      ],
+      "nfev": 25,
+      "runtime_seconds": 9.78331895696465,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 54.47048096143556,
+      "period_in_lunar_months": 1.9936738458703356,
+      "position_closure_norm": 4.602885178241438e-13,
+      "velocity_closure_norm": 3.686280421147299e-11,
+      "primary_pass_inclinations_deg": [
+        91.45748207543376,
+        99.67604211593435,
+        97.56611035730181,
+        97.80493600105568,
+        91.45748207543402
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 9.67604211593435,
+      "periapsis_radii": [
+        0.08112741046633822,
+        0.06896686527497835,
+        0.06662993028099758
+      ],
+      "minimum_primary_clearance_km": 99.99999999999905,
+      "minimum_secondary_altitude_km": 66271.07725821316,
+      "impulse_local_components_m_s": {
+        "east": 614.2402663621992,
+        "north": 58.365104754765696,
+        "radial_away_from_primary_center": -1.8211220000526338e-10,
+        "magnitude": 617.0069612846684
+      },
+      "maximum_local_ld": 3.287457159131891,
+      "bank_angle_change_deg": -6.478114382883888
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 4.0,
+      "start_longitude": -1.0471975511965979,
+      "x": [
+        -1.0070018859582917,
+        0.04218622105278641,
+        -0.6531875082312834,
+        -0.004723303099968661
+      ],
+      "residual": [
+        -4.887327504880101e-13,
+        -4.80297346100725e-13,
+        -2.99756260533971e-13
+      ],
+      "nfev": 25,
+      "runtime_seconds": 9.16222796193324,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments"
+      ],
+      "period_days": 54.67706348183721,
+      "period_in_lunar_months": 2.0012349718356144,
+      "position_closure_norm": 4.983451363935733e-14,
+      "velocity_closure_norm": 6.311876415554464e-12,
+      "primary_pass_inclinations_deg": [
+        89.72961544596068,
+        88.77611801283685,
+        86.87898170302441,
+        88.11222678894873,
+        89.72961544595975
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 3.121018296975592,
+      "periapsis_radii": [
+        0.06386098500637488,
+        0.06395645538832646,
+        0.06662993028096612
+      ],
+      "minimum_primary_clearance_km": -964.3825635494943,
+      "minimum_secondary_altitude_km": 162098.25506021976,
+      "impulse_local_components_m_s": {
+        "east": -153.9394715575474,
+        "north": 0.9775077732945106,
+        "radial_away_from_primary_center": -8.660915160788122e-11,
+        "magnitude": 153.94257508845237
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 1.619211091796501
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 4.0,
+      "start_longitude": 0.0,
+      "x": [
+        -0.3545528113524414,
+        -0.18186602761855086,
+        -0.6950690500502383,
+        0.07877606378102273
+      ],
+      "residual": [
+        -1.6349374773074079e-09,
+        2.011725850706066e-09,
+        6.943094133258605e-10
+      ],
+      "nfev": 25,
+      "runtime_seconds": 12.559792269021273,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 54.35015643500781,
+      "period_in_lunar_months": 1.9892698483817586,
+      "position_closure_norm": 1.7881327067324997e-10,
+      "velocity_closure_norm": 6.628460915872075e-09,
+      "primary_pass_inclinations_deg": [
+        94.43894777119378,
+        81.69464243797395,
+        81.56724345368663,
+        85.29003628478627,
+        94.43894777383206
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 8.432756546313371,
+      "periapsis_radii": [
+        0.05476569834021119,
+        0.05703483964293826,
+        0.0666299301263471
+      ],
+      "minimum_primary_clearance_km": -4460.610758022818,
+      "minimum_secondary_altitude_km": 47189.7728407679,
+      "impulse_local_components_m_s": {
+        "east": -883.0685051361173,
+        "north": -8.714936313485113,
+        "radial_away_from_primary_center": 8.161171024983801e-12,
+        "magnitude": 883.111507612875
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 9.302937532949827
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 4.0,
+      "start_longitude": 1.0471975511965974,
+      "x": [
+        1.0374853005538947,
+        -0.03666771435803952,
+        -0.6438591985126697,
+        0.02729395591793235
+      ],
+      "residual": [
+        -2.5150001969498064e-13,
+        -4.733199128421064e-13,
+        3.5472958264431795e-15
+      ],
+      "nfev": 25,
+      "runtime_seconds": 8.232962595997378,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage"
+      ],
+      "period_days": 54.68691833757734,
+      "period_in_lunar_months": 2.0015956693693453,
+      "position_closure_norm": 3.571367887347253e-14,
+      "velocity_closure_norm": 3.160885495967471e-12,
+      "primary_pass_inclinations_deg": [
+        91.56277703692345,
+        90.35723890752146,
+        92.15099059677183,
+        92.8350458895208,
+        91.56277703692339
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 2.8350458895207993,
+      "periapsis_radii": [
+        0.06403341164017881,
+        0.06442792303966054,
+        0.06662993028092168
+      ],
+      "minimum_primary_clearance_km": -898.1017655152639,
+      "minimum_secondary_altitude_km": 163127.4634404119,
+      "impulse_local_components_m_s": {
+        "east": 120.9143087280117,
+        "north": 6.158835519214664,
+        "radial_away_from_primary_center": -1.602421969748527e-10,
+        "magnitude": 121.07105892873683
+      },
+      "maximum_local_ld": 3.099312819855768,
+      "bank_angle_change_deg": -1.2725150161497538
+    },
+    {
+      "family": "3:2",
+      "radius_factor": 4.0,
+      "start_longitude": 2.094395102393195,
+      "x": [
+        2.1722525046319117,
+        -0.21988087613601473,
+        -0.6378811067876708,
+        0.03947110555101883
+      ],
+      "residual": [
+        4.821718804090105e-14,
+        -6.244282062489043e-13,
+        2.925054576887275e-13
+      ],
+      "nfev": 25,
+      "runtime_seconds": 10.227265545981936,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 54.414175566072174,
+      "period_in_lunar_months": 1.9916130123301132,
+      "position_closure_norm": 4.6056414492722847e-14,
+      "velocity_closure_norm": 1.1080201315857384e-11,
+      "primary_pass_inclinations_deg": [
+        92.20705066907453,
+        92.05779287350902,
+        94.54759647810963,
+        84.63830466098177,
+        92.20705066907358
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 5.361695339018226,
+      "periapsis_radii": [
+        0.06913152628559499,
+        0.08028973242456584,
+        0.06662993028091782
+      ],
+      "minimum_primary_clearance_km": 99.99999998481138,
+      "minimum_secondary_altitude_km": 59360.85040219716,
+      "impulse_local_components_m_s": {
+        "east": -737.7871233211937,
+        "north": 11.838188412666305,
+        "radial_away_from_primary_center": -2.5653688102111646e-11,
+        "magnitude": 737.8820922365958
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 7.75856836593816
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 1.0,
+      "start_longitude": -3.141592653589793,
+      "x": [
+        -3.0984055323340476,
+        0.1784274994580363,
+        -0.8359803674601959,
+        -0.07665746369818238
+      ],
+      "residual": [
+        -8.959472398035803e-13,
+        -6.162918330436005e-12,
+        -3.4169311380146884e-13
+      ],
+      "nfev": 25,
+      "runtime_seconds": 15.533351514022797,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 55.06945364126137,
+      "period_in_lunar_months": 2.0155968424196966,
+      "position_closure_norm": 1.051107892642175e-13,
+      "velocity_closure_norm": 4.7537321118457255e-11,
+      "primary_pass_inclinations_deg": [
+        85.67771427346722,
+        83.62080313247981,
+        79.69984706145542,
+        56.640077119531014,
+        52.89788727737279,
+        85.67771427346632
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 37.10211272262721,
+      "periapsis_radii": [
+        0.016746543886810728,
+        0.016806854476077025,
+        0.016340676711253416,
+        0.016852591831443834
+      ],
+      "minimum_primary_clearance_km": -96.78017219418672,
+      "minimum_secondary_altitude_km": 56897.90779102798,
+      "impulse_local_components_m_s": {
+        "east": -5905.256857949004,
+        "north": 2269.100463781374,
+        "radial_away_from_primary_center": -2.372662625353188e-09,
+        "magnitude": 6326.205456123488
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 33.430631179597256
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 1.0,
+      "start_longitude": -2.0943951023931957,
+      "x": [
+        -1.689684477814791,
+        0.031333347676348024,
+        -0.7661349816360172,
+        0.0298312102121299
+      ],
+      "residual": [
+        -0.0003255667719440386,
+        0.00032488239182841555,
+        -0.03600346779250798
+      ],
+      "nfev": 50,
+      "runtime_seconds": 11.330666709924117,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage"
+      ],
+      "period_days": 54.421785293978616,
+      "period_in_lunar_months": 1.9918915359493923,
+      "position_closure_norm": 0.0006068012548215161,
+      "velocity_closure_norm": 0.3871461282995969,
+      "primary_pass_inclinations_deg": [
+        91.70836323353997,
+        93.47899927714613,
+        93.0126099056758,
+        94.55060579097454,
+        94.1513334414336,
+        91.70924390043193
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 4.550605790974544,
+      "periapsis_radii": [
+        0.016068037048624098,
+        0.016031643398210883,
+        0.016805522539728335,
+        0.016839719476849594
+      ],
+      "minimum_primary_clearance_km": -215.57257772773644,
+      "minimum_secondary_altitude_km": 88264.69707870403,
+      "impulse_local_components_m_s": {
+        "east": 468.56958059278685,
+        "north": 24.719411010378302,
+        "radial_away_from_primary_center": -8.109570708414354e-10,
+        "magnitude": 469.22116441780435
+      },
+      "maximum_local_ld": 24.349974138404438,
+      "bank_angle_change_deg": -2.4419209982464594
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 1.0,
+      "start_longitude": -1.0471975511965979,
+      "x": [
+        -1.698436613262694,
+        0.033016564700554,
+        -0.7652751446258896,
+        0.0095701321516345
+      ],
+      "residual": [
+        -0.000315634772029682,
+        0.00030587615921639534,
+        -0.03610354870529236
+      ],
+      "nfev": 50,
+      "runtime_seconds": 11.960927540087141,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage"
+      ],
+      "period_days": 54.41693246793824,
+      "period_in_lunar_months": 1.9917139176837835,
+      "position_closure_norm": 0.0006084834563721307,
+      "velocity_closure_norm": 0.3884639687739558,
+      "primary_pass_inclinations_deg": [
+        90.5480293351976,
+        92.53797942135895,
+        91.99419695803921,
+        93.84698400617128,
+        93.38812684537768,
+        90.54838568413003
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 3.846984006171283,
+      "periapsis_radii": [
+        0.016043923421997182,
+        0.016007988262288216,
+        0.01680720336611347,
+        0.016839053173848494
+      ],
+      "minimum_primary_clearance_km": -224.6656119764094,
+      "minimum_secondary_altitude_km": 87829.85359923726,
+      "impulse_local_components_m_s": {
+        "east": 545.2678581702546,
+        "north": 19.592326969527193,
+        "radial_away_from_primary_center": 2.001361574869541e-09,
+        "magnitude": 545.61973610717
+      },
+      "maximum_local_ld": 24.31549877350377,
+      "bank_angle_change_deg": -2.8396021795484785
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 1.0,
+      "start_longitude": 0.0,
+      "x": [
+        0.10927950291031589,
+        0.20482119017211364,
+        -0.8307459675584525,
+        -0.07658269887337914
+      ],
+      "residual": [
+        -2.2737625741324023e-10,
+        -1.9693197483679475e-10,
+        3.178732128221645e-09
+      ],
+      "nfev": 25,
+      "runtime_seconds": 23.377622272004373,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 55.0413004381801,
+      "period_in_lunar_months": 2.0145664071514577,
+      "position_closure_norm": 5.3809193864386704e-11,
+      "velocity_closure_norm": 3.383639580389414e-08,
+      "primary_pass_inclinations_deg": [
+        85.70402661667222,
+        82.20844791596407,
+        71.55426313217902,
+        67.29433264925582,
+        58.44422884607944,
+        85.70402661950399
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 31.55577115392056,
+      "periapsis_radii": [
+        0.016629924651573504,
+        0.015983282992702737,
+        0.016437279224016218,
+        0.016852591838237493
+      ],
+      "minimum_primary_clearance_km": -234.16231760506744,
+      "minimum_secondary_altitude_km": 93678.82435586039,
+      "impulse_local_components_m_s": {
+        "east": -5041.792155808871,
+        "north": 1664.2851294228597,
+        "radial_away_from_primary_center": 2.2171308065684564e-09,
+        "magnitude": 5309.379731606502
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 27.935553576998323
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 1.0,
+      "start_longitude": 1.0471975511965974,
+      "x": [
+        6.370056853187368,
+        -0.37292263578295165,
+        -0.5045770506269754,
+        -0.0239187595513369
+      ],
+      "residual": [
+        -4.1043730091433913e-10,
+        -7.228624295979514e-09,
+        3.704945133439667e-10
+      ],
+      "nfev": 25,
+      "runtime_seconds": 18.163364683976397,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 109.77324191899173,
+      "period_in_lunar_months": 4.017809968398032,
+      "position_closure_norm": 1.2217691387774356e-10,
+      "velocity_closure_norm": 3.087314425174255e-08,
+      "primary_pass_inclinations_deg": [
+        88.72376760102021,
+        87.3531041531576,
+        84.62289277087142,
+        82.07433840685692,
+        80.93333329926404,
+        88.72376760116568
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 9.066666700735965,
+      "periapsis_radii": [
+        0.01660127998742878,
+        0.01670305634251928,
+        0.016917434868292905,
+        0.016852591812890526
+      ],
+      "minimum_primary_clearance_km": 3.3957271676237495,
+      "minimum_secondary_altitude_km": 375843.9262020685,
+      "impulse_local_components_m_s": {
+        "east": -1603.0908853679416,
+        "north": 153.61159882970819,
+        "radial_away_from_primary_center": -5.7514020195273475e-09,
+        "magnitude": 1610.4337645630726
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 8.372873667254552
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 1.0,
+      "start_longitude": 2.094395102393195,
+      "x": [
+        -0.15075125107616558,
+        0.24749687125211514,
+        -0.4623952862962271,
+        0.023999913808830167
+      ],
+      "residual": [
+        3.6187868982691484e-12,
+        -2.079803995890549e-13,
+        -8.530387371712133e-12
+      ],
+      "nfev": 25,
+      "runtime_seconds": 21.99344294797629,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 109.6579409120938,
+      "period_in_lunar_months": 4.013589836726757,
+      "position_closure_norm": 1.561994210055486e-13,
+      "velocity_closure_norm": 1.0400187427373315e-10,
+      "primary_pass_inclinations_deg": [
+        91.33318515072223,
+        93.99553010929273,
+        100.3277726926105,
+        107.48720081535559,
+        111.30058458961838,
+        91.33318515072474
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 21.30058458961838,
+      "periapsis_radii": [
+        0.016573291551861425,
+        0.016159117429176688,
+        0.016311059397842807,
+        0.01685259183144935
+      ],
+      "minimum_primary_clearance_km": -166.57156022448092,
+      "minimum_secondary_altitude_km": 343779.04514574225,
+      "impulse_local_components_m_s": {
+        "east": 3867.3567091904047,
+        "north": 806.0571813123875,
+        "radial_away_from_primary_center": 1.315419553923309e-10,
+        "magnitude": 3950.465301159511
+      },
+      "maximum_local_ld": 27.392159100151613,
+      "bank_angle_change_deg": -20.623000060908467
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 2.0,
+      "start_longitude": -3.141592653589793,
+      "x": [
+        -3.069056151963308,
+        0.23014576259234118,
+        -0.8349004958954692,
+        -0.08678379230388507
+      ],
+      "residual": [
+        0.004218990360096673,
+        0.0002838238365708183,
+        0.010845989673114299
+      ],
+      "nfev": 50,
+      "runtime_seconds": 10.706083760014735,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 55.04404094898904,
+      "period_in_lunar_months": 2.0146667125761146,
+      "position_closure_norm": 0.00038933806364048473,
+      "velocity_closure_norm": 0.08739281682768488,
+      "primary_pass_inclinations_deg": [
+        85.159077158607,
+        83.43344456228657,
+        80.55334453919816,
+        65.65272123930801,
+        62.46816876741277,
+        85.17375031364092
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 27.53183123258723,
+      "periapsis_radii": [
+        0.03348719238878257,
+        0.03358965918391646,
+        0.032632519322577255,
+        0.03339231932117473
+      ],
+      "minimum_primary_clearance_km": -212.3321724013025,
+      "minimum_secondary_altitude_km": 60645.13138920173,
+      "impulse_local_components_m_s": {
+        "east": -3027.4085122113893,
+        "north": 895.064099440392,
+        "radial_away_from_primary_center": 5.995502553285257e-10,
+        "magnitude": 3156.9513841548173
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 23.48714519623173
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 2.0,
+      "start_longitude": -2.0943951023931957,
+      "x": [
+        -2.0347955775217637,
+        0.1744937226932168,
+        -0.5853163365922962,
+        0.010010294753975097
+      ],
+      "residual": [
+        0.004215011673747607,
+        0.013670085585312143,
+        0.04972761153574987
+      ],
+      "nfev": 50,
+      "runtime_seconds": 12.216198555077426,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 82.13706190083245,
+      "period_in_lunar_months": 3.006298259129723,
+      "position_closure_norm": 0.0017305901854235291,
+      "velocity_closure_norm": 0.3939114690714021,
+      "primary_pass_inclinations_deg": [
+        90.56483778328621,
+        102.41241712702576,
+        96.69101811165551,
+        95.49243782521027,
+        78.8130390319526,
+        90.562884383051
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 12.412417127025762,
+      "periapsis_radii": [
+        0.0335804062652236,
+        0.02611205092470366,
+        0.02475129283562295,
+        0.033313511830305065
+      ],
+      "minimum_primary_clearance_km": -3241.875633986537,
+      "minimum_secondary_altitude_km": 50742.08495311935,
+      "impulse_local_components_m_s": {
+        "east": -1633.095645122897,
+        "north": 148.94761627285558,
+        "radial_away_from_primary_center": 8.753652810588626e-10,
+        "magnitude": 1639.8740130000037
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 12.065622203681443
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 2.0,
+      "start_longitude": -1.0471975511965979,
+      "x": [
+        -1.7012239416814243,
+        0.04851455320070032,
+        -0.7639165420542335,
+        0.014951419248616331
+      ],
+      "residual": [
+        -0.0007794835333635959,
+        0.0009478633584171288,
+        -0.05374557138908827
+      ],
+      "nfev": 50,
+      "runtime_seconds": 11.882533019059338,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage"
+      ],
+      "period_days": 54.41601611862411,
+      "period_in_lunar_months": 1.991680378386369,
+      "position_closure_norm": 0.001797991207924677,
+      "velocity_closure_norm": 0.40798800517595696,
+      "primary_pass_inclinations_deg": [
+        90.85564520740283,
+        92.56066392259716,
+        92.17404986803716,
+        93.36750863017897,
+        93.03575726147115,
+        90.85711197894106
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 3.3675086301789747,
+      "periapsis_radii": [
+        0.031588509047415794,
+        0.03152166923103986,
+        0.03329675885325409,
+        0.03337812038182723
+      ],
+      "minimum_primary_clearance_km": -639.342947588276,
+      "minimum_secondary_altitude_km": 82119.23833422603,
+      "impulse_local_components_m_s": {
+        "east": 295.17886631205795,
+        "north": 11.32979589079619,
+        "radial_away_from_primary_center": -6.949649510588869e-10,
+        "magnitude": 295.3962210188189
+      },
+      "maximum_local_ld": 8.691141682721597,
+      "bank_angle_change_deg": -2.1783502432043917
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 2.0,
+      "start_longitude": 0.0,
+      "x": [
+        0.13555180545563797,
+        0.25003138555080906,
+        -0.849449291079322,
+        -0.08366077715281374
+      ],
+      "residual": [
+        -6.555510755679206e-09,
+        -1.6413126269104636e-09,
+        1.2985638309818459e-08
+      ],
+      "nfev": 25,
+      "runtime_seconds": 21.31257473200094,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 55.12521101062851,
+      "period_in_lunar_months": 2.0176376176627224,
+      "position_closure_norm": 4.89596324679623e-10,
+      "velocity_closure_norm": 1.0784455767081959e-07,
+      "primary_pass_inclinations_deg": [
+        85.35597583363378,
+        82.68671189836435,
+        70.98923145212372,
+        67.75065280137825,
+        56.37599864379685,
+        85.35597585260493
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 33.62400135620315,
+      "periapsis_radii": [
+        0.033385648260174976,
+        0.03147307066688436,
+        0.03237923734825923,
+        0.033445037871061
+      ],
+      "minimum_primary_clearance_km": -658.0242356496518,
+      "minimum_secondary_altitude_km": 73769.8008427204,
+      "impulse_local_components_m_s": {
+        "east": -3790.848613665331,
+        "north": 1349.993224775828,
+        "radial_away_from_primary_center": 2.4969983662727087e-10,
+        "magnitude": 4024.054537238406
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 30.105438032383603
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 2.0,
+      "start_longitude": 1.0471975511965974,
+      "x": [
+        0.21781585587261454,
+        -0.5477144164104668,
+        -0.7837405137530005,
+        0.029912222342836293
+      ],
+      "residual": [
+        0.1921923208835988,
+        0.05449668835628406,
+        -0.11882826690880802
+      ],
+      "nfev": 50,
+      "runtime_seconds": 11.30559819797054,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed"
+      ],
+      "period_days": 54.75828299071847,
+      "period_in_lunar_months": 2.004207686740512,
+      "position_closure_norm": 0.007773934459929308,
+      "velocity_closure_norm": 0.77446251003277,
+      "primary_pass_inclinations_deg": [
+        91.46307855646722,
+        90.11293002626357,
+        92.50891862512346,
+        91.30318519848463,
+        93.4877537430715,
+        91.39596169200658
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 3.4877537430714938,
+      "periapsis_radii": [
+        0.03569573332966443,
+        0.037303317139644576,
+        0.039523314860187765,
+        0.04121066964286976
+      ],
+      "minimum_primary_clearance_km": 99.99999999999905,
+      "minimum_secondary_altitude_km": 211310.17598521104,
+      "impulse_local_components_m_s": {
+        "east": 297.20542579552364,
+        "north": 16.372898410053747,
+        "radial_away_from_primary_center": -3.065504469260416e-10,
+        "magnitude": 297.65607154003163
+      },
+      "maximum_local_ld": 7.423031059482778,
+      "bank_angle_change_deg": -2.4475097282461036
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 2.0,
+      "start_longitude": 2.094395102393195,
+      "x": [
+        3.2139998664746736,
+        0.2297147652827644,
+        -0.8346318192668839,
+        -0.08189262889130795
+      ],
+      "residual": [
+        0.004438134317933728,
+        0.00026489216632229494,
+        0.01143135755694628
+      ],
+      "nfev": 50,
+      "runtime_seconds": 10.177383500966243,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 55.04263758917515,
+      "period_in_lunar_months": 2.014615348209435,
+      "position_closure_norm": 0.0004102209987752318,
+      "velocity_closure_norm": 0.09214819622549367,
+      "primary_pass_inclinations_deg": [
+        85.43141846564247,
+        83.70039917909297,
+        80.82287771715757,
+        66.09600147544516,
+        62.91305208310816,
+        85.44606880782347
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 27.086947916891837,
+      "periapsis_radii": [
+        0.033484662068335676,
+        0.033567452388580804,
+        0.032668777429630314,
+        0.03338978301634646
+      ],
+      "minimum_primary_clearance_km": -198.39455605010693,
+      "minimum_secondary_altitude_km": 61064.36994938394,
+      "impulse_local_components_m_s": {
+        "east": -3010.2758567745886,
+        "north": 868.8491198137301,
+        "radial_away_from_primary_center": 1.978949739434673e-10,
+        "magnitude": 3133.1548839597885
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 23.30608269917756
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 4.0,
+      "start_longitude": -3.141592653589793,
+      "x": [
+        -3.0239420597465356,
+        0.3451883714399406,
+        -0.8164882020166633,
+        -0.08115923955621843
+      ],
+      "residual": [
+        0.008265772611517166,
+        0.0009387687741110638,
+        0.013123210531915383
+      ],
+      "nfev": 50,
+      "runtime_seconds": 9.159015184966847,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 54.935787654161594,
+      "period_in_lunar_months": 2.0107045341848577,
+      "position_closure_norm": 0.0010352819078546147,
+      "velocity_closure_norm": 0.08087535598348118,
+      "primary_pass_inclinations_deg": [
+        85.62476967424286,
+        84.20358861958839,
+        82.0591514553281,
+        77.80327054123549,
+        75.42756589627297,
+        85.65593982706137
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 14.572434103727034,
+      "periapsis_radii": [
+        0.06631828254831121,
+        0.06635689017018814,
+        0.06583655309819673,
+        0.06641190374009459
+      ],
+      "minimum_primary_clearance_km": -204.97418905317414,
+      "minimum_secondary_altitude_km": 106154.34769535638,
+      "impulse_local_components_m_s": {
+        "east": -1022.7908375237574,
+        "north": 170.451471149967,
+        "radial_away_from_primary_center": 1.7848275136706683e-10,
+        "magnitude": 1036.8967168140407
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 10.977110316375374
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 4.0,
+      "start_longitude": -2.0943951023931957,
+      "x": [
+        -0.4619176919375591,
+        0.20453013940728,
+        -0.4258727405568757,
+        -0.08725858645643422
+      ],
+      "residual": [
+        0.005764478233753287,
+        -0.0031522637851254557,
+        -0.023031079629694143
+      ],
+      "nfev": 50,
+      "runtime_seconds": 11.773369326023385,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 109.08945695081407,
+      "period_in_lunar_months": 3.992782757637395,
+      "position_closure_norm": 0.0015957786303972179,
+      "velocity_closure_norm": 0.1275981477483518,
+      "primary_pass_inclinations_deg": [
+        85.10491625734217,
+        87.38228502242384,
+        93.94182003016753,
+        102.1089069177292,
+        107.62259054183693,
+        85.07675168398038
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 17.622590541836928,
+      "periapsis_radii": [
+        0.06266997620917666,
+        0.06011256394194463,
+        0.06590606757354944,
+        0.06676554368956815
+      ],
+      "minimum_primary_clearance_km": -2405.2756207164844,
+      "minimum_secondary_altitude_km": 112736.11760216516,
+      "impulse_local_components_m_s": {
+        "east": 2158.4594740539383,
+        "north": 270.52713421773996,
+        "radial_away_from_primary_center": 5.55001122341356e-11,
+        "magnitude": 2175.346462401166
+      },
+      "maximum_local_ld": 3.5956821652100097,
+      "bank_angle_change_deg": -22.897561715427443
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 4.0,
+      "start_longitude": -1.0471975511965979,
+      "x": [
+        0.12405735675143807,
+        0.34926094860134294,
+        -0.8215664968599985,
+        -0.08046901196257066
+      ],
+      "residual": [
+        -0.008885221801119789,
+        -0.0009456809366349572,
+        0.01398913754707238
+      ],
+      "nfev": 50,
+      "runtime_seconds": 9.546474814065732,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 54.96218278012607,
+      "period_in_lunar_months": 2.0116706220798974,
+      "position_closure_norm": 0.0011060115819526866,
+      "velocity_closure_norm": 0.08646014718524465,
+      "primary_pass_inclinations_deg": [
+        85.66837096370207,
+        83.65049976739928,
+        80.09798983828706,
+        77.80715469985756,
+        74.91578774254057,
+        85.70178945491966
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 15.084212257459427,
+      "periapsis_radii": [
+        0.0665149375672714,
+        0.06616054021547116,
+        0.06663001588668822,
+        0.0663983436249618
+      ],
+      "minimum_primary_clearance_km": -80.43354117288551,
+      "minimum_secondary_altitude_km": 116303.70146660937,
+      "impulse_local_components_m_s": {
+        "east": -1079.7849820166032,
+        "north": 185.24604108400328,
+        "radial_away_from_primary_center": 2.5221702131893488e-11,
+        "magnitude": 1095.559995219747
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 11.600958705595616
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 4.0,
+      "start_longitude": 0.0,
+      "x": [
+        0.12113235093588426,
+        0.3485912834944492,
+        -0.8210631787657109,
+        -0.07893939780501508
+      ],
+      "residual": [
+        -0.009000133584254106,
+        -0.0009784547354512174,
+        0.014098709383587772
+      ],
+      "nfev": 50,
+      "runtime_seconds": 10.285802660975605,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 54.95975936009222,
+      "period_in_lunar_months": 2.0115819224933733,
+      "position_closure_norm": 0.0011163911617049192,
+      "velocity_closure_norm": 0.0872325645309559,
+      "primary_pass_inclinations_deg": [
+        85.74965214145465,
+        83.7331110166072,
+        80.26793505970511,
+        77.97957822064056,
+        75.16619603476923,
+        85.78286367062333
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 14.833803965230771,
+      "periapsis_radii": [
+        0.06650021858781555,
+        0.06617931067519077,
+        0.06662694107433646,
+        0.06639284985779377
+      ],
+      "minimum_primary_clearance_km": -73.2181764566671,
+      "minimum_secondary_altitude_km": 117406.97707815414,
+      "impulse_local_components_m_s": {
+        "east": -1063.1971837357287,
+        "north": 178.94845119393858,
+        "radial_away_from_primary_center": 4.143430449620341e-11,
+        "magnitude": 1078.1515661947972
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 11.415091018163693
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 4.0,
+      "start_longitude": 1.0471975511965974,
+      "x": [
+        -0.021815137377622362,
+        -0.2816943548156387,
+        -0.7706336203625792,
+        -0.08722982826153265
+      ],
+      "residual": [
+        0.012499610249395918,
+        -8.136196773717643e-05,
+        0.025597215820765934
+      ],
+      "nfev": 50,
+      "runtime_seconds": 8.91546540602576,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage"
+      ],
+      "period_days": 54.8931436824919,
+      "period_in_lunar_months": 2.0091437223561153,
+      "position_closure_norm": 0.0018980343894917243,
+      "velocity_closure_norm": 0.14806032015327555,
+      "primary_pass_inclinations_deg": [
+        85.19955898126776,
+        86.13352955741176,
+        88.12615736490118,
+        89.37013916334318,
+        91.11701139048073,
+        85.15200456588143
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 4.847995434118573,
+      "periapsis_radii": [
+        0.06607148190982763,
+        0.0668302534536031,
+        0.06588493527235145,
+        0.06698186770825112
+      ],
+      "minimum_primary_clearance_km": -186.37608130810054,
+      "minimum_secondary_altitude_km": 151858.82798743254,
+      "impulse_local_components_m_s": {
+        "east": 581.1230070216164,
+        "north": -12.43166593352415,
+        "radial_away_from_primary_center": 1.7494305089945356e-10,
+        "magnitude": 581.2559639330408
+      },
+      "maximum_local_ld": 3.1203267424685373,
+      "bank_angle_change_deg": -6.165330359264431
+    },
+    {
+      "family": "4:2",
+      "radius_factor": 4.0,
+      "start_longitude": 2.094395102393195,
+      "x": [
+        3.2453012907852843,
+        0.3319458651721917,
+        -0.8151935395369746,
+        -0.04686546615446029
+      ],
+      "residual": [
+        0.010004782735215547,
+        0.000995283750080803,
+        0.016049886533798234
+      ],
+      "nfev": 50,
+      "runtime_seconds": 9.14546267699916,
+      "accepted_idealized_return": false,
+      "rejection_reasons": [
+        "full state closure failed",
+        "primary surface intersection",
+        "unmodeled intermediate atmospheric passage",
+        "bank requires nonpassive aerodynamic segments",
+        "a primary pass exceeds the allowed departure from polar"
+      ],
+      "period_days": 54.9309840811632,
+      "period_in_lunar_months": 2.010528718629632,
+      "position_closure_norm": 0.0012619032013096866,
+      "velocity_closure_norm": 0.09875568540715751,
+      "primary_pass_inclinations_deg": [
+        87.46149003597905,
+        86.12835604356837,
+        84.01349998245281,
+        80.05760166574046,
+        77.72293246450145,
+        87.48632468505696
+      ],
+      "maximum_primary_pass_departure_from_polar_deg": 12.277067535498546,
+      "periapsis_radii": [
+        0.06643395365295213,
+        0.0662539667346774,
+        0.0661183105554328,
+        0.06635648771534093
+      ],
+      "minimum_primary_clearance_km": -96.66662249163188,
+      "minimum_secondary_altitude_km": 108686.87595585165,
+      "impulse_local_components_m_s": {
+        "east": -978.0181115041429,
+        "north": 123.84006024548458,
+        "radial_away_from_primary_center": -9.521042230436509e-11,
+        "magnitude": 985.8274630744141
+      },
+      "maximum_local_ld": null,
+      "bank_angle_change_deg": 10.425614224025992
+    }
+  ]
+}

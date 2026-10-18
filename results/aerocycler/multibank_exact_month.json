@@ -1,0 +1,246 @@
+[
+  {
+    "x": [
+      1.997380435785952,
+      0.015056237664558757,
+      6.7444088214302145,
+      0.391094749282244,
+      0.14885607883932786,
+      0.09713589291558397
+    ],
+    "residual": [
+      22.23372827186895,
+      -0.6206524903560016,
+      -0.4016034311039972,
+      -0.05909333811960016,
+      0.006409774752073494,
+      -1.1581280336482092
+    ],
+    "period": 5.125057273531377,
+    "position_closure": 0.9227895002183742,
+    "velocity_closure": 6.896703104121718,
+    "periapsis_radii": [
+      0.03902985779819982,
+      0.0417469999806258,
+      0.9053401587436777
+    ],
+    "banks": [
+      {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": 23.14541607584535,
+        "final_angle_deg": 8.52882507236013,
+        "all_segments_passive": false,
+        "maximum_local_ld": null,
+        "minimum_local_ld": null,
+        "integrated_lift_over_drag": null,
+        "integrated_drag": -0.045324453733046374,
+        "integrated_lift": 1.7660277852411017
+      },
+      {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": 8.266701638742138,
+        "final_angle_deg": 5.565476703297675,
+        "all_segments_passive": false,
+        "maximum_local_ld": null,
+        "minimum_local_ld": null,
+        "integrated_lift_over_drag": null,
+        "integrated_drag": -0.018457935799715643,
+        "integrated_lift": 0.31454998182604743
+      },
+      {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": -179.41550716216835,
+        "final_angle_deg": 22.543164119824137,
+        "all_segments_passive": false,
+        "maximum_local_ld": null,
+        "minimum_local_ld": null,
+        "integrated_lift_over_drag": null,
+        "integrated_drag": 1.1724217447756176,
+        "integrated_lift": 1.7030031838905613
+      }
+    ]
+  },
+  {
+    "x": [
+      2.0014785263861428,
+      0.005026465849543652,
+      6.745014957125918,
+      0.30577747800500993,
+      -0.0008690237474251274,
+      0.015344861719027396
+    ],
+    "residual": [
+      -0.0032812609788171665,
+      -0.0011308560664953441,
+      -0.0006875084930784292,
+      -0.06129959892918335,
+      0.004786417733831483,
+      0.002336135374236825
+    ],
+    "period": 6.285521442553823,
+    "position_closure": 0.00014676448304075534,
+    "velocity_closure": 0.020699708379713303,
+    "periapsis_radii": [
+      0.03893833963901102,
+      0.04167966132085792,
+      0.041495428358700154
+    ],
+    "banks": [
+      {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": 18.11523722658795,
+        "final_angle_deg": -0.049791393024102654,
+        "all_segments_passive": false,
+        "maximum_local_ld": null,
+        "minimum_local_ld": null,
+        "integrated_lift_over_drag": null,
+        "integrated_drag": -0.09974469373429616,
+        "integrated_lift": 2.195681246111331
+      },
+      {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": -0.05533419173319017,
+        "final_angle_deg": 0.8791958137121311,
+        "all_segments_passive": true,
+        "maximum_local_ld": 12.936561862662236,
+        "minimum_local_ld": 12.484778090778763,
+        "integrated_lift_over_drag": 12.706235314581827,
+        "integrated_drag": 0.008559404446503008,
+        "integrated_lift": 0.10875780704994523
+      },
+      {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": -2.03409146334706,
+        "final_angle_deg": 17.62645667485348,
+        "all_segments_passive": true,
+        "maximum_local_ld": 43.95022174580759,
+        "minimum_local_ld": 11.732774647633196,
+        "integrated_lift_over_drag": 18.245202533613,
+        "integrated_drag": 0.1258786891615708,
+        "integrated_lift": 2.2966821784185747
+      }
+    ]
+  },
+  {
+    "x": [
+      1.9967227217835735,
+      0.01470690888588951,
+      6.74437597453853,
+      0.39233848391996407,
+      -0.146829644108145,
+      0.098637603478534
+    ],
+    "residual": [
+      22.231007569333666,
+      -0.5922395706641486,
+      -0.38540935525020953,
+      -0.05902399485314125,
+      0.00669152767610548,
+      -1.1603641133935776
+    ],
+    "period": 5.122821193786009,
+    "position_closure": 0.9226326862286673,
+    "velocity_closure": 6.894367804517537,
+    "periapsis_radii": [
+      0.039032734234236255,
+      0.04175868740617471,
+      0.9052572453059917
+    ],
+    "banks": [
+      {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": 23.218925599947436,
+        "final_angle_deg": -8.412718914804627,
+        "all_segments_passive": false,
+        "maximum_local_ld": null,
+        "minimum_local_ld": null,
+        "integrated_lift_over_drag": null,
+        "integrated_drag": -0.18945679841533064,
+        "integrated_lift": 3.81728438435775
+      },
+      {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": -8.192764748031404,
+        "final_angle_deg": 5.651518380604924,
+        "all_segments_passive": true,
+        "maximum_local_ld": 15.933946235079425,
+        "minimum_local_ld": 9.678948638378138,
+        "integrated_lift_over_drag": 11.955736897120053,
+        "integrated_drag": 0.13457434047670033,
+        "integrated_lift": 1.6089354078428828
+      },
+      {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": -179.25713478012,
+        "final_angle_deg": 22.61483319476944,
+        "all_segments_passive": false,
+        "maximum_local_ld": null,
+        "minimum_local_ld": null,
+        "integrated_lift_over_drag": null,
+        "integrated_drag": 1.1704138861627307,
+        "integrated_lift": 1.7010543359569714
+      }
+    ]
+  },
+  {
+    "x": [
+      1.9992618314084851,
+      -0.023151366852109324,
+      6.74431320221342,
+      0.4080022883680488,
+      0.14700085662048398,
+      -0.1251167011082502
+    ],
+    "residual": [
+      22.24592358753897,
+      -0.7224809664298832,
+      0.5478360688035161,
+      -0.058060824679024625,
+      0.007929426591252398,
+      -1.151046706522676
+    ],
+    "period": 5.13213860065691,
+    "position_closure": 0.9235518768652341,
+    "velocity_closure": 6.869418718360904,
+    "periapsis_radii": [
+      0.03907268760735417,
+      0.041810036833896023,
+      0.9058506368741783
+    ],
+    "banks": [
+      {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": 24.185578453438072,
+        "final_angle_deg": 8.422528669161482,
+        "all_segments_passive": false,
+        "maximum_local_ld": null,
+        "minimum_local_ld": null,
+        "integrated_lift_over_drag": null,
+        "integrated_drag": -0.04625421216753799,
+        "integrated_lift": 1.9035330768080136
+      },
+      {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": 8.21069227432707,
+        "final_angle_deg": -7.168658920102527,
+        "all_segments_passive": false,
+        "maximum_local_ld": null,
+        "minimum_local_ld": null,
+        "integrated_lift_over_drag": null,
+        "integrated_drag": -0.14015162429106492,
+        "integrated_lift": 1.786939241547873
+      },
+      {
+        "model": "zero-duration fixed-position continuous velocity-space bank",
+        "initial_angle_deg": 179.49969803694697,
+        "final_angle_deg": 23.517388672970387,
+        "all_segments_passive": false,
+        "maximum_local_ld": null,
+        "minimum_local_ld": null,
+        "integrated_lift_over_drag": null,
+        "integrated_drag": 1.1699252586263662,
+        "integrated_lift": 1.235478762626971
+      }
+    ]
+  }
+]

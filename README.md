@@ -98,6 +98,29 @@ Run it with:
 PYTHONPATH=src MPLCONFIGDIR=/tmp .env/bin/python -m l4_receipt
 ```
 
+## Cislunar Aerocycler
+
+The current [polar aerocycler results](docs/aerocycler_polar_results.md)
+verify nine explicitly near-polar returns across primary radii and nominal
+1:1, 1:2, 3:2, and 1:4 resonance families. An Earth-radius checkpoint closes
+in 27.4413 days with maximum local L/D 25.685 and primary passes within
+1.23° of polar. A 3.5-radius toy primary closes a three-pass, 54.6892-day
+cycle with L/D 3.719 and passes within 1.46° of polar. The intended
+application is repeated atmospheric propellant collection, not lunar
+rendezvous; a close lunar encounter is not a requirement. These results
+establish reduced-model orbit closure, not yet a collection mass budget.
+Reproduce the fixed-input verification with:
+
+```bash
+PYTHONPATH=src MPLCONFIGDIR=/tmp/mplconfig .env/bin/python scripts/aerocycler_polar_verify.py
+PYTHONPATH=src .env/bin/pytest -q tests/test_aerocycler.py tests/test_aerocycler_banking.py tests/test_aerocycler_polar.py
+```
+
+The [earlier review](docs/aerocycler_revisit.md) documents the separate
+mostly-eastward 26.724-day experiment and the diagnostic corrections. The
+[first investigation](docs/aerocycler_investigation.md) remains available
+with its superseded conclusions marked explicitly.
+
 ## Failed Ideas Archive
 
 ### Moon Tidal Station-Keeping (Tidal Station Keeping Barbell - TSKB)
