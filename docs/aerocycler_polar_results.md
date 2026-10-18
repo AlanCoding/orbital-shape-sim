@@ -2,6 +2,11 @@
 
 2026-10-17. All calculations use the repository's `.env` Python environment.
 
+For a focused description of **just the 27.4413-day Earth-radius orbit**, see
+the [orbit dossier](aerocycler_27day/README.md), its
+[technical verification record](aerocycler_27day/TECHNICAL.md), and the
+[offline interactive 3D page](aerocycler_27day/index.html).
+
 ## The intended polar encounter now closes
 
 This investigation finds **nine independently verified polar return

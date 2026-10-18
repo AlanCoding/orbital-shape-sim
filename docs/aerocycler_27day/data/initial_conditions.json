@@ -1,0 +1,23 @@
+{
+  "schema": "polar-aerocycler-27day-input-v1",
+  "description": "Fixed post-bank initial state; no optimization is performed by reproduce.py.",
+  "source_checkpoint": "results/aerocycler/polar/earth_1_1.json",
+  "source_commit": "9753f73",
+  "mu": 0.012150585609624,
+  "separation_km": 384400.0,
+  "lunar_sidereal_period_days": 27.321661,
+  "primary_sidereal_day_days": 0.99726968,
+  "primary_solid_radius_km": 6378.1363,
+  "secondary_radius_km": 1737.4,
+  "atmospheric_interface_altitude_km": 100.0,
+  "initial_state_primary_centered_rotating": [
+    0.015110651764613217,
+    -0.005012708307188879,
+    0.005527278725762243,
+    -3.2836195551417013,
+    1.3302433736936474,
+    10.18326674440602
+  ],
+  "expected_period_days": 27.44133563807251,
+  "integration": {"method": "DOP853", "rtol": 3e-14, "atol": 3e-16, "max_step_normalized": 0.004}
+}

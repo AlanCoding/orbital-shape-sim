@@ -1,0 +1,7 @@
+{
+  "data/initial_conditions.json": "d8f8036f5fd2e75ef3d222b133ebe0a7c97ae4db136fa179f324669b8db1c258",
+  "data/verification.json": "290bf7f2a704f3d233d5ff347dcd22a2b78de486a4e749a8cced5192a5e3cd1f",
+  "data/trajectory.csv": "ca786f2215cf11095198a4f0050145d8518724eeccfe40071ed772d051c44d0d",
+  "data/bank.csv": "4695edcce75786041dae6efe5e448255230022eaf7ffda100604f7ae0842ac1e",
+  "orbit-data.js": "7e5cae4dbb70026b01048aa5f028740b2bf746585f43033ee2681794b8da9cf0"
+}

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore a numerically closed, near-polar Earth–Moon aerocycler: its 27.4413-day trajectory, aerodynamic bank, and reproducible reduced model.">
+  <title>A polar return · 27.4413-day aerocycler</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Keep both control columns inside narrow phone viewports. */
+    @media (max-width: 680px) {
+      .controls { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+      .control-block, .button-row button { min-width: 0; }
+      .control-title { flex-wrap: wrap; gap: 4px; }
+      .select-row { flex-wrap: wrap; }
+      .select-row select { width: 100%; min-width: 0; }
+      .button-row button { padding: 7px 5px; font-size: 11px; }
+    }
+  </style>
+  <script defer src="orbit-data.js"></script>
+  <script defer src="viewer.js"></script>
+</head>
+<body>
+  <header class="masthead wrap">
+    <a href="#" class="wordmark"><span class="orbit-icon" aria-hidden="true">◌</span> ORBIT NOTE <span class="muted">/ 01</span></a>
+    <nav aria-label="Page"><a href="#explore">Explore</a><a href="#geometry">Geometry</a><a href="#maneuver">The maneuver</a><a href="#verify">Verify</a></nav>
+  </header>
+  <main>
+    <section class="intro wrap">
+      <div class="eyebrow"><span class="status-dot"></span> EARTH–MOON SYSTEM · IMPULSIVE REDUCED MODEL</div>
+      <h1>A polar pass.<br>A return in <span>27.44 days.</span></h1>
+      <p class="lede">A near-polar trajectory that returns to Earth's atmosphere, using an eastward aerodynamic turn to extract energy from planetary rotation. One specific numerical solution, open for inspection.</p>
+      <div class="headline-stats">
+        <div><strong>27.4413 <small>days</small></strong><span>One coast, one atmospheric bank</span></div>
+        <div><strong>25.6854</strong><span>Maximum required local lift / drag</span></div>
+        <div><strong>1.228°</strong><span>Largest departure from polar at the pass</span></div>
+      </div>
+    </section>
+
+    <section class="explorer wrap" id="explore" aria-labelledby="explore-title">
+      <div class="section-line"><h2 id="explore-title">Explore the orbit</h2><span>Actual trajectory samples · no illustrative ellipse</span></div>
+      <div class="viewer-shell">
+        <div class="viewer-toolbar">
+          <label for="frame">Coordinates <select id="frame"><option value="rotating">Lunar-co-moving</option><option value="earth">Earth-centered, non-rotating</option><option value="barycentric">Barycentric inertial</option></select></label>
+          <div class="presets" role="group" aria-label="Camera presets"><button data-view="overview">Overview</button><button data-view="top">Top XY</button><button data-view="side">Side XZ</button><button data-view="polar">Initial plane</button><button data-view="earth">Earth pass</button></div>
+        </div>
+        <div class="viewer-main">
+          <aside class="controls">
+            <div class="control-block"><div class="control-title">FLIGHT TIME <output id="day">0.0000 d</output></div>
+              <input id="timeline" type="range" min="0" max="1" step="0.000001" value="0" aria-label="Time along the coast">
+              <div class="time-limits"><span>Departure</span><span>27.4413 d</span></div>
+              <div class="button-row"><button id="play" class="primary">▶ Play coast</button><button id="apogee">Apogee</button></div>
+              <label class="select-row" for="rate">Playback <select id="rate"><option value="100">100 s / coast</option><option value="50" selected>50 s / coast</option><option value="15">15 s / coast</option></select></label>
+            </div>
+            <div class="control-block"><div class="control-title">AT THE INSTANTANEOUS BANK</div>
+              <div class="button-row"><button id="incoming">Incoming</button><button id="outgoing">Outgoing</button></div>
+              <p class="hint">Both states occur at the same position. The bank has no modeled duration.</p>
+            </div>
+            <div class="control-block"><div class="control-title">CAMERA</div>
+              <div class="button-row"><button id="orbit-mode" aria-pressed="true">Orbit</button><button id="fly-mode" aria-pressed="false">Fly</button></div>
+              <button id="focus" class="full">Focus spacecraft</button>
+              <label class="select-row" for="fly-speed">Fly speed <select id="fly-speed"><option value="0.001">Near Earth</option><option value="0.05" selected>Regional</option><option value="0.3">Earth–Moon scale</option></select></label>
+              <p class="hint" id="camera-help">Drag to orbit · wheel to zoom · right-drag or Shift-drag to pan.</p>
+            </div>
+            <div class="control-block toggles">
+              <label><input id="grid" type="checkbox" checked> Lunar / equatorial plane</label>
+              <label><input id="vectors" type="checkbox"> Bank velocity vectors</label>
+              <p class="hint">Bodies are true radius. Spacecraft and point markers are symbols. No vertical exaggeration.</p>
+            </div>
+          </aside>
+          <div class="scene" id="scene">
+            <canvas id="space" tabindex="0" aria-label="Interactive 3D orbit. Drag to rotate; scroll to zoom. In Fly mode use W A S D and Q E to move." aria-describedby="camera-help"></canvas>
+            <div id="webgl-error" class="webgl-error" hidden>3D rendering is unavailable in this browser. Enable WebGL or use the trajectory figures below.</div>
+            <div class="scene-caption"><span id="frame-label">LUNAR-CO-MOVING</span><span id="event-label">Departure · after bank</span></div>
+            <div class="legend"><span class="cyan">Outbound</span><span class="amber">Return</span><span class="white">Spacecraft</span></div>
+            <div class="body-label" id="earth-label">EARTH</div><div class="body-label" id="moon-label">MOON</div>
+            <div class="vector-note" id="vector-note" hidden>White: incoming velocity · cyan: outgoing velocity<br>Amber: net Δv, length magnified ×20. Vectors are fixed at the return bank.</div>
+            <div class="scene-readout"><div><span>Altitude above Earth</span><strong id="altitude">100 km</strong></div><div><span>Inertial speed relative to Earth</span><strong id="speed">11.032 km/s</strong></div><div><span>Osculating inclination</span><strong id="inclination">88.772°</strong></div></div>
+          </div>
+        </div>
+        <div class="frame-explanation" id="frame-explanation">Earth is at the origin; the Moon is fixed on +x. The trajectory closes in this frame after the bank.</div>
+      </div>
+      <p class="under-note">The viewer plays one coast and stops at the return. It does not simulate stability, atmospheric flight, or propellant collection. The Earth-pass preset pauses at the return bank; zoom in to distinguish incoming and outgoing directions.</p>
+    </section>
+
+    <section class="wrap explanation" id="geometry">
+      <div><div class="eyebrow">READING THE GEOMETRY</div><h2>Polar describes the plane,<br>not the long axis.</h2></div>
+      <div><p>The orbit is highly eccentric. Looking down the lunar orbital normal compresses its north–south motion and can make a polar orbit look nearly flat. Switch to <strong>Side XZ</strong> or rotate the 3D scene to reveal that dimension.</p><p>At the atmospheric bank, inclination changes from <strong>91.134° to 88.772°</strong>: slightly retrograde to slightly prograde, both nearly polar. Over the coast the instantaneous inclination spans approximately 81.53°–91.16°.</p><p>The nominal resonance is near <strong>1:1</strong>, not exactly one lunar month. The inertial orientation advances by about <strong>1.577° beyond a full revolution</strong> each return. Lunar-frame closure is not a fixed ellipse in inertial space.</p></div>
+    </section>
+    <section class="wrap figure-grid" aria-label="Trajectory figures">
+      <figure><a href="figures/01_lunar_frame_top.png"><img src="figures/01_lunar_frame_top.png" alt="Top-down lunar-co-moving trajectory with Earth at the origin and the Moon fixed on positive x." loading="lazy"></a><figcaption>01 / Lunar-co-moving, top view <a href="figures/01_lunar_frame_top.svg">SVG</a></figcaption></figure>
+      <figure><a href="figures/02_nonrotating_top.png"><img src="figures/02_nonrotating_top.png" alt="Top-down trajectory in Earth-centered non-rotating axes, showing the Moon's orbit." loading="lazy"></a><figcaption>02 / Non-rotating axes, top view <a href="figures/02_nonrotating_top.svg">SVG</a></figcaption></figure>
+      <figure><a href="figures/03_side_views.png"><img src="figures/03_side_views.png" alt="Equal-scale side views showing motion above and below the lunar plane." loading="lazy"></a><figcaption>03 / The out-of-plane dimension <a href="figures/03_side_views.svg">SVG</a></figcaption></figure>
+      <figure><a href="figures/04_earth_pass.png"><img src="figures/04_earth_pass.png" alt="Nearly northward incoming and outgoing Earth passages and altitude against time near periapsis." loading="lazy"></a><figcaption>04 / The Earth encounter <a href="figures/04_earth_pass.svg">SVG</a></figcaption></figure>
+    </section>
+
+    <section class="maneuver-section" id="maneuver"><div class="wrap">
+      <div class="eyebrow">THE ENERGY EXCHANGE</div><h2>An eastward turn.<br>Not an engine burn.</h2>
+      <div class="maneuver-columns"><div><p>The spacecraft moves north at about <strong>11.03 km/s</strong>, while the atmosphere moves east at <strong>446 m/s</strong> at the pass. Lift and drag are resolved relative to that tilted airflow—not relative to geographic north and east.</p><p>Drag contributes <strong>−18.734 m/s northward</strong>; lift contributes <strong>+19.028 m/s northward</strong>. The small positive net northward change is their sum, not negative drag. Every segment of the prescribed velocity-space turn has positive drag.</p><p>The bank draws <strong>214.85 kJ/kg</strong> from Earth's rotation and dissipates <strong>207.01 kJ/kg</strong> relative to the atmosphere. Its net orbital-energy gain of <strong>7.84 kJ/kg</strong> balances the preceding coast's loss.</p></div>
+      <div class="impulse-card"><div class="control-title">NET VELOCITY CHANGE · LOCAL COMPONENTS</div><dl><div><dt>Eastward</dt><dd>+481.452 <small>m/s</small></dd></div><div><dt>Northward</dt><dd>+0.294 <small>m/s</small></dd></div><div><dt>Radially outward</dt><dd>0 <small>m/s</small></dd></div></dl><p>These are specific impulses (N·s/kg), not force in newtons. Duration, vehicle mass, and finite-flight loading are not specified.</p></div></div>
+      <figure class="bank-figure"><a href="figures/05_aerodynamic_bank.png"><img src="figures/05_aerodynamic_bank.png" alt="Continuous velocity-space bank and local lift-to-drag ratio along it." loading="lazy"></a></figure>
+    </div></section>
+
+    <section class="wrap verify-section" id="verify"><div><div class="eyebrow">OPEN THE NUMBERS</div><h2>One orbit.<br>Enough detail to verify it.</h2><p>The technical note specifies the equations, units, six-state initial condition, event detection, closing maneuver, force decomposition, and numerical residuals. The standalone Python script does not search for or optimize an orbit.</p><p>The model is circular restricted three-body gravity with aligned spin. Collection yield, Sun, oblateness, finite atmospheric flight, and physical vehicle performance are not demonstrated here. A close lunar flyby is not needed for the proposed atmospheric-collection application.</p></div>
+      <div class="downloads"><a href="TECHNICAL.md"><span>Technical verification note</span><small>Markdown · equations & conditions ↗</small></a><a href="data/initial_conditions.json" download><span>Fixed initial condition</span><small>JSON · full precision ↓</small></a><a href="data/verification.json" download><span>Verification & bank ledger</span><small>JSON · residuals & units ↓</small></a><a href="data/trajectory.csv" download><span>Trajectory in three frames</span><small>CSV · positions & velocities ↓</small></a><a href="data/bank.csv" download><span>Aerodynamic turn samples</span><small>CSV · lift, drag & local L/D ↓</small></a><a href="reproduce.py" download><span>Standalone reproduction script</span><small>Python · no optimizer ↓</small></a></div>
+    </section>
+  </main>
+  <footer class="wrap">Polar aerocycler / numerical orbit note · 2026-10-17 <a href="README.md">Local use & website integration</a></footer>
+  <noscript><p class="wrap">Enable JavaScript for the 3D viewer. All figures and downloadable data remain available below.</p></noscript>
+</body>
+</html>

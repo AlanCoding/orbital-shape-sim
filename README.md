@@ -100,6 +100,12 @@ PYTHONPATH=src MPLCONFIGDIR=/tmp .env/bin/python -m l4_receipt
 
 ## Cislunar Aerocycler
 
+For the **single Earth-radius, 27.4413-day orbit**, start with the
+[orbit dossier](docs/aerocycler_27day/README.md), including a detailed
+[technical record](docs/aerocycler_27day/TECHNICAL.md), PNG/SVG figures,
+standalone reproduction, and an [offline interactive 3D page](docs/aerocycler_27day/index.html).
+Open the HTML file locally; no build or server is required.
+
 The current [polar aerocycler results](docs/aerocycler_polar_results.md)
 verify nine explicitly near-polar returns across primary radii and nominal
 1:1, 1:2, 3:2, and 1:4 resonance families. An Earth-radius checkpoint closes

@@ -1,0 +1,144 @@
+{
+  "schema": "polar-aerocycler-27day-verification-v1",
+  "software": {
+    "python": "3.14.7",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "matplotlib": "3.10.9"
+  },
+  "units": {
+    "length_km": 384400.0,
+    "time_s": 375699.8075009233,
+    "velocity_m_s": 1023.1572982614725,
+    "total_GM_km3_s2": 402409.4694253092,
+    "primary_GM_km3_s2": 397519.9587169337
+  },
+  "period_normalized": 6.310706984069389,
+  "period_days": 27.44133563784261,
+  "period_lunar_months": 1.0043802109191902,
+  "apogee_time_days": 13.646846630409426,
+  "inertial_orientation_advance_beyond_360_deg": 1.5768759309084461,
+  "initial_state": [
+    0.015110651764613217,
+    -0.005012708307188879,
+    0.005527278725762243,
+    -3.2836195551417013,
+    1.3302433736936474,
+    10.18326674440602
+  ],
+  "pre_bank_state": [
+    0.015110651764606233,
+    -0.005012708307211905,
+    0.005527278725757491,
+    -3.4316895838826906,
+    0.8835918892226526,
+    10.182995550282175
+  ],
+  "post_bank_state": [
+    0.015110651764606233,
+    -0.005012708307211905,
+    0.005527278725757491,
+    -3.283619555137073,
+    1.3302433736977446,
+    10.18326674440723
+  ],
+  "initial_position_km": [
+    5808.534538317321,
+    -1926.885073283405,
+    2124.6859421830063
+  ],
+  "initial_rotating_velocity_m_s": [
+    -3359.6593125573213,
+    1361.0482162586186,
+    10419.083689682364
+  ],
+  "initial_nonrotating_velocity_m_s": [
+    -3354.5305234687653,
+    1376.5087898930701,
+    10419.083689682364
+  ],
+  "pre_bank_local_inertial_velocity_ENR_m_s": [
+    -231.16547622262357,
+    11028.863682329124,
+    -6.926684987616323e-10
+  ],
+  "post_bank_local_inertial_velocity_ENR_m_s": [
+    250.2865944796824,
+    11029.157403662837,
+    -3.5306304381655023e-13
+  ],
+  "impulse_ENR_m_s": [
+    481.452070702306,
+    0.29372133371417714,
+    6.926166964087704e-10
+  ],
+  "impulse_rotating_xyz_m_s": [
+    151.49893056486468,
+    456.99472612001114,
+    0.27747424829593814
+  ],
+  "drag_impulse_ENR_m_s": [
+    0.7414561534593546,
+    -18.734452877174135,
+    -1.0905719493638258e-14
+  ],
+  "lift_impulse_ENR_m_s": [
+    480.71061454407027,
+    19.02817421088601,
+    -6.941307509937005e-13
+  ],
+  "integral_drag_m_s": 18.750603114421523,
+  "integral_lift_m_s": 481.12513820191185,
+  "minimum_local_LD": 25.641094310907437,
+  "maximum_local_LD": 25.685431009701254,
+  "all_bank_segments_positive_drag": true,
+  "bank_heading_rotating_deg": [
+    91.28532939530211,
+    88.78457991327097
+  ],
+  "atmosphere_inertial_east_speed_m_s": 446.26290010021603,
+  "energy_J_kg": {
+    "orbital_gain": 7842.406675738725,
+    "rotation_work": 214854.19733086534,
+    "atmosphere_relative_work": -207011.7906551265
+  },
+  "closure_normalized": [
+    -6.983996714282625e-15,
+    -2.302585205837815e-14,
+    -4.752274962438463e-15,
+    4.6282977450573526e-12,
+    4.097167050076678e-12,
+    1.2114753644709708e-12
+  ],
+  "position_closure_m": 9.427994343855206e-06,
+  "velocity_closure_m_s": 6.444720771613524e-09,
+  "coast_jacobi_max_error": 1.3628209671878722e-11,
+  "bank_jacobi_jump": 1.4210854715202004e-14,
+  "maximum_primary_center_distance_km": 770237.313234723,
+  "minimum_primary_altitude_km": 99.9999999996262,
+  "inclination_over_sampled_coast_deg": [
+    81.52697651974898,
+    91.15807569090204
+  ],
+  "initial_osculating": {
+    "semimajor_axis_km": 389082.3057973763,
+    "eccentricity": 0.9833502161278604,
+    "inclination_deg": 88.77192035021109,
+    "osculating_apogee_center_distance_km": 771686.4752947526,
+    "specific_energy_J_kg": -510843.01803736016
+  },
+  "pre_bank_osculating": {
+    "semimajor_axis_km": 383199.46905793366,
+    "eccentricity": 0.9830946104494201,
+    "inclination_deg": 91.13431851960073,
+    "osculating_apogee_center_distance_km": 759920.8018158675,
+    "specific_energy_J_kg": -518685.42471393006
+  },
+  "post_bank_osculating": {
+    "semimajor_axis_km": 389082.30579674745,
+    "eccentricity": 0.9833502161278342,
+    "inclination_deg": 88.77192035021098,
+    "osculating_apogee_center_distance_km": 771686.4752934951,
+    "specific_energy_J_kg": -510843.01803818584
+  }
+}
