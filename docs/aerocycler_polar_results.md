@@ -376,13 +376,43 @@ candidate files are explicitly distinguished from independently verified
 checkpoints. Their plotting histories are thinned, but their initial states
 and diagnostic fields are preserved for repropagation.
 
-## Publication path: polar atmospheric-collection cycler
+## Closeout update — 2026-10-18
+
+The orbit dossier, standalone fixed-input reproduction, figures, offline
+viewer, and website integration are complete. The
+[published interactive page](https://alancoding.github.io/concepts/polar-aerocycler/)
+includes the reviewed presentation copy, links back through the scoop-diver
+and Space Concepts pages, and links to the numerical source. See the
+[single-orbit closeout record](aerocycler_27day/README.md#closeout-status--2026-10-18)
+for provenance, checks, and the split between numerical-source maintenance
+and website-copy maintenance.
+
+The remaining application showstopper is **physical momentum coupling**,
+which the original impulse-model investigation deliberately left outside
+scope. The project owner's current engineering assessment is that ion-only
+magnetic deflection has insufficient ions to push against around the
+roughly 400-km density regime of interest. Conventional hypersonic hardware
+also appears unlikely to provide the required effective L/D at about 11 km/s.
+A new method operating at roughly 1° grazing impact angles is a speculative
+opening, with no viable implementation established here. These are
+engineering assessments, not outputs of an ionosphere or hypersonic model
+in this repository. Magnetic deflection should therefore not remain listed
+as an optimistic next step on the strength of orbital closure alone.
+
+Any application work should first establish a physical mechanism meeting
+the recorded force/impulse and L/D requirements at usable density. Collection
+yield and vehicle sizing are conditional on that result. The completed
+numerical orbit and communication work need no further research task to be
+considered closed.
+
+## Earlier publication-path suggestions
 
 The established result is **polar, passive aerodynamic closure in the
 intended reduced model**, including an Earth-radius example near the
-anticipated L/D floor. The next objective is not a closer lunar encounter.
-It is to make that result independently reproducible, explain the mechanism,
-and distinguish the demonstrated orbit from the proposed collection system.
+anticipated L/D floor. Its reproducible inputs and mechanism are now
+documented in the single-orbit dossier. The suggestions below concern a
+possible later manuscript and should be read alongside the engineering
+showstopper above; they are separate from the completed communication work.
 
 ### First paper: reduced-model existence and mechanism
 
@@ -394,14 +424,15 @@ requires a focused literature review; it is not established by the search
 results alone. "Periodic" means in the lunar rotating frame, not a fixed
 inertial ellipse or an exact integer-month resonance.
 
-Priorities before treating the numerical evidence as publication-ready:
+Possible further studies for a later manuscript:
 
-1. **Independent numerical reproduction.** Reintegrate the fixed Earth-radius
-   input with a different integration method or separate implementation.
-   The existing two-tolerance checks use the same propagation code. Publish
-   dimensional initial conditions, all constants, event definitions, bank
-   law, residuals, and energy/angular-momentum ledgers. Audit the complete
-   control law for positive drag, perpendicular lift, and no hidden impulse.
+1. **Numerical reproduction: standalone implementation completed.** The
+   [single-orbit script](aerocycler_27day/reproduce.py) repropagates the fixed
+   six-state input with no project-package imports or optimization and checks
+   closure and aerodynamic passivity. Dimensional initial conditions,
+   constants, the bank law, residuals, and energy accounting are published
+   with it. It shares DOP853 with the original code; a different integration
+   algorithm remains a possible additional cross-check.
 2. **Repeated operation and local sensitivity.** Follow tens of returns with
    the stated bank rule, without silently reoptimizing each cycle. Calculate
    the periapsis return-map sensitivity or Floquet multipliers and perturb
@@ -424,7 +455,8 @@ it is not necessary to redefine the original reduced-model question.
 
 ### Collection-specific extension
 
-The highest-value application extension is an explicit captured-mass budget.
+After a physically viable momentum-coupling mechanism has been established,
+a collection application would also need an explicit captured-mass budget.
 For perfect capture of gas entering at inertial velocity v_air, the momentum
 equation is `m * dv/dt = F_other + (dm/dt) * (v_air - v_vehicle)`. The capture
 term is dissipative relative to the gas.

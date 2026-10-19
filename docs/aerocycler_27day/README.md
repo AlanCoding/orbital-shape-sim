@@ -4,6 +4,61 @@ This folder describes **one fixed Earth-radius solution**, not a search or a
 comparison of families. The application is repeated atmospheric collection;
 no close lunar encounter is required.
 
+## Closeout status — 2026-10-18
+
+The reduced-model orbit investigation and its communication package are
+complete. The [interactive page is published](https://alancoding.github.io/concepts/polar-aerocycler/)
+as a child of [Atmospheric Scoop Divers](https://alancoding.github.io/concepts/atmospheric-scoop-divers/),
+within [Space Concepts](https://alancoding.github.io/concepts/).
+
+Completed deliverables:
+
+- A fixed Earth-radius, 27.4413-day return with near-polar primary passes,
+  a passive eastward aerodynamic impulse, and maximum local L/D 25.6854.
+- Full-precision initial conditions, technical verification instructions,
+  force and energy ledgers, trajectory/bank data, and five PNG/SVG figures.
+- A standalone fixed-input reproduction that imports no project simulation
+  code, uses no optimizer, and reproduces closure and positive drag. It uses
+  the same DOP853 integration algorithm as the original propagation.
+- An offline 3D viewer and a minimal GitHub Pages copy, with parent-page
+  backlinks and links to the numerical source. Desktop/mobile browser checks,
+  the Jekyll build, and the relevant tests passed during handoff; 21 focused
+  aerocycler tests passed in the numerical repository.
+
+Numerical provenance is captured in commits `9753f73` and `6f9ae56` here.
+Website integration and copy review are recorded separately in the website
+repository, through commit `6d6db2d` at this closeout.
+
+### Remaining showstopper: physical momentum coupling
+
+The orbit closes under the prescribed force model. A physical device that
+can supply that force remains the engineering showstopper, outside the
+original orbital investigation. The retained checkpoint has a prescribed
+100-km atmospheric interface; the roughly 400-km density/ionization trade
+below is a separate engineering assessment, not that checkpoint's altitude.
+
+The project owner's current assessment is that **ion-only magnetic
+deflection fails through insufficient available ion momentum flux**. Around
+400 km, at the density level considered necessary to make useful progress,
+the ionization fraction leaves too few ions to push against. This supersedes
+the earlier suggestion that magnetic ion deflection was a promising next
+step. The orbit calculation contains no ionosphere or electromagnetic
+interaction model; this engineering assessment is recorded separately from
+the simulated closure result.
+
+Conventional hypersonic hardware also appears unlikely to achieve the
+required effective L/D at approximately 11 km/s. The remaining speculative
+opening would be a new interaction method at very shallow, roughly 1°
+grazing impact angles. That angle describes a possible interaction geometry,
+separately from the orbit's inclination or total maneuver angle. No viable
+device or performance calculation for that regime has been established here.
+
+**Follow-up gate, if this concept is revisited:** identify and quantify a
+physical momentum-coupling mechanism capable of supplying the recorded
+impulse and L/D at usable atmospheric density. Collection-yield and vehicle
+optimization studies depend on clearing that gate. The mathematical orbit
+result and published visualization remain valid within their stated model.
+
 ## Open the interactive page
 
 Open **[index.html](index.html)** in a desktop browser. It is an offline,
@@ -77,12 +132,28 @@ The generated ledger records the package versions used. Last reproduced:
 Python 3.14.7, NumPy 2.4.6, SciPy 1.17.1, Matplotlib 3.10.9. Last few digits
 of residuals can depend on platform and solver implementation.
 
-## Put it on a website
+## Website copy and maintenance
+
+The deployed copy lives in `AlanCoding.github.io/concepts/polar-aerocycler/`.
+This repository is authoritative for the numerical inputs, data, simulation
+and reproduction code, and generated figures. The website repository is
+authoritative for its public presentation copy and navigation. The owner's
+policy keeps concept-page prose human-written; approved viewer copy edits
+also live in the website checkout. The two HTML files intentionally differ.
+
+The website copy contains only four runtime files and ten figure files.
+Its technical-document and data-download links point back to this repository.
+Future numerical changes should regenerate and validate artifacts here,
+then explicitly synchronize the affected runtime/data/figure files to the
+website while preserving its reviewed prose and navigation. A regeneration
+here does not publish or update the website automatically.
+
+### Making another standalone copy
 
 Copy **this folder** to a static website directory, for example
 `/aerocycler/`, and link to its `index.html`. Paths are relative. No build,
 API, backend, cookies, remote fonts, analytics, or third-party scripts are
-used. No deployment has been made by this work.
+used.
 
 The interactive page needs `index.html`, `style.css`, `viewer.js`, and
 `orbit-data.js`. Include `figures/`, `data/`, `README.md`, `TECHNICAL.md`, and
